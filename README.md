@@ -18,4 +18,4 @@ Flower Power is a social robot consititing of two main parts: A flower head and 
 With both of these systems, the robot can be a non-verbal companion capable of expression emotions and passing along ideas and recommendations to user to support their habits and mental health.
 
 ## Pet Rock
-### Summer Strech Goal -> Build two robots (rock and flower) that are both non-verbal and social that can working together
+Summer Strech Goal -> Build two robots (rock and flower) that are both non-verbal and social that can working together
