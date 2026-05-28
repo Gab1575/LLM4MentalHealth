@@ -1,5 +1,5 @@
 # LLM4MentalHealth
-
+This project is the development of 2 desktop companion social robots. A Flower and a Pet Rock.
 
 
 ## Getting started
