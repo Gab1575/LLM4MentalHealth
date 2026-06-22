@@ -5,7 +5,7 @@
 #define SERVOMIN       80
 #define SERVOMAX       510
 #define SERVO_CENTER   295
-#define CURRENT_DELAY  2
+#define CURRENT_DELAY  35
 #define NUM_SERVOS     16
 
 Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
@@ -45,7 +45,6 @@ void printHelp() {
   Serial.println(F("  servo <number> <delta>  - move a single servo by delta"));
   Serial.println(F("  reset                   - reset all servos to middle"));
   Serial.println(F("  help                    - show this message"));
-  Serial.println(F("Example: servo 3 20"));
 }
 
 void processCommand(const String &command) {
@@ -112,37 +111,54 @@ void parseServoCommand(const String &args) {
     return;
   }
 
-  int target = servoPositions[servoNum] + delta;
-  if (target < SERVOMIN) {
-    target = SERVOMIN;
-  } else if (target > SERVOMAX) {
-    target = SERVOMAX;
-  }
-
-  servoPositions[servoNum] = (uint16_t)target;
-  moveServo((uint8_t)servoNum, servoPositions[servoNum]);
+int target = servoPositions[servoNum] + delta;
+  
+  // Let moveServo handle bounds checking and state updating
+  moveServo((uint8_t)servoNum, (uint16_t)target);
 
   Serial.print(F("Moved servo "));
   Serial.print(servoNum);
   Serial.print(F(" to position "));
-  Serial.println(servoPositions[servoNum]);
+  Serial.println(servoPositions[servoNum]); // This will now reflect the correct updated state
 }
 
-void moveServo(uint8_t servoNum, uint16_t position) {
-  if (position < SERVOMIN) {
-    position = SERVOMIN;
-  }
-  if (position > SERVOMAX) {
-    position = SERVOMAX;
+void moveServo(uint8_t servoNum, uint16_t targetPosition) {
+  uint16_t currentPos = servoPositions[servoNum];
+
+  // Bounds check the target position
+  if (targetPosition < SERVOMIN) {
+    targetPosition = SERVOMIN;
+  } else if (targetPosition > SERVOMAX) {
+    targetPosition = SERVOMAX;
   }
 
-  pwm.setPWM(servoNum, 0, position);
-  delay(CURRENT_DELAY);
+  // If we are already there, do nothing
+  if (targetPosition == currentPos) {
+    return;
+  }
+
+  // Sweep UP 
+  if (targetPosition > currentPos) {
+    for (uint16_t i = currentPos; i <= targetPosition; ++i) {
+      pwm.setPWM(servoNum, 0, i); // Pass servoNum for pin, 'i' for current step
+      delay(CURRENT_DELAY);
+    }
+  } 
+  // Sweep DOWN
+  else {
+    for (uint16_t i = currentPos; i >= targetPosition; --i) {
+      pwm.setPWM(servoNum, 0, i); 
+      delay(CURRENT_DELAY);
+    }
+  }
+
+  // Update the global state tracker AFTER the sweep is done
+  servoPositions[servoNum] = targetPosition;
 }
 
 void resetAllServos() {
   for (uint8_t i = 0; i < NUM_SERVOS; ++i) {
-    servoPositions[i] = SERVO_CENTER;
-    moveServo(i, SERVO_CENTER);
+    servoPositions[i] = SERVO_CENTER; // Initialize state tracking
+    pwm.setPWM(i, 0, SERVO_CENTER);   // Snap directly to center, bypassing the sweep
   }
 }
