@@ -5,7 +5,7 @@
 #define SERVOMIN       80
 #define SERVOMAX       510
 #define SERVO_CENTER   295
-#define CURRENT_DELAY  35
+#define CURRENT_DELAY  5
 #define NUM_SERVOS     16
 
 Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
