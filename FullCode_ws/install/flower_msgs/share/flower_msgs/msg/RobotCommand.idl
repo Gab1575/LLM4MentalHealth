@@ -1,0 +1,23 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from flower_msgs/msg/RobotCommand.msg
+// generated code does not contain a copyright notice
+
+
+module flower_msgs {
+  module msg {
+    typedef uint8 uint8__5[5];
+    typedef uint32 uint32__5[5];
+    typedef int16 int16__5[5];
+    struct RobotCommand {
+      uint8__5 servo_angles;
+
+      int16 n20_pwm;
+
+      float n20_target_rotations;
+
+      uint32__5 led_colours_hex;
+
+      int16__5 led_colours_brightness;
+    };
+  };
+};

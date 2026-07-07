@@ -1,0 +1,6 @@
+{
+  "package_name": "flower_msgs",
+  "non_idl_tuples": [
+    "/home/gavin/Desktop/llm4mentalhealth/FullCode_ws/src/flower_msgs:msg/RobotCommand.msg"
+  ]
+}
