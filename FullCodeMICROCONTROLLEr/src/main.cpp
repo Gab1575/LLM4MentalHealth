@@ -13,25 +13,28 @@ void setup() {
   servoControlReset();
   n20MotorBegin();
   MicroRosSetup();
-
-  //-- microROS message saying everything is ready --
 }
 
 void loop() {
+  // 1. Let micro-ROS process incoming network traffic
   rclc_executor_spin_some(&executor, RCL_MS_TO_NS(10));
-  Serial.println(flowerData.servo_angles[0]);
-  Serial.println(flowerData.servo_angles[1]);
-  Serial.println(flowerData.servo_angles[2]);
-  Serial.println(flowerData.servo_angles[3]);
-  Serial.println(flowerData.servo_angles[4]);
-  Serial.println(flowerData.n20_pwm);
-  Serial.println(flowerData.n20_target_rotations);
-  Serial.println(flowerData.led_colours_hex[0]);
-  Serial.println(flowerData.led_colours_brightness[0]);
-  Serial.println(flowerData.led_colours_hex[1]);
-  Serial.println(flowerData.led_colours_brightness[1]);
-  Serial.println(flowerData.led_colours_hex[2]);
-  Serial.println(flowerData.led_colours_brightness[2]);
-  Serial.println(flowerData.led_colours_hex[3]);
-  Serial.println(flowerData.led_colours_brightness[3]);   
+
+  // 2. Print debug data only twice a second (every 500ms)
+  static unsigned long last_print = 0;
+  if (millis() - last_print > 500) {
+    last_print = millis();
+
+    // Format the output into a single, clean line
+    Serial.printf("Servos: [%d, %d, %d, %d, %d] | ", 
+      flowerData.servo_angles[0], flowerData.servo_angles[1], 
+      flowerData.servo_angles[2], flowerData.servo_angles[3], 
+      flowerData.servo_angles[4]);
+      
+    Serial.printf("N20: [PWM: %d, Target: %.2f] | ", 
+      flowerData.n20_pwm, flowerData.n20_target_rotations);
+
+    // Just printing the first LED as an example to keep the line readable
+    Serial.printf("LED0: [HEX: %X, Brightness: %d]\n", 
+      flowerData.led_colours_hex[0], flowerData.led_colours_brightness[0]);
+  }
 }

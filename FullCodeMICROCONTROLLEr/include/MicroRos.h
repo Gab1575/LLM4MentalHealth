@@ -3,8 +3,10 @@
 
 #include <Arduino.h>
 #include <micro_ros_platformio.h>
-#include "MicroRosWifiCredentials.h" // Wifi credentials and agent IP address
+#include <WiFi.h>
+#include <ESPmDNS.h>
 
+#include "MicroRosWifiCredentials.h" // Wifi credentials held in gitignore file
 #include <rcl/rcl.h>
 #include <rcl/error_handling.h>
 #include <rclc/rclc.h>
@@ -20,12 +22,6 @@ struct Data {
 }; 
 
 extern Data flowerData; // Global instance to hold the latest data received from micro-ROS
-
-// --- Configuration ---
-extern char ssid[];
-extern char password[];
-extern IPAddress agent_ip;
-extern size_t agent_port;
 
 // --- ROS 2 Globals ---
 extern rcl_publisher_t publisher;
@@ -43,5 +39,6 @@ void MicroRosSetup();
 void timer_callback(rcl_timer_t * timer, int64_t last_call_time); // Fixed case
 void subscription_callback(const void * msgin);                   // Fixed case
 void MicroRosRun();
+void WiFiSetup();
 
 #endif // MICROROS_H

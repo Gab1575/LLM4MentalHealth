@@ -1,0 +1,13 @@
+# Target labels
+ xrceagent
+# Source files and their labels
+/home/gavin/Desktop/llm4mentalhealth/FullCode_ws/build/micro_ros_agent/CMakeFiles/xrceagent
+/home/gavin/Desktop/llm4mentalhealth/FullCode_ws/build/micro_ros_agent/CMakeFiles/xrceagent.rule
+/home/gavin/Desktop/llm4mentalhealth/FullCode_ws/build/micro_ros_agent/CMakeFiles/xrceagent-complete.rule
+/home/gavin/Desktop/llm4mentalhealth/FullCode_ws/build/micro_ros_agent/agent/src/xrceagent-stamp/xrceagent-build.rule
+/home/gavin/Desktop/llm4mentalhealth/FullCode_ws/build/micro_ros_agent/agent/src/xrceagent-stamp/xrceagent-configure.rule
+/home/gavin/Desktop/llm4mentalhealth/FullCode_ws/build/micro_ros_agent/agent/src/xrceagent-stamp/xrceagent-download.rule
+/home/gavin/Desktop/llm4mentalhealth/FullCode_ws/build/micro_ros_agent/agent/src/xrceagent-stamp/xrceagent-install.rule
+/home/gavin/Desktop/llm4mentalhealth/FullCode_ws/build/micro_ros_agent/agent/src/xrceagent-stamp/xrceagent-mkdir.rule
+/home/gavin/Desktop/llm4mentalhealth/FullCode_ws/build/micro_ros_agent/agent/src/xrceagent-stamp/xrceagent-patch.rule
+/home/gavin/Desktop/llm4mentalhealth/FullCode_ws/build/micro_ros_agent/agent/src/xrceagent-stamp/xrceagent-update.rule
