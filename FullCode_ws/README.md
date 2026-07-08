@@ -4,12 +4,7 @@ This workspace is the host-side control stack for the flower robot. It contains 
 
 ## Purpose
 
-The host workspace is responsible for taking human input and translating it into a structured command stream that can be sent to the ESP32-based flower controller. Its responsibilities are focused on:
-
-- exposing a user-friendly control interface,
-- packaging actuator and LED intent into a ROS 2 message,
-- launching the networking and visualization tools needed by the robot,
-- providing a consistent interface for future expansion into more complex behaviors.
+The host workspace is responsible for taking human input and translating it into a structured command stream that can be sent to the ESP32-based flower controller.
 
 ## Folder and file overview
 
@@ -107,40 +102,6 @@ Message fields:
 
 - led_colours_brightness[5]
   - Per-petal brightness values from 0 to 255.
-
-This message is compact but expressive enough to drive the current robot behavior and provides a clean path for adding richer commands later.
-
-## Subsystem responsibilities
-
-### GUI subsystem
-
-The GUI acts as the operator interface. It is intentionally simple for prototype use but is structured in a way that can support richer interaction patterns later, such as emotion presets, animation sequences, or autonomous behavior modes.
-
-### ROS transport subsystem
-
-The ROS layer provides the communication backbone between desktop control and the embedded controller. It decouples the human-facing interface from the hardware driver logic and keeps commands structured and inspectable.
-
-### Message schema subsystem
-
-The RobotCommand message is the central contract that makes the system modular. The host can change its interface without updating the underlying hardware logic as long as the message structure remains consistent.
-
-## Typical run sequence
-
-1. Build the custom message package.
-2. Source the workspace.
-3. Rebuild the micro-ROS agent so it sees the updated message definitions.
-4. Launch the stack with the launch file.
-5. Use the GUI to send commands to the flower robot.
-
-## Example commands
-
-```bash
-colcon build --packages-select flower_messages
-source install/local_setup.bash
-ros2 run micro_ros_setup build_agent.sh
-source install/local_setup.bash
-ros2 launch flower.launch.py
-```
 
 ## Notes
 

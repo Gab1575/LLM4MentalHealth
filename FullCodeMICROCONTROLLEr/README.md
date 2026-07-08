@@ -1,6 +1,6 @@
 # FullCodeMICROCONTROLLEr
 
-This project is the embedded firmware for the flower robot. It runs on an ESP32-based controller and is responsible for receiving commands from ROS 2, driving the physical actuators, and maintaining the robot’s real-time behavior.
+This project is the embedded firmware for the flower robot. It runs on an ESP32 controller and is responsible for receiving commands from ROS 2, driving the physical actuators, and maintaining the robot’s real-time behavior.
 
 ## Purpose
 
@@ -121,7 +121,7 @@ This module is the critical link between the host system and the physical hardwa
 
 ### src/servo_control.cpp
 
-This file manages the flower’s petal motion.
+This file manages the stems motion.
 
 Key responsibilities:
 
@@ -131,7 +131,7 @@ Key responsibilities:
 - set servos to an absolute target position,
 - optionally sweep a servo across positions.
 
-The servo mapping is important here. The firmware remaps logical petal indices to the physical PCA9685 output channels:
+Servo numbers are not paired with matching slots on servo driver so they are remapped:
 
 - petal 0 -> channel 7
 - petal 1 -> channel 8
@@ -139,11 +139,7 @@ The servo mapping is important here. The firmware remaps logical petal indices t
 - petal 3 -> channel 10
 - petal 4 -> channel 11
 
-This abstraction allows the software to think in terms of petals while the hardware uses a different physical channel arrangement.
-
 ### src/petal_lights.cpp
-
-This file implements the flower’s visual output system.
 
 Responsibilities:
 
@@ -185,62 +181,3 @@ Key functions:
 
 - n20MotorPosition()
   - Converts encoder ticks into a position estimate for the control loop.
-
-## Subsystem breakdown
-
-### Communication subsystem
-
-The communication subsystem is centered in MicroRos.cpp and the shared header. It handles:
-
-- Wi-Fi connection,
-- mDNS discovery of the ROS agent,
-- micro-ROS initialization,
-- command subscriptions,
-- debug topic publishing.
-
-### Actuation subsystem
-
-The actuation subsystem includes:
-
-- servo_control.cpp for petal position,
-- N20.cpp for stem / rotation movement.
-
-### Expression subsystem
-
-The expression subsystem includes:
-
-- petal_lights.cpp for color and brightness,
-- the shared command state structure that allows the host to compose mood-like visual states.
-
-## Shared data model
-
-The firmware uses a global Data structure to hold the current desired state. It is updated by the ROS subscriber and read by the main loop.
-
-The shared state includes:
-
-- five servo angles,
-- one N20 PWM value,
-- one N20 target rotation value,
-- five LED colors,
-- five LED brightness values.
-
-This design keeps the control loop simple and makes the hardware state explicit.
-
-## Build and run notes
-
-The firmware is built with PlatformIO.
-
-Typical workflow:
-
-1. Ensure Wi-Fi credentials are configured in the local header file.
-2. Build the firmware with PlatformIO.
-3. Upload it to the ESP32.
-4. Start the ROS-side runtime stack.
-5. Observe the robot behavior and debug topics.
-
-## Practical notes for contributors
-
-- The current implementation is a prototype, so the control logic is intentionally straightforward.
-- The ROS message path is compact and should be easy to evolve into richer behavior commands.
-- The mapping between logical petal indices and physical PWM channels is a key detail that should be preserved when modifying the hardware layout.
-- When changing the motor control behavior, keep in mind that the current loop uses encoder feedback and a position tolerance rather than a full PID controller.
