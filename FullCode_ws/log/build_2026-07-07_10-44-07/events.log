@@ -1,6 +1,0 @@
-[0.000000] (-) TimerEvent: {}
-[0.000220] (-) JobUnselected: {'identifier': 'flower_msgs'}
-[0.000255] (-) JobUnselected: {'identifier': 'micro_ros_agent'}
-[0.000273] (-) JobUnselected: {'identifier': 'micro_ros_msgs'}
-[0.000296] (-) JobUnselected: {'identifier': 'micro_ros_setup'}
-[0.000343] (-) EventReactorShutdown: {}
