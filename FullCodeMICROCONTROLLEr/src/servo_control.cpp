@@ -37,12 +37,32 @@ void servoControlMove(int servoIndex, int delta_pos) {
 }
 
 void servoControlSet(int servoIndex, int target_pos) {
+    
+    switch(servoIndex) {
+        case 0:
+            servoIndex = 7;
+            break;
+        case 1:
+            servoIndex = 8;
+            break;
+        case 2:
+            servoIndex = 9;
+            break;
+        case 3:
+            servoIndex = 10;
+            break;
+        case 4:
+            servoIndex = 11;
+            break;
+    }
+
     if (servoIndex < 0 || servoIndex >= NUM_SERVOS) {
         Serial.println("Invalid servo index");
         return;
     }
     
     // Constrain the target position to be within the defined limits
+    target_pos = SERVO_CENTER + target_pos; // Adjust target position relative to center
     target_pos = constrain(target_pos, SERVOMIN, SERVOMAX);
     
     // Move the servo to the target position

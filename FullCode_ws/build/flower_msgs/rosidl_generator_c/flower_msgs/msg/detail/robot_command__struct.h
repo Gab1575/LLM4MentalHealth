@@ -20,7 +20,7 @@ extern "C"
 /// Struct defined in msg/RobotCommand in the package flower_msgs.
 typedef struct flower_msgs__msg__RobotCommand
 {
-  uint8_t servo_angles[5];
+  int8_t servo_angles[5];
   int16_t n20_pwm;
   float n20_target_rotations;
   uint32_t led_colours_hex[5];

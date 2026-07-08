@@ -1,16 +1,20 @@
 #include "N20.h"
+#include <math.h> 
+#include "MicroRos.h"
 
 // Initialize tracking variables
 volatile long n20EncoderTicks = 0;
 float n20VelocityRadS = 0.0;
 
+float currentPosition = 0.0; 
+
+const float POSITION_TOLERANCE = 0.2; // The motor stops when it is within 0.2 rotations of the target
+
 // Change to -1 to flip encoder readings if the model moves opposite to the physical direction
 const int ENCODER_MULTIPLIER = -1; 
 
 // --- Interrupt Service Routine (ISR) ---
-// This runs automatically in the background every time ENC1 goes HIGH
 void IRAM_ATTR n20EncoderISR() {
-    // Read the other phase to determine direction
     if (digitalRead(N20_ENC2_PIN) > 0) {
         n20EncoderTicks += ENCODER_MULTIPLIER;
     } else {
@@ -23,16 +27,24 @@ void n20MotorBegin() {
     pinMode(N20_IN1_PIN, OUTPUT);
     pinMode(N20_IN2_PIN, OUTPUT);
     
-    // ESP32 Pins 34 & 35 are INPUT ONLY and lack internal pull-ups.
-    // Standard N20 encoder breakout boards usually have physical pull-up resistors on them.
-    pinMode(N20_ENC1_PIN, INPUT);
-    pinMode(N20_ENC2_PIN, INPUT);
+    pinMode(N20_ENC1_PIN, INPUT_PULLUP);
+    pinMode(N20_ENC2_PIN, INPUT_PULLUP);
 
-    // Attach the hardware interrupt to ENC1
     attachInterrupt(digitalPinToInterrupt(N20_ENC1_PIN), n20EncoderISR, RISING);
     
     // Initialize to stop
     n20MotorStop();
+
+    // --- STARTUP SYNC ---
+    // Read the current target from your global data struct
+    float initialTarget = flowerData.n20_target_rotations;
+    
+    // Force the encoder tick count to match the target. 
+    // This makes the math in n20MotorPosition() start at the target position.
+    n20EncoderTicks = (long)(initialTarget * N20_TICKS_PER_REV);
+    
+    // Set the currentPosition variable immediately so the logic is ready
+    currentPosition = initialTarget;
 }
 
 
@@ -61,9 +73,32 @@ void n20MotorSetDirection(int direction) {
     }
 }
 
-void n20MotorControl(int direction, int speed) {
-    n20MotorSetDirection(direction);
-    n20MotorSetSpeed(speed);
+void n20MotorControl(float targetPosition, int16_t speed) {
+    // Calculate how far away we are from the target
+    float error = targetPosition - currentPosition;
+
+    static unsigned long last_print = 0;
+    if (millis() - last_print > 300) {
+     last_print = millis();
+     send_debug("error value: %f",error);
+    }
+    
+    // GRACE AREA CHECK: Use fabs() for absolute float value
+    if(fabs(error) <= POSITION_TOLERANCE) {
+        n20MotorStop();
+        return;
+    }
+    
+    // If error is positive, we need to move forward
+    if(error > 0.0) {
+        n20MotorSetDirection(N20_FORWARD);
+        n20MotorSetSpeed(speed);
+    } 
+    // If error is negative, we need to move backward
+    else {
+        n20MotorSetDirection(N20_BACKWARD);
+        n20MotorSetSpeed(speed);
+    }
 }
 
 void n20MotorStop() {
@@ -71,33 +106,20 @@ void n20MotorStop() {
     n20MotorSetSpeed(N20_MIN_SPEED);
 }
 
-// --- Velocity Calculation ---
-// Call this repeatedly in your main loop() to keep the Rad/s updated
-void n20EncoderUpdateVelocity() {
-    static unsigned long lastTime = 0;
-    static long lastTicks = 0;
-    
-    unsigned long currentTime = micros(); // Use microseconds for higher precision
-    
-    // Calculate velocity every 50 milliseconds (20Hz)
-    if (currentTime - lastTime >= 50000) {
+void n20MotorPosition() {
+    // Read the volatile variable safely by temporarily disabling interrupts
+    noInterrupts();
+    long currentTicks = n20EncoderTicks;
+    interrupts();
+
+    // Update position instantly every time this function is called
+    currentPosition = (float)currentTicks / (float)N20_TICKS_PER_REV;
+
+    static unsigned long last_print = 0;
+    if (millis() - last_print > 300) {
+        last_print = millis();
         
-        // Briefly pause interrupts to safely copy the volatile tick count
-        noInterrupts();
-        long currentTicks = n20EncoderTicks;
-        interrupts();
-
-        // Calculate delta ticks and delta time (in seconds)
-        long deltaTicks = currentTicks - lastTicks;
-        float dt = (currentTime - lastTime) / 1000000.0; 
-
-        // Calculate Radians per Second
-        // Formula: (Delta Ticks / Ticks Per Rev) * (2 * PI) / dt
-        float revolutions = (float)deltaTicks / N20_TICKS_PER_REV;
-        n20VelocityRadS = (revolutions * 2.0 * PI) / dt;
-
-        // Save current values for the next loop
-        lastTicks = currentTicks;
-        lastTime = currentTime;
+        // COMBINED CALL: %f for float, %ld for long
+        send_debug("Pos: %f, Ticks: %ld", currentPosition, currentTicks);
     }
 }

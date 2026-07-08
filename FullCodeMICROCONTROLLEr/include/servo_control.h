@@ -8,7 +8,7 @@
 #define SERVOMIN       80
 #define SERVOMAX       510
 #define SERVO_CENTER   295
-#define NUM_SERVOS     4
+#define NUM_SERVOS     16
 
 #define SDA_PIN 19
 #define SCL_PIN 21

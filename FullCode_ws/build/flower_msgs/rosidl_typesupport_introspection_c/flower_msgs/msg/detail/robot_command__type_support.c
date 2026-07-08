@@ -41,38 +41,38 @@ size_t flower_msgs__msg__RobotCommand__rosidl_typesupport_introspection_c__size_
 const void * flower_msgs__msg__RobotCommand__rosidl_typesupport_introspection_c__get_const_function__RobotCommand__servo_angles(
   const void * untyped_member, size_t index)
 {
-  const uint8_t * member =
-    (const uint8_t *)(untyped_member);
+  const int8_t * member =
+    (const int8_t *)(untyped_member);
   return &member[index];
 }
 
 void * flower_msgs__msg__RobotCommand__rosidl_typesupport_introspection_c__get_function__RobotCommand__servo_angles(
   void * untyped_member, size_t index)
 {
-  uint8_t * member =
-    (uint8_t *)(untyped_member);
+  int8_t * member =
+    (int8_t *)(untyped_member);
   return &member[index];
 }
 
 void flower_msgs__msg__RobotCommand__rosidl_typesupport_introspection_c__fetch_function__RobotCommand__servo_angles(
   const void * untyped_member, size_t index, void * untyped_value)
 {
-  const uint8_t * item =
-    ((const uint8_t *)
+  const int8_t * item =
+    ((const int8_t *)
     flower_msgs__msg__RobotCommand__rosidl_typesupport_introspection_c__get_const_function__RobotCommand__servo_angles(untyped_member, index));
-  uint8_t * value =
-    (uint8_t *)(untyped_value);
+  int8_t * value =
+    (int8_t *)(untyped_value);
   *value = *item;
 }
 
 void flower_msgs__msg__RobotCommand__rosidl_typesupport_introspection_c__assign_function__RobotCommand__servo_angles(
   void * untyped_member, size_t index, const void * untyped_value)
 {
-  uint8_t * item =
-    ((uint8_t *)
+  int8_t * item =
+    ((int8_t *)
     flower_msgs__msg__RobotCommand__rosidl_typesupport_introspection_c__get_function__RobotCommand__servo_angles(untyped_member, index));
-  const uint8_t * value =
-    (const uint8_t *)(untyped_value);
+  const int8_t * value =
+    (const int8_t *)(untyped_value);
   *item = *value;
 }
 
@@ -169,7 +169,7 @@ void flower_msgs__msg__RobotCommand__rosidl_typesupport_introspection_c__assign_
 static rosidl_typesupport_introspection_c__MessageMember flower_msgs__msg__RobotCommand__rosidl_typesupport_introspection_c__RobotCommand_message_member_array[5] = {
   {
     "servo_angles",  // name
-    rosidl_typesupport_introspection_c__ROS_TYPE_UINT8,  // type
+    rosidl_typesupport_introspection_c__ROS_TYPE_INT8,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
     true,  // is array

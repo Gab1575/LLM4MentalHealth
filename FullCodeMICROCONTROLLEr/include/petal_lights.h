@@ -8,9 +8,9 @@
 #define NUM_LEDS 5      //Set the number of LEDs
 
 void petalLightsBegin();
-void petalLightsUpdate(int LEDIndex, CRGB color);
-void petalLightsSetBrightness(int brightness);
+void petalLightsUpdate(int LEDIndex, uint32_t hexColor, int brightness);
 void petalLightsClear();
+void petalLightsShow();
 
 
 #endif // PETAL_LIGHTS_H

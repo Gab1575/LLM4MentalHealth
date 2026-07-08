@@ -70,7 +70,7 @@ class RobotCommand(metaclass=Metaclass_RobotCommand):
     ]
 
     _fields_and_field_types = {
-        'servo_angles': 'uint8[5]',
+        'servo_angles': 'int8[5]',
         'n20_pwm': 'int16',
         'n20_target_rotations': 'float',
         'led_colours_hex': 'uint32[5]',
@@ -78,7 +78,7 @@ class RobotCommand(metaclass=Metaclass_RobotCommand):
     }
 
     SLOT_TYPES = (
-        rosidl_parser.definition.Array(rosidl_parser.definition.BasicType('uint8'), 5),  # noqa: E501
+        rosidl_parser.definition.Array(rosidl_parser.definition.BasicType('int8'), 5),  # noqa: E501
         rosidl_parser.definition.BasicType('int16'),  # noqa: E501
         rosidl_parser.definition.BasicType('float'),  # noqa: E501
         rosidl_parser.definition.Array(rosidl_parser.definition.BasicType('uint32'), 5),  # noqa: E501
@@ -90,9 +90,9 @@ class RobotCommand(metaclass=Metaclass_RobotCommand):
             'Invalid arguments passed to constructor: %s' % \
             ', '.join(sorted(k for k in kwargs.keys() if '_' + k not in self.__slots__))
         if 'servo_angles' not in kwargs:
-            self.servo_angles = numpy.zeros(5, dtype=numpy.uint8)
+            self.servo_angles = numpy.zeros(5, dtype=numpy.int8)
         else:
-            self.servo_angles = numpy.array(kwargs.get('servo_angles'), dtype=numpy.uint8)
+            self.servo_angles = numpy.array(kwargs.get('servo_angles'), dtype=numpy.int8)
             assert self.servo_angles.shape == (5, )
         self.n20_pwm = kwargs.get('n20_pwm', int())
         self.n20_target_rotations = kwargs.get('n20_target_rotations', float())
@@ -161,8 +161,8 @@ class RobotCommand(metaclass=Metaclass_RobotCommand):
     @servo_angles.setter
     def servo_angles(self, value):
         if isinstance(value, numpy.ndarray):
-            assert value.dtype == numpy.uint8, \
-                "The 'servo_angles' numpy.ndarray() must have the dtype of 'numpy.uint8'"
+            assert value.dtype == numpy.int8, \
+                "The 'servo_angles' numpy.ndarray() must have the dtype of 'numpy.int8'"
             assert value.size == 5, \
                 "The 'servo_angles' numpy.ndarray() must have a size of 5"
             self._servo_angles = value
@@ -180,9 +180,9 @@ class RobotCommand(metaclass=Metaclass_RobotCommand):
                  not isinstance(value, UserString) and
                  len(value) == 5 and
                  all(isinstance(v, int) for v in value) and
-                 all(val >= 0 and val < 256 for val in value)), \
-                "The 'servo_angles' field must be a set or sequence with length 5 and each value of type 'int' and each unsigned integer in [0, 255]"
-        self._servo_angles = numpy.array(value, dtype=numpy.uint8)
+                 all(val >= -128 and val < 128 for val in value)), \
+                "The 'servo_angles' field must be a set or sequence with length 5 and each value of type 'int' and each integer in [-128, 127]"
+        self._servo_angles = numpy.array(value, dtype=numpy.int8)
 
     @builtins.property
     def n20_pwm(self):

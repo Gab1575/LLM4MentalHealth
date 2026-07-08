@@ -2,6 +2,7 @@
 #define N20_H
 
 #include <Arduino.h>
+#include "MicroRos.h"
 
 // N20 Motor pin definitions
 #define N20_PWM_PIN 12     // PWM pin for speed control
@@ -21,7 +22,7 @@
 
 // Encoder Constants
 // 7 PPR motor shaft * 100 gearbox ratio = 700 ticks per output shaft rev
-#define N20_TICKS_PER_REV 700.0 
+#define N20_TICKS_PER_REV 700
 
 // --- Global Variables for Tracking ---
 extern volatile long n20EncoderTicks;
@@ -31,10 +32,10 @@ extern float n20VelocityRadS;
 void n20MotorBegin();
 void n20MotorSetSpeed(int speed);
 void n20MotorSetDirection(int direction);
-void n20MotorControl(int direction, int speed);
+void n20MotorControl(float target_position, int16_t speed);
 void n20MotorStop();
 
 // Encoder Function
-void n20EncoderUpdateVelocity(); 
+void n20MotorPosition(); 
 
 #endif // N20_H

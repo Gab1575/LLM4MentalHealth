@@ -5,17 +5,23 @@ CRGB leds[NUM_LEDS];
 
 void petalLightsBegin() {
   FastLED.addLeds<WS2812B, dataPin, GRB>(leds, NUM_LEDS);
-  FastLED.setBrightness(255);   //initial brightness of the LEDs to maximum
+  petalLightsClear(); // Ensure they start off
 }
 
-void petalLightsUpdate(int LEDIndex, CRGB color) {
+void petalLightsUpdate(int LEDIndex, uint32_t hexColor, int brightness) {
+  // 1. Convert the HEX integer directly into a FastLED CRGB object
+  CRGB color = hexColor; 
+  
+  // 2. Scale the individual LED's brightness (0-255)
+  color.nscale8_video(brightness); 
+  
+  // 3. Apply to array, BUT DO NOT SHOW YET
   leds[LEDIndex] = color;
-  FastLED.show();
 }
 
-void petalLightsSetBrightness(int brightness) {
-  FastLED.setBrightness(brightness);
-  FastLED.show();
+// 4. Create a dedicated show function
+void petalLightsShow() {
+    FastLED.show();
 }
 
 void petalLightsClear() {

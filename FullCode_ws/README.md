@@ -1,3 +1,7 @@
+# LAUNCH THROUGH LAUNCH FILE:
+## ros2 launch flower.launch.py
+
+
 # For Changes
 ## 1. Build the custom messages
 colcon build --packages-select flower_messages
@@ -15,7 +19,7 @@ source install/local_setup.bash
 ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888
 
 ### SHORTCUT
-colcon build --packages-select flower_messages && source install/local_setup.bash && ros2 run micro_ros_setup build_agent.sh && source install/local_setup.bash && ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888
+colcon build --packages-select flower_messages && source install/local_setup.bash && ros2 run micro_ros_setup build_agent.sh && source install/local_setup.bash
 
 
 ## FOXGLOVE BRIDGE
@@ -24,3 +28,5 @@ source /opt/ros/humble/setup.bash
 source ~/microros_ws/install/local_setup.bash
 
 ros2 run foxglove_bridge foxglove_bridge
+
+

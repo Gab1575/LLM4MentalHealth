@@ -38,7 +38,7 @@ struct RobotCommand_
     if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
     {
-      std::fill<typename std::array<uint8_t, 5>::iterator, uint8_t>(this->servo_angles.begin(), this->servo_angles.end(), 0);
+      std::fill<typename std::array<int8_t, 5>::iterator, int8_t>(this->servo_angles.begin(), this->servo_angles.end(), 0);
       this->n20_pwm = 0;
       this->n20_target_rotations = 0.0f;
       std::fill<typename std::array<uint32_t, 5>::iterator, uint32_t>(this->led_colours_hex.begin(), this->led_colours_hex.end(), 0ul);
@@ -54,7 +54,7 @@ struct RobotCommand_
     if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
     {
-      std::fill<typename std::array<uint8_t, 5>::iterator, uint8_t>(this->servo_angles.begin(), this->servo_angles.end(), 0);
+      std::fill<typename std::array<int8_t, 5>::iterator, int8_t>(this->servo_angles.begin(), this->servo_angles.end(), 0);
       this->n20_pwm = 0;
       this->n20_target_rotations = 0.0f;
       std::fill<typename std::array<uint32_t, 5>::iterator, uint32_t>(this->led_colours_hex.begin(), this->led_colours_hex.end(), 0ul);
@@ -64,7 +64,7 @@ struct RobotCommand_
 
   // field types and members
   using _servo_angles_type =
-    std::array<uint8_t, 5>;
+    std::array<int8_t, 5>;
   _servo_angles_type servo_angles;
   using _n20_pwm_type =
     int16_t;
@@ -81,7 +81,7 @@ struct RobotCommand_
 
   // setters for named parameter idiom
   Type & set__servo_angles(
-    const std::array<uint8_t, 5> & _arg)
+    const std::array<int8_t, 5> & _arg)
   {
     this->servo_angles = _arg;
     return *this;
