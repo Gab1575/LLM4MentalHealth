@@ -132,14 +132,16 @@ class FlowerDashboard(Node):
 
     def execute_routine(self):
             try:
-                # Pass BOTH the publisher and the stop_event
-                BoxBreathing(self.publisher, self.stop_event)
+                # Take a snapshot of the exact state right before starting
+                initial_state = self.get_current_command()
+                
+                # Pass the snapshot into the routine
+                BoxBreathing(self.publisher, self.stop_event, initial_state)
 
             except Exception as e:
                 self.get_logger().error(f"Routine crashed: {e}")
                 
             finally:
-                # In case the routine crashes or finishes on its own, reset GUI visually
                 if self.routine_running: 
                     self.routine_running = False
                     self.root.after(0, lambda: self.routine_btn.config(text="Run Box Breathing"))
@@ -224,12 +226,8 @@ class FlowerDashboard(Node):
         rclpy.spin_once(self, timeout_sec=0.01)
         self.root.after(10, self.ros_spin)
 
-    def publish_command(self):
-        try:
-            # If the routine is running, skip publishing the GUI values
-            if self.routine_running:
-                return
-            
+    def get_current_command(self):
+            """Builds a RobotCommand message using the current GUI slider/button states."""
             msg = RobotCommand()
             msg.servo_angles = [int(v.get()) for v in self.servo_vars]
             msg.n20_target_rotations = float(self.n20_pos_var.get())
@@ -256,13 +254,23 @@ class FlowerDashboard(Node):
             else:
                 msg.led_colours_brightness = [int(v.get()) for v in self.led_vars]
                 
-            self.publisher.publish(msg)
-            
-        except Exception as e:
-            self.get_logger().error(f"Publish crashed: {e}")
-            
-        finally:
-            self.root.after(100, self.publish_command)
+            return msg
+
+    def publish_command(self):
+            try:
+                # If the routine is running, skip publishing the GUI values
+                if self.routine_running:
+                    return
+                
+                # Use the new helper method
+                msg = self.get_current_command()
+                self.publisher.publish(msg)
+                
+            except Exception as e:
+                self.get_logger().error(f"Publish crashed: {e}")
+                
+            finally:
+                self.root.after(100, self.publish_command)
 
 def main(args=None):
     rclpy.init(args=args)
