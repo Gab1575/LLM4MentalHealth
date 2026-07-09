@@ -1,6 +1,8 @@
 import os
 import sys
 import json
+import time
+import threading
 
 # Force Python to look inside your workspace's colcon install directory
 workspace_install_path = os.path.expanduser('~/Desktop/llm4mentalhealth/FullCode_ws/install/flower_msgs/lib/python3.10/site-packages')
@@ -12,6 +14,7 @@ from rclpy.node import Node
 import tkinter as tk
 from tkinter import colorchooser
 from flower_msgs.msg import RobotCommand
+from Demos.BoxBreathing import BoxBreathing
 
 class FlowerDashboard(Node):
     def __init__(self, root):
@@ -19,7 +22,7 @@ class FlowerDashboard(Node):
         self.publisher = self.create_publisher(RobotCommand, '/flower_commands', 10)
         self.root = root
         self.root.title("Flower Control Dashboard")
-        self.root.geometry("700x650")
+        self.root.geometry("700x700") # Slightly taller for the new button
         
         self.config_file = os.path.expanduser('~/flower_gui_settings.json')
 
@@ -35,8 +38,12 @@ class FlowerDashboard(Node):
         self.master_hex_var = tk.StringVar(value="#000000")
         
         self.n20_pos_var = tk.DoubleVar(value=0.0)
-        self.n20_speed_var = tk.IntVar(value=128)  # Renamed to reflect speed (0-255)
+        self.n20_speed_var = tk.IntVar(value=128)
         
+        # --- Flag to control who is publishing ---
+        self.routine_running = False
+        self.stop_event = threading.Event() 
+
         self.setup_ui()
         self.load_config()
         self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
@@ -87,13 +94,57 @@ class FlowerDashboard(Node):
         n20_frame = tk.LabelFrame(self.root, text="N20 Motor")
         n20_frame.grid(row=1, column=0, columnspan=2, padx=10, pady=10, sticky="nsew")
         
-        # Position scale remains large
         tk.Scale(n20_frame, variable=self.n20_pos_var, from_=0, to=4.5, resolution=0.1, 
                  orient="horizontal", label="Position").pack(side="left", expand=True, fill="x", padx=15)
         
-        # Speed scale is now visually smaller (shorter length, smaller font, no expand)
         tk.Scale(n20_frame, variable=self.n20_speed_var, from_=0, to=255, 
                  orient="horizontal", label="Speed", font=("TkDefaultFont", 8), length=120).pack(side="right", padx=15)
+
+        # Routine Button
+        routine_frame = tk.Frame(self.root)
+        routine_frame.grid(row=2, column=0, columnspan=2, pady=15)
+        
+        self.routine_btn = tk.Button(routine_frame, text="Run Box Breathing", 
+                                     command=self.start_routine, fg="grey", font=("TkDefaultFont", 12, "bold"))
+        self.routine_btn.pack()
+
+    # --- Routine Methods ---
+
+    def start_routine(self):
+            if not self.routine_running:
+                # --- START THE ROUTINE ---
+                self.routine_running = True
+                self.stop_event.clear()  # Reset the stop signal
+                
+                # Turn button red and change text
+                self.routine_btn.config(text="Stop Routine")
+                
+                # Start in background thread
+                threading.Thread(target=self.execute_routine, daemon=True).start()
+                
+            else:
+                # --- STOP THE ROUTINE ---
+                self.routine_running = False
+                self.stop_event.set()  # Send the stop signal to the routine loop
+                
+                # Turn button back to green
+                self.routine_btn.config(text="Run Box Breathing")
+
+    def execute_routine(self):
+            try:
+                # Pass BOTH the publisher and the stop_event
+                BoxBreathing(self.publisher, self.stop_event)
+
+            except Exception as e:
+                self.get_logger().error(f"Routine crashed: {e}")
+                
+            finally:
+                # In case the routine crashes or finishes on its own, reset GUI visually
+                if self.routine_running: 
+                    self.routine_running = False
+                    self.root.after(0, lambda: self.routine_btn.config(text="Run Box Breathing"))
+
+    # -----------------------
 
     def choose_color(self, string_var, button):
         color = colorchooser.askcolor(initialcolor=string_var.get(), title="Select LED Color")
@@ -159,7 +210,6 @@ class FlowerDashboard(Node):
                 self.use_master_color.set(config_data.get("use_master_color", False))
                 self.n20_pos_var.set(config_data.get("n20_pos", 0.0))
                 
-                # Check for "n20_speed" first, fallback to the old "n20_dir" key if loading an old config file
                 saved_speed = config_data.get("n20_speed", config_data.get("n20_dir", 128))
                 self.n20_speed_var.set(saved_speed)
                 
@@ -176,6 +226,10 @@ class FlowerDashboard(Node):
 
     def publish_command(self):
         try:
+            # If the routine is running, skip publishing the GUI values
+            if self.routine_running:
+                return
+            
             msg = RobotCommand()
             msg.servo_angles = [int(v.get()) for v in self.servo_vars]
             msg.n20_target_rotations = float(self.n20_pos_var.get())
