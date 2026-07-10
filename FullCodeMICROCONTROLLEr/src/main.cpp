@@ -8,24 +8,27 @@
 void setup() {
   Serial.begin(115200);
   
-  // 1. Initialize Wi-Fi first, as it has a heavy power spike
-  WiFiSetup();
-  delay(500); // Let power stabilize
-  
+  MicroRosSetup();
+  rclc_executor_spin_some(&executor, RCL_MS_TO_NS(10));
+  send_debug("Flower Connected to Host");
+  delay(1000);
+
   // 2. Initialize LEDs (Starts them completely off)
   petalLightsBegin();
+  send_debug("Lights initilized");
   delay(250); 
   
   // 3. Initialize I2C and PCA9685 for Servos
   servoControlBegin();
+  send_debug("Servo's initilized");
   delay(250);
   
   // 4. Initialize the N20 Motor (Ensures it is stopped)
   n20MotorBegin();
+  send_debug("N20 motor initilized");
   delay(250);
-  
-  // 5. Finally, initialize micro-ROS now that hardware is stable
-  MicroRosSetup();
+
+  send_debug("All system setup sucsess");
 }
 
 void loop() {
