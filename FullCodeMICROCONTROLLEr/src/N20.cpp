@@ -121,5 +121,7 @@ void n20MotorPosition() {
         
         // COMBINED CALL: %f for float, %ld for long
         send_debug("Pos: %f, Ticks: %ld", currentPosition, currentTicks);
+        Serial.print("encoder ticks ");
+        Serial.println(currentTicks);    
     }
 }

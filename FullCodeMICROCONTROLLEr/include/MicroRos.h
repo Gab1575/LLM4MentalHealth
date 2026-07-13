@@ -17,7 +17,7 @@
 #include <std_msgs/msg/string.h>
 
 struct Data {
-  int8_t servo_angles[5];
+  float servo_angles[5];
   int16_t n20_pwm;
   float n20_target_rotations;
   uint32_t led_colours_hex[5];

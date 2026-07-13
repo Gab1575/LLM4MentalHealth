@@ -17,14 +17,14 @@ void servoControlReset() {
     }
 }
 
-void servoControlMove(int servoIndex, int delta_pos) {
+void servoControlMove(int servoIndex, float delta_pos) {
     if (servoIndex < 0 || servoIndex >= NUM_SERVOS) {
         Serial.println("Invalid servo index");
         return;
     }
     
     // Update the servo position based on the delta_theta
-    int newPosition = servoPositions[servoIndex] + delta_pos;
+    float newPosition = servoPositions[servoIndex] + delta_pos;
     
     // Constrain the new position to be within the defined limits
     newPosition = constrain(newPosition, SERVOMIN, SERVOMAX);
@@ -36,7 +36,7 @@ void servoControlMove(int servoIndex, int delta_pos) {
     servoPositions[servoIndex] = newPosition;
 }
 
-void servoControlSet(int servoIndex, int target_pos) {
+void servoControlSet(int servoIndex, float target_pos) {
     
     switch(servoIndex) {
         case 0:
@@ -66,36 +66,8 @@ void servoControlSet(int servoIndex, int target_pos) {
     target_pos = constrain(target_pos, SERVOMIN, SERVOMAX);
     
     // Move the servo to the target position
-    pwm.setPWM(servoIndex, 0, target_pos);
+    pwm.setPWM(servoIndex, 0, (uint16_t)target_pos);
     
     // Update the stored position for the servo
     servoPositions[servoIndex] = target_pos;
-}
-
-void servoControlSweep(int servoIndex, int end_pos, int step_delay) {
-    if (servoIndex < 0 || servoIndex >= NUM_SERVOS) {
-        Serial.println("Invalid servo index");
-        return;
-    }
-    
-    // Constrain the end position to be within the defined limits
-    end_pos = constrain(end_pos, SERVOMIN, SERVOMAX);
-
-    // If it's already there, do nothing
-    if (servoPositions[servoIndex] == end_pos) return;
-    
-    // Determine the direction of movement
-    int step = (end_pos > servoPositions[servoIndex]) ? 1 : -1;
-  
-    // Sweep the servo to the target position
-    for (int pos = servoPositions[servoIndex]; pos != end_pos; pos += step) {
-        pwm.setPWM(servoIndex, 0, pos);
-        vTaskDelay(step_delay);
-    }
-    
-    // Ensure the final position is set
-    pwm.setPWM(servoIndex, 0, end_pos);
-    
-    // Update the stored position for the servo
-    servoPositions[servoIndex] = end_pos;
 }

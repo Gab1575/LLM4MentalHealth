@@ -27,7 +27,7 @@ class FlowerDashboard(Node):
         self.config_file = os.path.expanduser('~/flower_gui_settings.json')
 
         # --- Variables ---
-        self.servo_vars = [tk.IntVar(value=0) for _ in range(5)]
+        self.servo_vars = [tk.DoubleVar(value=0.0) for _ in range(5)]
         self.led_vars = [tk.IntVar(value=0) for _ in range(5)]
         self.led_hex_vars = [tk.StringVar(value="#000000") for _ in range(5)]
         self.led_color_btns = [] 
@@ -58,7 +58,7 @@ class FlowerDashboard(Node):
         servo_frame = tk.LabelFrame(self.root, text="Servo Motors (-90 to 90)")
         servo_frame.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
         for i in range(5):
-            tk.Scale(servo_frame, variable=self.servo_vars[i], from_=-90, to=90, 
+            tk.Scale(servo_frame, variable=self.servo_vars[i], from_=-90.0, to=90.0, 
                      orient="horizontal", label=f"Servo {i}").pack(fill="x", padx=5)
 
         # LEDs
@@ -229,7 +229,7 @@ class FlowerDashboard(Node):
     def get_current_command(self):
             """Builds a RobotCommand message using the current GUI slider/button states."""
             msg = RobotCommand()
-            msg.servo_angles = [int(v.get()) for v in self.servo_vars]
+            msg.servo_angles = [float(v.get()) for v in self.servo_vars]
             msg.n20_target_rotations = float(self.n20_pos_var.get())
             msg.n20_pwm = int(self.n20_speed_var.get()) 
             

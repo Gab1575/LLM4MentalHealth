@@ -15,8 +15,7 @@
 
 void servoControlBegin();
 void servoControlReset();
-void servoControlMove(int servoIndex, int delta_pos);   
-void servoControlSet(int servoIndex, int target_pos);
-void servoControlSweep(int servoIndex, int end_pos, int step_delay);
+void servoControlMove(int servoIndex, float delta_pos);   
+void servoControlSet(int servoIndex, float target_pos);
 
 #endif // SERVO_CONTROL_H
