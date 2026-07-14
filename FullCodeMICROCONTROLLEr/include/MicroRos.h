@@ -22,6 +22,7 @@ struct Data {
   float n20_target_rotations;
   uint32_t led_colours_hex[5];
   int16_t led_colours_brightness[5];
+  bool n20_zero; 
 }; 
 
 extern Data flowerData; 

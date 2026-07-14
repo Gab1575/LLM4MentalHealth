@@ -8,6 +8,7 @@ float n20VelocityRadS = 0.0;
 
 float currentPosition = 0.0;
 float startingPosition = 0.0;
+bool currentZeroState;
 
 const float POSITION_TOLERANCE = 0.2; // The motor stops when it is within 0.2 rotations of the target
 
@@ -37,6 +38,7 @@ void n20MotorBegin() {
     n20MotorStop();
 
     startingPosition = flowerData.n20_target_rotations; // Set the starting position to the initial target rotations
+    currentZeroState = flowerData.n20_zero; // Initialize the current state based on the received data
 }
 
 
@@ -67,6 +69,18 @@ void n20MotorSetDirection(int direction) {
 
 void n20MotorControl(float targetPosition, int16_t speed) {
     // Calculate how far away we are from the target
+    
+    if(flowerData.n20_zero != currentZeroState) {
+        // If the zero state has changed, reset the encoder ticks and update the starting position
+        noInterrupts();
+        n20EncoderTicks = 0;
+        interrupts();
+        
+        startingPosition = targetPosition; // Reset starting position to the new target
+        currentZeroState = flowerData.n20_zero; // Update the current state
+        send_debug("Zero state changed, resetting encoder ticks and starting position");
+    }
+    
     float error = targetPosition - currentPosition;
 
     static unsigned long last_print = 0;

@@ -39,6 +39,7 @@ class FlowerDashboard(Node):
         
         self.n20_pos_var = tk.DoubleVar(value=0.0)
         self.n20_speed_var = tk.IntVar(value=128)
+        self.n20_zero_var = tk.BooleanVar(value=False)
         
         # --- Flag to control who is publishing ---
         self.routine_running = False
@@ -99,7 +100,8 @@ class FlowerDashboard(Node):
         
         tk.Scale(n20_frame, variable=self.n20_speed_var, from_=0, to=255, 
                  orient="horizontal", label="Speed", font=("TkDefaultFont", 8), length=120).pack(side="right", padx=15)
-
+        
+        tk.Button(n20_frame, text="Zero", command=lambda: self.n20_zero_var.set(not self.n20_zero_var.get()), height=1, bd=1, relief="sunken").pack(fill="x", pady=5)
         # Routine Button
         routine_frame = tk.Frame(self.root)
         routine_frame.grid(row=2, column=0, columnspan=2, pady=15)
@@ -168,7 +170,8 @@ class FlowerDashboard(Node):
             "master_hex": self.master_hex_var.get(),
             "use_master_color": self.use_master_color.get(),
             "n20_pos": self.n20_pos_var.get(),
-            "n20_speed": self.n20_speed_var.get()
+            "n20_speed": self.n20_speed_var.get(),
+            "n20_zero": self.n20_zero_var.get()
         }
         try:
             with open(self.config_file, 'w') as f:
@@ -214,7 +217,8 @@ class FlowerDashboard(Node):
                 
                 saved_speed = config_data.get("n20_speed", config_data.get("n20_dir", 128))
                 self.n20_speed_var.set(saved_speed)
-                
+                self.n20_zero_var.set(config_data.get("n20_zero", False))
+
             except Exception as e:
                 self.get_logger().error(f"Failed to load config, starting fresh. Error: {e}")
 
@@ -232,6 +236,7 @@ class FlowerDashboard(Node):
             msg.servo_angles = [float(v.get()) for v in self.servo_vars]
             msg.n20_target_rotations = float(self.n20_pos_var.get())
             msg.n20_pwm = int(self.n20_speed_var.get()) 
+            msg.n20_zero = bool(self.n20_zero_var.get())
             
             if self.use_master_color.get():
                 try:

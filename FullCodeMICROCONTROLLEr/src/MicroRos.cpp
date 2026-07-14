@@ -44,6 +44,8 @@ void subscription_callback(const void * msgin) {
     flowerData.led_colours_hex[i] = msg->led_colours_hex[i];
     flowerData.led_colours_brightness[i] = msg->led_colours_brightness[i];
   }
+
+  flowerData.n20_zero = msg->n20_zero;
 }
 
 bool WiFiSetup() {
