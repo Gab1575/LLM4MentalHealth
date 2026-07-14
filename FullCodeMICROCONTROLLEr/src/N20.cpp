@@ -6,7 +6,8 @@
 volatile long n20EncoderTicks = 0;
 float n20VelocityRadS = 0.0;
 
-float currentPosition = 0.0; 
+float currentPosition = 0.0;
+float startingPosition = 0.0;
 
 const float POSITION_TOLERANCE = 0.2; // The motor stops when it is within 0.2 rotations of the target
 
@@ -35,16 +36,7 @@ void n20MotorBegin() {
     // Initialize to stop
     n20MotorStop();
 
-    // --- STARTUP SYNC ---
-    // Read the current target from your global data struct
-    float initialTarget = flowerData.n20_target_rotations;
-    
-    // Force the encoder tick count to match the target. 
-    // This makes the math in n20MotorPosition() start at the target position.
-    n20EncoderTicks = (long)(initialTarget * N20_TICKS_PER_REV);
-    
-    // Set the currentPosition variable immediately so the logic is ready
-    currentPosition = initialTarget;
+    startingPosition = flowerData.n20_target_rotations; // Set the starting position to the initial target rotations
 }
 
 
@@ -113,13 +105,12 @@ void n20MotorPosition() {
     interrupts();
 
     // Update position instantly every time this function is called
-    currentPosition = (float)currentTicks / (float)N20_TICKS_PER_REV;
+    currentPosition = startingPosition + (float)currentTicks / (float)N20_TICKS_PER_REV;
 
     static unsigned long last_print = 0;
     if (millis() - last_print > 300) {
         last_print = millis();
         
-        // COMBINED CALL: %f for float, %ld for long
         send_debug("Pos: %f, Ticks: %ld", currentPosition, currentTicks);
         Serial.print("encoder ticks ");
         Serial.println(currentTicks);    

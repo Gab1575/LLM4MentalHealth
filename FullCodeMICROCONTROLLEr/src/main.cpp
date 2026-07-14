@@ -47,11 +47,10 @@ void loop() {
       petalLightsUpdate(i, flowerData.led_colours_hex[i], flowerData.led_colours_brightness[i]);
       servoControlSet(i, flowerData.servo_angles[i]);
     }
-    // // Interrupts are only disabled during this brief call now!
     petalLightsShow(); 
   }
 
-  // 3. Motor control must run constantly to be smooth
+  //3. N20 Motor Control
   n20MotorPosition();
   n20MotorControl(flowerData.n20_target_rotations, flowerData.n20_pwm);
 

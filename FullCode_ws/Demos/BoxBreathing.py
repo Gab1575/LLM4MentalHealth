@@ -46,7 +46,7 @@ def BoxBreathing(publisher, stop_event, initial_state):
         start_time = time.monotonic() 
         while time.monotonic() - start_time < 4.0:
             routine_msg.led_colours_brightness = [int(max(0, brightness))] * 5
-            routine_msg.servo_angles[4] += 1
+            routine_msg.servo_angles[4] += 0.4
             routine_msg.servo_angles[1] += 0.25
             publisher.publish(routine_msg)
             brightness -= (6.375/2) # Decreases over ~80 iterations (4s at 0.05s timeout)
@@ -110,7 +110,7 @@ def BoxBreathing(publisher, stop_event, initial_state):
         start_time = time.monotonic() 
         while time.monotonic() - start_time < 4.0:
             routine_msg.led_colours_brightness = [int(max(0, brightness))] * 5
-            routine_msg.servo_angles[4] -= 1
+            routine_msg.servo_angles[4] -= 0.4
             routine_msg.servo_angles[1] -= 0.25
 
             publisher.publish(routine_msg)
