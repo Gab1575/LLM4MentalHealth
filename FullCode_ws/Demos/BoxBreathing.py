@@ -46,7 +46,7 @@ def BoxBreathing(publisher, stop_event, initial_state):
         start_time = time.monotonic() 
         while time.monotonic() - start_time < 4.0:
             routine_msg.led_colours_brightness = [int(max(0, brightness))] * 5
-            routine_msg.servo_angles[4] += 0.4
+            routine_msg.servo_angles[4] += 0.6
             routine_msg.servo_angles[1] += 0.25
             publisher.publish(routine_msg)
             brightness -= (6.375/2) # Decreases over ~80 iterations (4s at 0.05s timeout)
@@ -71,27 +71,34 @@ def BoxBreathing(publisher, stop_event, initial_state):
         routine_msg.n20_pwm = 0
         routine_msg.led_colours_hex = [0x000000] * 5
         publisher.publish(routine_msg)
-        
+
         start_time = time.monotonic() 
         while time.monotonic() - start_time < 4.0:
             elapsed = time.monotonic() - start_time
             
-            # Corrected logic: Check smallest times first, NO breaks
+            # Calculate exactly how far we are in the current 0.8s window (0.0 to 1.0)
+            window_progress = (elapsed % 0.8) / 0.8
+            # Map that progress to a 0-255 brightness
+            indBright = int(window_progress * 255)
+            
+            # Enforce bounds to prevent any rounding errors
+            indBright = max(0, min(255, indBright))      
+
             if elapsed < 0.8:
-                routine_msg.led_colours_brightness = [255, 0, 0, 0, 0]
+                routine_msg.led_colours_brightness = [int(indBright), 0, 0, 0, 0]
             elif elapsed < 1.6:
-                routine_msg.led_colours_brightness = [255, 255, 0, 0, 0]
+                routine_msg.led_colours_brightness = [255, int(indBright), 0, 0, 0]
             elif elapsed < 2.4:
-                routine_msg.led_colours_brightness = [255, 255, 255, 0, 0]
+                routine_msg.led_colours_brightness = [255, 255, int(indBright), 0, 0]
             elif elapsed < 3.2:
-                routine_msg.led_colours_brightness = [255, 255, 255, 255, 0]
+                routine_msg.led_colours_brightness = [255, 255, 255, int(indBright), 0]
             else:
-                routine_msg.led_colours_brightness = [255, 255, 255, 255, 255]
+                routine_msg.led_colours_brightness = [255, 255, 255, 255, int(indBright)]
             
             routine_msg.led_colours_hex = [0xFF0000] * 5
             publisher.publish(routine_msg)
 
-            if stop_event.wait(timeout=0.1): # 0.1s wait prevents CPU maxing
+            if stop_event.wait(timeout=0.05): # 0.05s wait per loop
                 break
         
         if stop_event.is_set(): break
@@ -110,7 +117,7 @@ def BoxBreathing(publisher, stop_event, initial_state):
         start_time = time.monotonic() 
         while time.monotonic() - start_time < 4.0:
             routine_msg.led_colours_brightness = [int(max(0, brightness))] * 5
-            routine_msg.servo_angles[4] -= 0.4
+            routine_msg.servo_angles[4] -= 0.6
             routine_msg.servo_angles[1] -= 0.25
 
             publisher.publish(routine_msg)
@@ -140,22 +147,30 @@ def BoxBreathing(publisher, stop_event, initial_state):
         while time.monotonic() - start_time < 4.0:
             elapsed = time.monotonic() - start_time
             
+            # Calculate exactly how far we are in the current 0.8s window (0.0 to 1.0)
+            window_progress = (elapsed % 0.8) / 0.8
+            # Map that progress to a 0-255 brightness
+            indBright = int(window_progress * 255)
+            
+            # Enforce bounds to prevent any rounding errors
+            indBright = max(0, min(255, indBright))      
+            
             # Same sequential logic as Step 2, but in Blue
             if elapsed < 0.8:
-                routine_msg.led_colours_brightness = [0, 0, 0, 0, 255]
+                routine_msg.led_colours_brightness = [0, 0, 0, 0, indBright]
             elif elapsed < 1.6:
-                routine_msg.led_colours_brightness = [0, 0, 0, 255, 255]
+                routine_msg.led_colours_brightness = [0, 0, 0, indBright, 255]
             elif elapsed < 2.4:
-                routine_msg.led_colours_brightness = [0, 0, 255, 255, 255]
+                routine_msg.led_colours_brightness = [0, 0, indBright, 255, 255]
             elif elapsed < 3.2:
-                routine_msg.led_colours_brightness = [0, 255, 255, 255, 255]
+                routine_msg.led_colours_brightness = [0, indBright, 255, 255, 255]
             else:
-                routine_msg.led_colours_brightness = [255, 255, 255, 255, 255]
+                routine_msg.led_colours_brightness = [indBright, 255, 255, 255, 255]
                 
             publisher.publish(routine_msg)
             routine_msg.led_colours_hex = [0x0000FF] * 5 # Switch to blue
 
-            if stop_event.wait(timeout=0.1):
+            if stop_event.wait(timeout=0.05):
                 break
         
         if stop_event.is_set(): break
