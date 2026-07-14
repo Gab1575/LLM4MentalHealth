@@ -8,7 +8,12 @@
 void setup() {
   Serial.begin(115200);
   
-  MicroRosSetup();
+  // Keep trying to connect until successful before moving on
+  while (!MicroRosSetup()) {
+    Serial.println("Initial Micro-ROS setup failed, retrying in 2 seconds...");
+    delay(2000);
+  }
+
   rclc_executor_spin_some(&executor, RCL_MS_TO_NS(10));
   Serial.println("Micro-ROS setup complete");
   send_debug("Flower Connected to Host");
@@ -54,10 +59,25 @@ void loop() {
   n20MotorPosition();
   n20MotorControl(flowerData.n20_target_rotations, flowerData.n20_pwm);
 
-  //4. Debug printing
-  static unsigned long last_print = 0;
-  if (millis() - last_print > 100) {
-    last_print = millis();
-    // Your debug code here
+// 4. Check Connection
+  static unsigned long last_connected = 0;
+  if (millis() - last_connected > 2000) {
+    last_connected = millis();
+    
+    // If the ping FAILS
+    if (rmw_uros_ping_agent(50, 1) != RMW_RET_OK) {
+      Serial.println("Connection lost. Destroying entities...");
+      MicroRosDestroy(); // Safe memory cleanup
+      
+      Serial.println("Attempting to reconnect...");
+      if (!MicroRosSetup()) {
+        // If the reconnect fails halfway through, we must clean up 
+        // whatever partial memory was allocated before we try again next loop.
+        MicroRosDestroy(); 
+        Serial.println("Reconnect failed. Will try again in 2 seconds.");
+      } else {
+        Serial.println("Reconnected successfully!");
+      }
+    }
   }
 }

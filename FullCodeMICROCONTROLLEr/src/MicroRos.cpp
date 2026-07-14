@@ -46,79 +46,112 @@ void subscription_callback(const void * msgin) {
   }
 }
 
-void WiFiSetup() {
-  Serial.println("-----------------------------------------");
-  WiFi.begin(WIFI_SSID, WIFI_PASS); 
-  Serial.print("Connecting to WiFi");
-  while (WiFi.status() != WL_CONNECTED) { 
-    delay(500);
-    Serial.print(".");
-  }
-  Serial.println(""); 
-  Serial.print("Connected to WiFi. IP address: ");
-  Serial.println(WiFi.localIP()); 
-  Serial.println("");
+bool WiFiSetup() {
+  Serial.println("--- Checking WiFi & mDNS ---");
   
+  // 1. Connect to WiFi with a 10-second timeout
+  if (WiFi.status() != WL_CONNECTED) {
+    WiFi.begin(WIFI_SSID, WIFI_PASS); 
+    Serial.print("Connecting to WiFi");
+    
+    int wifi_retries = 0;
+    while (WiFi.status() != WL_CONNECTED && wifi_retries < 20) { 
+      delay(500);
+      Serial.print(".");
+      wifi_retries++;
+    }
+    Serial.println();
+  }
+  
+  if (WiFi.status() != WL_CONNECTED) {
+    Serial.println("Failed to connect to WiFi.");
+    return false;
+  }
+  
+  // 2. Initialize mDNS
   if (!MDNS.begin("flower-node")) {
-    while(1) { delay(1000); }
+    Serial.println("Failed to start mDNS.");
+    return false;
   }
 
+  // 3. Resolve Agent IP with a 10-second timeout
   IPAddress agent_ip;
-  while (agent_ip.toString() == "0.0.0.0") {
+  int mdns_retries = 0;
+  while (agent_ip.toString() == "0.0.0.0" && mdns_retries < 10) {
     agent_ip = MDNS.queryHost(AGENT_HOSTNAME);
     if (agent_ip.toString() == "0.0.0.0") {
       delay(1000);
-      Serial.println("Waiting for mDNS to resolve the agent's hostname");
+      Serial.println("Waiting for mDNS to resolve agent hostname...");
+      mdns_retries++;
     }
   }
-  Serial.print("Resolved agent hostname " AGENT_HOSTNAME " to IP: ");
-  Serial.println(agent_ip);
-  Serial.println("-----------------------------------------");
+  
+  if (agent_ip.toString() == "0.0.0.0") {
+    Serial.println("Failed to resolve Agent IP.");
+    return false;
+  }
 
+  Serial.print("Resolved agent to IP: ");
+  Serial.println(agent_ip);
+  
+  // Set the transport using the resolved IP
   set_microros_wifi_transports((char*)WIFI_SSID, (char*)WIFI_PASS, agent_ip, AGENT_PORT);
+  return true;
 }
 
-void MicroRosSetup() {
-  WiFiSetup();  
+
+bool MicroRosSetup() {
+  // If WiFi or mDNS fails, abort setup
+  if (!WiFiSetup()) {
+    return false;
+  }
   
   allocator = rcl_get_default_allocator();
-  RCCHECK(rclc_support_init(&support, 0, NULL, &allocator));
-  RCCHECK(rclc_node_init_default(&node, "flower_node", "", &support));
+  rcl_ret_t rc;
 
-  // Initialize your custom subscriber
-  RCCHECK(rclc_subscription_init_default(
+  // Replace RCCHECK with safe boolean returns
+  rc = rclc_support_init(&support, 0, NULL, &allocator);
+  if (rc != RCL_RET_OK) return false;
+
+  rc = rclc_node_init_default(&node, "flower_node", "", &support);
+  if (rc != RCL_RET_OK) return false;
+
+  rc = rclc_subscription_init_default(
     &subscriber,
     &node,
     ROSIDL_GET_MSG_TYPE_SUPPORT(flower_msgs, msg, RobotCommand),
     "flower_commands" 
-  ));
+  );
+  if (rc != RCL_RET_OK) return false;
 
-  // Initialize the debug string publisher
-  RCCHECK(rclc_publisher_init_default(
+  rc = rclc_publisher_init_default(
     &debug_pub,
     &node,
     ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
-    "flower_debug" // Topic name to monitor on host
-  ));
+    "flower_debug"
+  );
+  if (rc != RCL_RET_OK) return false;
 
-  // Link the micro-ROS message pointer to your static buffer
   debug_msg.data.data = debug_buffer;
   debug_msg.data.capacity = sizeof(debug_buffer);
 
-  RCCHECK(rclc_executor_init(&executor, &support.context, 1, &allocator));
+  executor = rclc_executor_get_zero_initialized_executor();
+  rc = rclc_executor_init(&executor, &support.context, 1, &allocator);
+  if (rc != RCL_RET_OK) return false;
   
-  RCCHECK(rclc_executor_add_subscription(
+  rc = rclc_executor_add_subscription(
     &executor, 
     &subscriber, 
     &sub_msg, 
     &subscription_callback, 
-    ON_NEW_DATA));
+    ON_NEW_DATA
+  );
+  if (rc != RCL_RET_OK) return false;
 
-    send_debug("ESP32 flower_node successfully initialized and ready");
+  send_debug("ESP32 flower_node successfully initialized and ready");
+  return true;
+}
 
-  }
-
-// --- New Debug Helper Function ---
 // Works exactly like printf. Example: send_debug("Motor PWM is: %d", flowerData.n20_pwm);
 void send_debug(const char *format, ...) {
     va_list args;
@@ -133,4 +166,17 @@ void send_debug(const char *format, ...) {
     
     // Using RCSOFTCHECK so a failed debug message doesn't crash the ESP32
     RCSOFTCHECK(rcl_publish(&debug_pub, &debug_msg, NULL));
+}
+
+void MicroRosDestroy() {
+  // Tell the agent we are destroying the session (timeout 0 ensures it doesn't block)
+  rmw_context_t * rmw_context = rcl_context_get_rmw_context(&support.context);
+  (void) rmw_uros_set_context_entity_destroy_session_timeout(rmw_context, 0);
+
+  // Destroy entities in the reverse order they were created
+  rclc_executor_fini(&executor);
+  rcl_publisher_fini(&debug_pub, &node);
+  rcl_subscription_fini(&subscriber, &node);
+  rcl_node_fini(&node);
+  rclc_support_fini(&support);
 }

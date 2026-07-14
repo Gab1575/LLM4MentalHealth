@@ -43,11 +43,12 @@ extern char debug_buffer[100];
 
 // --- Function Prototypes ---
 void error_loop();
-void MicroRosSetup();
+bool MicroRosSetup();
 void timer_callback(rcl_timer_t * timer, int64_t last_call_time); 
 void subscription_callback(const void * msgin);                   
 void MicroRosRun();
-void WiFiSetup();
+bool WiFiSetup();
 void send_debug(const char *format, ...); // Added debug function prototype
+void MicroRosDestroy();
 
 #endif // MICROROS_H
