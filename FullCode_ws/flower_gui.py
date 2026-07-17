@@ -3,6 +3,7 @@ import sys
 import json
 import time
 import threading
+import signal
 
 # Force Python to look inside your workspace's colcon install directory
 workspace_install_path = os.path.expanduser('~/Desktop/llm4mentalhealth/FullCode_ws/install/flower_msgs/lib/python3.10/site-packages')
@@ -52,7 +53,7 @@ class FlowerDashboard(Node):
         # Start loops
         self.root.after(10, self.ros_spin)
         self.root.after(100, self.publish_command) 
-        self.root.after(1000, self.auto_save)      
+        self.root.after(1000, self.auto_save)     
 
     def setup_ui(self):
         # Servos
@@ -102,6 +103,7 @@ class FlowerDashboard(Node):
                  orient="horizontal", label="Speed", font=("TkDefaultFont", 8), length=120).pack(side="right", padx=15)
         
         tk.Button(n20_frame, text="Zero", command=lambda: self.n20_zero_var.set(not self.n20_zero_var.get()), height=1, bd=1, relief="sunken").pack(fill="x", pady=5)
+        
         # Routine Button
         routine_frame = tk.Frame(self.root)
         routine_frame.grid(row=2, column=0, columnspan=2, pady=15)
@@ -113,40 +115,40 @@ class FlowerDashboard(Node):
     # --- Routine Methods ---
 
     def start_routine(self):
-            if not self.routine_running:
-                # --- START THE ROUTINE ---
-                self.routine_running = True
-                self.stop_event.clear()  # Reset the stop signal
-                
-                # Turn button red and change text
-                self.routine_btn.config(text="Stop Routine")
-                
-                # Start in background thread
-                threading.Thread(target=self.execute_routine, daemon=True).start()
-                
-            else:
-                # --- STOP THE ROUTINE ---
-                self.routine_running = False
-                self.stop_event.set()  # Send the stop signal to the routine loop
-                
-                # Turn button back to green
-                self.routine_btn.config(text="Run Box Breathing")
+        if not self.routine_running:
+            # --- START THE ROUTINE ---
+            self.routine_running = True
+            self.stop_event.clear()  # Reset the stop signal
+            
+            # Turn button red and change text
+            self.routine_btn.config(text="Stop Routine")
+            
+            # Start in background thread
+            threading.Thread(target=self.execute_routine, daemon=True).start()
+            
+        else:
+            # --- STOP THE ROUTINE ---
+            self.routine_running = False
+            self.stop_event.set()  # Send the stop signal to the routine loop
+            
+            # Turn button back to green
+            self.routine_btn.config(text="Run Box Breathing")
 
     def execute_routine(self):
-            try:
-                # Take a snapshot of the exact state right before starting
-                initial_state = self.get_current_command()
-                
-                # Pass the snapshot into the routine
-                BoxBreathing(self.publisher, self.stop_event, initial_state)
+        try:
+            # Take a snapshot of the exact state right before starting
+            initial_state = self.get_current_command()
+            
+            # Pass the snapshot into the routine
+            BoxBreathing(self.publisher, self.stop_event, initial_state)
 
-            except Exception as e:
-                self.get_logger().error(f"Routine crashed: {e}")
-                
-            finally:
-                if self.routine_running: 
-                    self.routine_running = False
-                    self.root.after(0, lambda: self.routine_btn.config(text="Run Box Breathing"))
+        except Exception as e:
+            self.get_logger().error(f"Routine crashed: {e}")
+            
+        finally:
+            if self.routine_running: 
+                self.routine_running = False
+                self.root.after(0, lambda: self.routine_btn.config(text="Run Box Breathing"))
 
     # -----------------------
 
@@ -227,54 +229,66 @@ class FlowerDashboard(Node):
         self.root.destroy()
 
     def ros_spin(self):
+        # If ROS 2 has been shut down by the launch file, close the GUI window
+        if not rclpy.ok():
+            self.get_logger().info("ROS context dead, closing GUI window...")
+            self.root.quit()
+            return
+
         rclpy.spin_once(self, timeout_sec=0.01)
         self.root.after(10, self.ros_spin)
 
     def get_current_command(self):
-            """Builds a RobotCommand message using the current GUI slider/button states."""
-            msg = RobotCommand()
-            msg.servo_angles = [float(v.get()) for v in self.servo_vars]
-            msg.n20_target_rotations = float(self.n20_pos_var.get())
-            msg.n20_pwm = int(self.n20_speed_var.get()) 
-            msg.n20_zero = bool(self.n20_zero_var.get())
-            
-            if self.use_master_color.get():
+        """Builds a RobotCommand message using the current GUI slider/button states."""
+        msg = RobotCommand()
+        msg.servo_angles = [float(v.get()) for v in self.servo_vars]
+        msg.n20_target_rotations = float(self.n20_pos_var.get())
+        msg.n20_pwm = int(self.n20_speed_var.get()) 
+        msg.n20_zero = bool(self.n20_zero_var.get())
+        
+        if self.use_master_color.get():
+            try:
+                val = int(self.master_hex_var.get().replace('#', ''), 16)
+            except ValueError:
+                val = 0
+            msg.led_colours_hex = [val] * 5
+        else:
+            hex_values = []
+            for var in self.led_hex_vars:
                 try:
-                    val = int(self.master_hex_var.get().replace('#', ''), 16)
+                    val = int(var.get().replace('#', ''), 16)
+                    hex_values.append(val)
                 except ValueError:
-                    val = 0
-                msg.led_colours_hex = [val] * 5
-            else:
-                hex_values = []
-                for var in self.led_hex_vars:
-                    try:
-                        val = int(var.get().replace('#', ''), 16)
-                        hex_values.append(val)
-                    except ValueError:
-                        hex_values.append(0)
-                msg.led_colours_hex = hex_values
+                    hex_values.append(0)
+            msg.led_colours_hex = hex_values
+        
+        if self.use_master_led.get():
+            msg.led_colours_brightness = [int(self.master_led_var.get())] * 5
+        else:
+            msg.led_colours_brightness = [int(v.get()) for v in self.led_vars]
             
-            if self.use_master_led.get():
-                msg.led_colours_brightness = [int(self.master_led_var.get())] * 5
-            else:
-                msg.led_colours_brightness = [int(v.get()) for v in self.led_vars]
-                
-            return msg
+        return msg
 
     def publish_command(self):
-            try:
-                # If the routine is running, skip publishing the GUI values
-                if self.routine_running:
-                    return
+        # If ROS 2 is dead, stop trying to loop or publish
+        if not rclpy.ok():
+            return
+
+        try:
+            # If the routine is running, skip publishing the GUI values
+            if self.routine_running:
+                return
                 
-                # Use the new helper method
-                msg = self.get_current_command()
-                self.publisher.publish(msg)
-                
-            except Exception as e:
-                self.get_logger().error(f"Publish crashed: {e}")
-                
-            finally:
+            # Use the new helper method
+            msg = self.get_current_command()
+            self.publisher.publish(msg)
+            
+        except Exception as e:
+            self.get_logger().error(f"Publish crashed: {e}")
+            
+        finally:
+            # Only schedule the next tick if ROS 2 is still active
+            if rclpy.ok():
                 self.root.after(100, self.publish_command)
 
 def main(args=None):
@@ -282,13 +296,30 @@ def main(args=None):
     root = tk.Tk()
     app = FlowerDashboard(root)
     
-    try:
-        root.mainloop()
-    except KeyboardInterrupt:
-        pass
-    finally:
-        app.destroy_node()
-        rclpy.shutdown()
+    # Force Tkinter to respect Ctrl+C by capturing the OS signal directly
+    def handle_sigint(sig, frame):
+        # 1. Safely close ROS
+        if rclpy.ok():
+            try:
+                app.destroy_node()
+                rclpy.shutdown()
+            except Exception:
+                pass
+        
+        # 2. Obliterate the Tkinter window
+        try:
+            root.destroy()
+        except Exception:
+            pass
+            
+        # 3. Kill the python process instantly
+        sys.exit(0)
+
+    # Bind the Ctrl+C signal to our custom handler
+    signal.signal(signal.SIGINT, handle_sigint)
+    
+    # Start the GUI
+    root.mainloop()
 
 if __name__ == '__main__':
     main()

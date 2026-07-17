@@ -51,12 +51,37 @@ void subscription_callback(const void * msgin) {
 bool WiFiSetup() {
   Serial.println("--- Checking WiFi & mDNS ---");
   
-  // 1. Connect to WiFi with a 10-second timeout
+  // Variables to track our active configuration
+  char* active_ssid = (char*)WIFI_SSID_1;
+  char* active_pass = (char*)WIFI_PASS_1;
+  char* active_agent = (char*)AGENT_HOSTNAME_1;
+
+  // 1A. Try connecting to WiFi Network 1
+  WiFi.begin(WIFI_SSID_1, WIFI_PASS_1); 
+  Serial.print("Connecting to WiFi 1");
+  
+  int wifi_retries = 0;
+  while (WiFi.status() != WL_CONNECTED && wifi_retries < 20) { // 10-second timeout
+    delay(500);
+    Serial.print(".");
+    wifi_retries++;
+  }
+  Serial.println();
+  
+  // 1B. If Network 1 fails, switch EVERYTHING to Network 2
   if (WiFi.status() != WL_CONNECTED) {
-    WiFi.begin(WIFI_SSID, WIFI_PASS); 
-    Serial.print("Connecting to WiFi");
+    Serial.println("WiFi 1 failed. Trying WiFi 2...");
     
-    int wifi_retries = 0;
+    // Update credentials AND the target agent
+    active_ssid = (char*)WIFI_SSID_2;
+    active_pass = (char*)WIFI_PASS_2;
+    active_agent = (char*)AGENT_HOSTNAME_2; 
+    
+    WiFi.disconnect(); 
+    delay(500);
+    WiFi.begin(WIFI_SSID_2, WIFI_PASS_2);
+    
+    wifi_retries = 0;
     while (WiFi.status() != WL_CONNECTED && wifi_retries < 20) { 
       delay(500);
       Serial.print(".");
@@ -64,29 +89,40 @@ bool WiFiSetup() {
     }
     Serial.println();
   }
-  
+
   if (WiFi.status() != WL_CONNECTED) {
-    Serial.println("Failed to connect to WiFi.");
+    Serial.println("Failed to connect to ANY WiFi network.");
     return false;
   }
   
+  WiFi.setSleep(false); // Disables Modem Sleep for hotspots
+  
+  Serial.print("Connected to: ");
+  Serial.println(active_ssid);
+
   // 2. Initialize mDNS
   if (!MDNS.begin("flower-node")) {
     Serial.println("Failed to start mDNS.");
     return false;
   }
 
-  // 3. Resolve Agent IP with a 10-second timeout
+  // 3. Resolve ONLY the Agent that matches our active WiFi network
   IPAddress agent_ip;
   int mdns_retries = 0;
-  while (agent_ip.toString() == "0.0.0.0" && mdns_retries < 10) {
-    agent_ip = MDNS.queryHost(AGENT_HOSTNAME);
+  
+  Serial.print("Searching for Agent (");
+  Serial.print(active_agent);
+  Serial.print(")...");
+
+  while (agent_ip.toString() == "0.0.0.0" && mdns_retries < 10) { 
+    agent_ip = MDNS.queryHost(active_agent);
     if (agent_ip.toString() == "0.0.0.0") {
       delay(1000);
-      Serial.println("Waiting for mDNS to resolve agent hostname...");
+      Serial.print(".");
       mdns_retries++;
     }
   }
+  Serial.println();
   
   if (agent_ip.toString() == "0.0.0.0") {
     Serial.println("Failed to resolve Agent IP.");
@@ -96,8 +132,8 @@ bool WiFiSetup() {
   Serial.print("Resolved agent to IP: ");
   Serial.println(agent_ip);
   
-  // Set the transport using the resolved IP
-  set_microros_wifi_transports((char*)WIFI_SSID, (char*)WIFI_PASS, agent_ip, AGENT_PORT);
+  // 4. Set the transport
+  set_microros_wifi_transports(active_ssid, active_pass, agent_ip, AGENT_PORT);
   return true;
 }
 
