@@ -17,7 +17,6 @@ def generate_launch_description():
     custom_ld_path = f"{cuda_libs}:{current_ld_path}" if current_ld_path else cuda_libs
 
     return LaunchDescription([
-        # 3. Force the updated path into the launch environment
         SetEnvironmentVariable(
             name='LD_LIBRARY_PATH',
             value=custom_ld_path
@@ -42,10 +41,16 @@ def generate_launch_description():
             name='flower_gui',
             output='screen'
         ),
+        #Node(
+        #    package='face_tracker',
+        #    executable='face_tracker',
+        #    name='face_tracker',
+        #    output='screen'
+        #),
         Node(
-            package='face_tracker',
-            executable='face_tracker',
-            name='face_tracker',
+            package='localization_tracker',
+            executable='localization_tracker',
+            name='localization_tracker',
             output='screen'
         )
     ])
