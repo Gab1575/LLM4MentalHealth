@@ -13,6 +13,17 @@
 #define SDA_PIN 19
 #define SCL_PIN 21
 
+struct ServoState {
+    bool isMoving = false;
+    unsigned long startTime;
+    float delta_T_ms;     
+    float startPulse;
+    float targetPulse;
+    float currentPulse;     
+    float targetAngle;       
+    int hardwareIndex;
+};
+
 void servoControlBegin();
 void servoControlSet(int servoIndex, float target_angle, float delta_T);
 void servoControlUpdate();

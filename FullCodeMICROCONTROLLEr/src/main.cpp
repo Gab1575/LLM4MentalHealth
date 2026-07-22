@@ -52,7 +52,7 @@ void loop() {
 
     for (int i = 0; i < 5; i++) {
       petalLightsUpdate(i, flowerData.led_colours_hex[i], flowerData.led_colours_brightness[i]);
-      servoControlSet(i, flowerData.servo_angles[i], flowerData.servo_time[i]);
+      servoControlSet(i, flowerData.servo_angles[i], flowerData.servo_time[i]); 
     }
     petalLightsShow(); 
   }
