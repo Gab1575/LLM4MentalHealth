@@ -2,7 +2,7 @@ import os
 from glob import glob
 from setuptools import find_packages, setup
 
-package_name = 'localization_tracker'
+package_name = 'face_tracker'
 
 setup(
     name=package_name,
@@ -25,7 +25,7 @@ setup(
     entry_points={
         'console_scripts': [
             # Maps the executable name to the Python node and main function
-            'localization_tracker = localization_tracker.localization_tracker_node:main'
+            'face_tracker = face_tracker.face_tracker_node:main'
         ],
     },
 )

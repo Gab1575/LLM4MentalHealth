@@ -16,8 +16,8 @@ def generate_launch_description():
         ),
         
         Node(
-            package='localization_tracker',
-            executable='localization_tracker',
-            name='localization_tracker_node'
+            package='face_tracker',
+            executable='face_tracker',
+            name='face_tracker'
         )
     ])

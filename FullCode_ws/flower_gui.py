@@ -23,12 +23,13 @@ class FlowerDashboard(Node):
         self.publisher = self.create_publisher(RobotCommand, '/flower_commands', 10)
         self.root = root
         self.root.title("Flower Control Dashboard")
-        self.root.geometry("700x700") # Slightly taller for the new button
+        self.root.geometry("750x700") # Slightly wider to comfortably fit the time entries
         
         self.config_file = os.path.expanduser('~/flower_gui_settings.json')
 
         # --- Variables ---
         self.servo_vars = [tk.DoubleVar(value=0.0) for _ in range(5)]
+        self.servo_time_vars = [tk.StringVar(value="0.0") for _ in range(5)] # String vars prevent crash if box is left temporarily empty
         self.led_vars = [tk.IntVar(value=0) for _ in range(5)]
         self.led_hex_vars = [tk.StringVar(value="#000000") for _ in range(5)]
         self.led_color_btns = [] 
@@ -60,8 +61,18 @@ class FlowerDashboard(Node):
         servo_frame = tk.LabelFrame(self.root, text="Servo Motors (-90 to 90)")
         servo_frame.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
         for i in range(5):
-            tk.Scale(servo_frame, variable=self.servo_vars[i], from_=-90.0, to=90.0, 
-                     orient="horizontal", label=f"Servo {i}").pack(fill="x", padx=5)
+            row = tk.Frame(servo_frame)
+            row.pack(fill="x", padx=5, pady=2)
+            
+            # Slider on the left
+            tk.Scale(row, variable=self.servo_vars[i], from_=-90.0, to=90.0, 
+                     orient="horizontal", label=f"Servo {i}").pack(side="left", expand=True, fill="x")
+            
+            # Time entry on the right
+            time_frame = tk.Frame(row)
+            time_frame.pack(side="right", padx=(10, 5))
+            tk.Label(time_frame, text="Time (s):").pack(side="left")
+            tk.Entry(time_frame, textvariable=self.servo_time_vars[i], width=6).pack(side="left")
 
         # LEDs
         led_frame = tk.LabelFrame(self.root, text="LEDs (Brightness & Hex)")
@@ -158,6 +169,13 @@ class FlowerDashboard(Node):
             string_var.set(color[1])
             button.config(bg=color[1]) 
 
+    def safe_float(self, val_str):
+        """Safely parses float strings, defaulting to 0.0 if empty/invalid"""
+        try:
+            return float(val_str)
+        except ValueError:
+            return 0.0
+
     def auto_save(self):
         self.save_config()
         self.root.after(1000, self.auto_save)
@@ -165,6 +183,7 @@ class FlowerDashboard(Node):
     def save_config(self):
         config_data = {
             "servos": [v.get() for v in self.servo_vars],
+            "servo_times": [self.safe_float(v.get()) for v in self.servo_time_vars],
             "led_brightness": [v.get() for v in self.led_vars],
             "led_hex": [v.get() for v in self.led_hex_vars],
             "master_brightness": self.master_led_var.get(),
@@ -193,9 +212,13 @@ class FlowerDashboard(Node):
                 with open(self.config_file, 'r') as f:
                     config_data = json.load(f)
                 
-                saved_servos = config_data.get("servos", [0]*5)
+                saved_servos = config_data.get("servos", [0.0]*5)
                 for i in range(min(5, len(saved_servos))):
                     self.servo_vars[i].set(saved_servos[i])
+                    
+                saved_times = config_data.get("servo_times", [0.0]*5)
+                for i in range(min(5, len(saved_times))):
+                    self.servo_time_vars[i].set(str(saved_times[i]))
                     
                 saved_brightness = config_data.get("led_brightness", [0]*5)
                 for i in range(min(5, len(saved_brightness))):
@@ -242,6 +265,7 @@ class FlowerDashboard(Node):
         """Builds a RobotCommand message using the current GUI slider/button states."""
         msg = RobotCommand()
         msg.servo_angles = [float(v.get()) for v in self.servo_vars]
+        msg.servo_time = [self.safe_float(v.get()) for v in self.servo_time_vars]
         msg.n20_target_rotations = float(self.n20_pos_var.get())
         msg.n20_pwm = int(self.n20_speed_var.get()) 
         msg.n20_zero = bool(self.n20_zero_var.get())

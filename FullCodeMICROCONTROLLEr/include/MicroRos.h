@@ -18,6 +18,7 @@
 
 struct Data {
   float servo_angles[5];
+  float servo_time[5];
   int16_t n20_pwm;
   float n20_target_rotations;
   uint32_t led_colours_hex[5];

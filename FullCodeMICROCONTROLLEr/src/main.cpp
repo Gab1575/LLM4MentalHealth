@@ -42,6 +42,8 @@ void setup() {
 void loop() {
   // 1. Let micro-ROS process incoming network traffic
   rclc_executor_spin_some(&executor, RCL_MS_TO_NS(10));
+  
+  servoControlUpdate();
 
   // 2. Throttle LED and Servo updates to ~33 Hz (every 30ms)
   static unsigned long last_hardware_update = 0;
@@ -50,7 +52,7 @@ void loop() {
 
     for (int i = 0; i < 5; i++) {
       petalLightsUpdate(i, flowerData.led_colours_hex[i], flowerData.led_colours_brightness[i]);
-      servoControlSet(i, flowerData.servo_angles[i]);
+      servoControlSet(i, flowerData.servo_angles[i], flowerData.servo_time[i]);
     }
     petalLightsShow(); 
   }

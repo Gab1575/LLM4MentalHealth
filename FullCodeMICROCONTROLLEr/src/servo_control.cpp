@@ -1,73 +1,79 @@
 #include "servo_control.h"
+#include "MicroRos.h"
 
 Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
-int servoPositions[NUM_SERVOS];
+
+// Create a structure to hold the trajectory state for each servo
+struct ServoState {
+    bool isMoving = false;
+    unsigned long startTime;
+    float delta_T;
+    float startPulse;
+    float targetPulse;
+    int hardwareIndex;
+};
+
+// Array to track all 5 servos independently
+ServoState servos[5];
 
 void servoControlBegin() {
-    Wire.begin(SDA_PIN, SCL_PIN); // Initialize I2C communication
+    Wire.begin(SDA_PIN, SCL_PIN);
     pwm.begin();
-    pwm.setPWMFreq(50);  // Set frequency to 50 Hz for servos
-      pwm.setOscillatorFrequency(27000000);
-}
+    pwm.setPWMFreq(50);
+    pwm.setOscillatorFrequency(27000000);
 
-void servoControlReset() {
-    for (int i = 0; i < NUM_SERVOS; i++) {
-        servoPositions[i] = SERVO_CENTER; // Initialize all servos to center position
-        pwm.setPWM(i, 0, servoPositions[i]);
+    // Map your software indices (0-4) to hardware pins (7-11)
+    servos[0].hardwareIndex = 7;
+    servos[1].hardwareIndex = 8;
+    servos[2].hardwareIndex = 9;
+    servos[3].hardwareIndex = 10;
+    servos[4].hardwareIndex = 11;
+    
+    // Initialize all to the last known position
+    for (int i = 0; i < 5; i++) {
+        servos[i].startPulse = map(flowerData.servo_angles[i], -90.0, 90.0, SERVOMIN, SERVOMAX);
+        servos[i].targetPulse = servos[i].startPulse;
+        pwm.setPWM(servos[i].hardwareIndex, 0, (uint16_t)servos[i].targetPulse);
     }
 }
 
-void servoControlMove(int servoIndex, float delta_pos) {
-    if (servoIndex < 0 || servoIndex >= NUM_SERVOS) {
-        Serial.println("Invalid servo index");
-        return;
-    }
+// This ONLY sets the targets, it does not wait for movement
+void servoControlSet(int servoIndex, float target_angle, float delta_T) {
+    if (servoIndex < 0 || servoIndex > 4) return;
+
+    // Standard linear map formula for floats
+    float target_pulse = SERVOMIN + ((target_angle - (-90.0)) / (90.0 - (-90.0))) * (SERVOMAX - SERVOMIN);
+    target_pulse = constrain(target_pulse, SERVOMIN, SERVOMAX);
     
-    // Update the servo position based on the delta_theta
-    float newPosition = servoPositions[servoIndex] + delta_pos;
-    
-    // Constrain the new position to be within the defined limits
-    newPosition = constrain(newPosition, SERVOMIN, SERVOMAX);
-    
-    // Move the servo to the new position
-    pwm.setPWM(servoIndex, 0, newPosition);
-    
-    // Update the stored position for the servo
-    servoPositions[servoIndex] = newPosition;
+    // Record the trajectory data for this specific servo
+    servos[servoIndex].startPulse = servos[servoIndex].targetPulse; // Start from current expected pos
+    servos[servoIndex].targetPulse = target_pulse;
+    servos[servoIndex].delta_T = delta_T;
+    servos[servoIndex].startTime = millis();
+    servos[servoIndex].isMoving = true;
 }
 
-void servoControlSet(int servoIndex, float target_pos) {
-    
-    switch(servoIndex) {
-        case 0:
-            servoIndex = 7;
-            break;
-        case 1:
-            servoIndex = 8;
-            break;
-        case 2:
-            servoIndex = 9;
-            break;
-        case 3:
-            servoIndex = 10;
-            break;
-        case 4:
-            servoIndex = 11;
-            break;
-    }
+void servoControlUpdate() {
+    unsigned long currentMillis = millis();
 
-    if (servoIndex < 0 || servoIndex >= NUM_SERVOS) {
-        Serial.println("Invalid servo index");
-        return;
+    // Iterate through all 5 servos and update them simultaneously
+    for (int i = 0; i < 5; i++) {
+        if (!servos[i].isMoving) continue; // Skip servos that are stationary
+
+        unsigned long elapsed = currentMillis - servos[i].startTime;
+        
+        if (elapsed >= servos[i].delta_T) {
+            // Movement is finished, snap to exact target and stop
+            pwm.setPWM(servos[i].hardwareIndex, 0, (uint16_t)servos[i].targetPulse);
+            servos[i].isMoving = false;
+        } else {
+            // Calculate progress and ease it
+            double progress = (double)elapsed / servos[i].delta_T;
+            double easedProgress = progress * progress * (3 - 2 * progress);
+            
+            // Calculate current pulse and send it to the driver
+            double currentPulse = servos[i].startPulse + (servos[i].targetPulse - servos[i].startPulse) * easedProgress;
+            pwm.setPWM(servos[i].hardwareIndex, 0, (uint16_t)currentPulse);
+        }
     }
-    
-    // Constrain the target position to be within the defined limits
-    target_pos = SERVO_CENTER + target_pos; // Adjust target position relative to center
-    target_pos = constrain(target_pos, SERVOMIN, SERVOMAX);
-    
-    // Move the servo to the target position
-    pwm.setPWM(servoIndex, 0, (uint16_t)target_pos);
-    
-    // Update the stored position for the servo
-    servoPositions[servoIndex] = target_pos;
 }

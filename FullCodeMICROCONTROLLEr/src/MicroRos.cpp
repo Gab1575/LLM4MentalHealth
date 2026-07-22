@@ -35,6 +35,7 @@ void subscription_callback(const void * msgin) {
   
   for(int i = 0; i < 5; i++) {
     flowerData.servo_angles[i] = msg->servo_angles[i];
+    flowerData.servo_time[i] = msg->servo_time[i];
   }
 
   flowerData.n20_pwm = msg->n20_pwm;
