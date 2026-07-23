@@ -47,10 +47,10 @@ def generate_launch_description():
         #    name='face_tracker',
         #    output='screen'
         #),
-        Node(
-            package='localization_tracker',
-            executable='localization_tracker',
-            name='localization_tracker',
-            output='screen'
-        )
+        #Node(
+        #    package='localization_tracker',
+        #    executable='localization_tracker',
+        #    name='localization_tracker',
+        #    output='screen'
+        #)
     ])

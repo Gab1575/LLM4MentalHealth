@@ -15,15 +15,15 @@ class LocalizationTrackerNode(Node):
         
 # HSV threshold parameters for STRICT bright colors
         
-        # Bright Red - Tightened Hue to avoid orange/pink, increased minimum Saturation and Value
-        self.lower_red1 = np.array([0, 180, 100]) # Increased min Saturation to 180, min Value to 100
-        self.upper_red1 = np.array([8, 255, 255]) # Narrowed max Hue from 10 to 8
-        self.lower_red2 = np.array([172, 180, 100]) # Narrowed min Hue from 170 to 172
+# Bright Red - Widened Hue to allow slight orange/pink, decreased min Saturation and Value for shadows
+        self.lower_red1 = np.array([0, 150, 70])   # Lowered min Saturation to 150, min Value to 70
+        self.upper_red1 = np.array([12, 255, 255]) # Widened max Hue from 8 to 12 (touches orange)
+        self.lower_red2 = np.array([165, 150, 70]) # Widened min Hue from 172 to 165 (touches pink)
         self.upper_red2 = np.array([180, 255, 255]) 
 
-        # Bright Blue - Excludes light/cyan blues and shadows
-        self.lower_blue = np.array([110, 200, 100]) # Hue shifted away from cyan. Huge bump in min Saturation (200) and min Value (100)
-        self.upper_blue = np.array([130, 255, 255]) # Hue shifted away from purple.
+        # Bright Blue - Widened Hue to allow slight cyan/purple, lowered min Sat and Val
+        self.lower_blue = np.array([100, 150, 70]) # Hue shifted slightly towards cyan. Lowered min Sat to 150, Val to 70
+        self.upper_blue = np.array([135, 255, 255]) # Hue shifted slightly towards purple.
 
         # Timer loop running at 30 FPS
         self.timer = self.create_timer(1.0 / 30.0, self.process_frame)
