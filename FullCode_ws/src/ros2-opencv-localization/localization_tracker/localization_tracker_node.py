@@ -6,9 +6,8 @@ import numpy as np
 from geometry_msgs.msg import PointStamped
 
 KNOWN_DIAMETER = 1 # cm dia of balls.
-FOCAL_LENGTH = 615.0 # calibrated focal length of the camera lens, measured in pixels.
+FOCAL_LENGTH = 693.0 # calibrated focal length of the camera lens, measured in pixels.
 
-# Assuming a standard 640x480 webcam. If you use 1080p, change these to 960 and 540.
 CX = 320.0 
 CY = 240.0 
 

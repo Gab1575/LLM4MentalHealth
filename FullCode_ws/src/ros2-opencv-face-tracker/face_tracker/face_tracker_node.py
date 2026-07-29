@@ -15,7 +15,7 @@ class DirectFaceTracker(Node):
         # Topic name is 'face_tracking_angles', queue size is 10
         self.angle_pub = self.create_publisher(Point, 'face_tracking_angles', 10)
         
-        self.cap = cv2.VideoCapture(0)
+        self.cap = cv2.VideoCapture(2)
         
         self.cam_width = 640
         self.cam_height = 480
@@ -43,8 +43,14 @@ class DirectFaceTracker(Node):
             closest_face = None
             max_area = 0
             
+            # Loop through all detected faces
             for key, face in faces.items():
                 facial_area = face["facial_area"]
+                
+                # Draw a blue rectangle around EVERY detected face
+                cv2.rectangle(frame, (facial_area[0], facial_area[1]), (facial_area[2], facial_area[3]), (255, 0, 0), 2)
+                
+                # Calculate area to find the closest one
                 face_w = facial_area[2] - facial_area[0]
                 face_h = facial_area[3] - facial_area[1]
                 
@@ -54,6 +60,7 @@ class DirectFaceTracker(Node):
                     max_area = area
                     closest_face = face
             
+            # Only process tracking math and data publishing for the closest face
             if closest_face is not None:
                 facial_area = closest_face["facial_area"]
                 
@@ -77,6 +84,7 @@ class DirectFaceTracker(Node):
                 
                 self.angle_pub.publish(msg)
                                 
+                # Draw a green rectangle and text over the closest face to indicate active tracking
                 score = closest_face["score"]
                 cv2.rectangle(frame, (facial_area[0], facial_area[1]), (facial_area[2], facial_area[3]), (0, 255, 0), 2)
                 cv2.putText(frame, f"Closest: {score * 100:.1f}%", (facial_area[0], facial_area[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)

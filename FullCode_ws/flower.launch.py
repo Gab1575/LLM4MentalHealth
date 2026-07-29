@@ -41,16 +41,16 @@ def generate_launch_description():
             name='flower_gui',
             output='screen'
         ),
-        #Node(
-        #    package='face_tracker',
-        #    executable='face_tracker',
-        #    name='face_tracker',
-        #    output='screen'
-        #),
-        #Node(
-        #    package='localization_tracker',
-        #    executable='localization_tracker',
-        #    name='localization_tracker',
-        #    output='screen'
-        #)
+        Node(
+            package='face_tracker',
+            executable='face_tracker',
+            name='face_tracker',
+            output='screen'
+        ),
+        Node(
+            package='localization_tracker',
+            executable='localization_tracker',
+            name='localization_tracker',
+            output='screen'
+        )
     ])
