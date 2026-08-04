@@ -2,14 +2,20 @@ import rclpy
 from rclpy.node import Node 
 import cv2 
 import numpy as np 
+import subprocess 
 
 from geometry_msgs.msg import PointStamped
 
-KNOWN_DIAMETER = 1 # cm dia of balls.
-FOCAL_LENGTH = 693.0 # calibrated focal length of the camera lens, measured in pixels.
+KNOWN_DIAMETER = 1.0 # cm dia of balls.
 
-CX = 320.0 
-CY = 240.0 
+"""
+Running Calibration instructions:
+1. Launch the camera node:
+ros2 run usb_cam usb_cam_node_exe
+2. Run the camera calibration tool:
+ros2 run camera_calibration cameracalibrator --size 9x6 --square 0.020 --ros-args -r image:=/image_raw 
+-> Camera Calibration is set to use a 9x6 grid (Mesuring inner corners) with 2cm squares. Adjust the --size and --square parameters if you are using a different checkerboard.
+"""
 
 class LocalizationTrackerNode(Node): 
     def __init__(self): 
@@ -19,20 +25,55 @@ class LocalizationTrackerNode(Node):
         self.red_pub = self.create_publisher(PointStamped, '/vision/red_ball', 10)
         self.blue_pub = self.create_publisher(PointStamped, '/vision/blue_ball', 10)
         
+        # --- CALIBRATION MATRICES ---
+        # Camera Matrix (K)
+        self.camera_matrix = np.array([
+            [861.053957, 0.000000,   358.471930],
+            [0.000000,   858.673697, 228.178503],
+            [0.000000,   0.000000,   1.000000]
+        ])
+        
+        # Distortion Coefficients (D)
+        self.dist_coeffs = np.array([0.195527, -0.750729, 0.000858, 0.000285, 0.000000])
+
+        # Extract values for 3D math directly from the matrix
+        self.fx = self.camera_matrix[0, 0]
+        self.fy = self.camera_matrix[1, 1]
+        self.cx = self.camera_matrix[0, 2]
+        self.cy = self.camera_matrix[1, 2]
+        
         self.cap = cv2.VideoCapture(0)  
+        self.set_camera_hardware_settings()
         
         # HSV threshold parameters
         # Red
-        self.lower_red1 = np.array([147, 124, 116])
+        self.lower_red1 = np.array([165, 121, 84])
         self.upper_red1 = np.array([179, 255, 255])
-        self.lower_red2 = np.array([0,124,116])
-        self.upper_red2 = np.array([8,255,255])
+        self.lower_red2 = np.array([0, 121, 84])
+        self.upper_red2 = np.array([7, 255, 255])
 
         # Blue 
-        self.lower_blue = np.array([92, 215, 46])
-        self.upper_blue = np.array([140, 255, 219])
+        self.lower_blue = np.array([100, 113, 36])
+        self.upper_blue = np.array([128, 255, 255])
 
         self.timer = self.create_timer(1.0 / 30.0, self.process_frame)
+
+    def set_camera_hardware_settings(self):
+        """Runs terminal commands to lock the camera settings"""
+        try:
+            commands = [
+                #brightness and contrast
+                "v4l2-ctl -d /dev/video0 --set-ctrl=brightness=130",
+                "v4l2-ctl -d /dev/video0 --set-ctrl=contrast=30",
+            ]
+            
+            for cmd in commands:
+                subprocess.run(cmd, shell=True, check=True)
+                
+            self.get_logger().info("Successfully locked camera hardware settings.")
+            
+        except subprocess.CalledProcessError as e:
+            self.get_logger().warn(f"Failed to set some camera controls: {e}")
 
     def find_ball(self, mask, frame, color_name):
         contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE) 
@@ -53,10 +94,13 @@ class LocalizationTrackerNode(Node):
                     if radius > 5:
                         apparent_width = radius * 2 
                         
-                        # 3D Math Calculation
-                        Z = (KNOWN_DIAMETER * FOCAL_LENGTH) / apparent_width 
-                        X = (x - CX) * Z / FOCAL_LENGTH
-                        Y = (y - CY) * Z / FOCAL_LENGTH
+                        # 3D Math Calculation using Matrix Parameters
+                        focal_length_avg = (self.fx + self.fy) / 2.0
+                        Z = (KNOWN_DIAMETER * focal_length_avg) / apparent_width 
+                        
+                        # Use fx for X calculation and fy for Y calculation for maximum accuracy
+                        X = (x - self.cx) * Z / self.fx
+                        Y = (y - self.cy) * Z / self.fy
                         
                         # Draw tracking graphics
                         cv2.circle(frame, (int(x), int(y)), int(radius), (0, 255, 0), 2) 
@@ -70,6 +114,10 @@ class LocalizationTrackerNode(Node):
         ret, frame = self.cap.read() 
         if not ret: 
             return 
+
+        # --- APPLY CALIBRATION HERE ---
+        # Flatten the lens distortion before doing ANY color processing
+        frame = cv2.undistort(frame, self.camera_matrix, self.dist_coeffs)
 
         blurred = cv2.GaussianBlur(frame, (11,11), 0)
         hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV) 

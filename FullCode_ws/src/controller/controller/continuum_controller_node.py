@@ -16,26 +16,26 @@ class ContinuumController(Node):
         # Latest known joint configurations from GUI
         # [theta1, phi1, theta2, phi2, tilt]
         self.current_q = np.zeros(5)
-        
-        # 1. Subscribe to GUI or joint state topic
-        self.state_sub = self.create_subscription(Float32MultiArray, '/robot/joint_states', self.joint_state_callback, 10)
 
+        """
+        NEEDS to be implemented!
+        # 1. Subscribe to joint state topic
+        self.state_sub = self.create_subscription(Float32MultiArray, '/robot/joint_states', self.joint_state_callback, 10)
+        """
+        
         # 2. Create message_filter subscribers for vision tracking
         self.red_sub = message_filters.Subscriber(self, PointStamped, '/vision/red_ball')
         self.blue_sub = message_filters.Subscriber(self, PointStamped, '/vision/blue_ball')
 
         # 3. Synchronize vision inputs (waits up to 0.1s for matching timestamps)
-        self.ts = message_filters.ApproximateTimeSynchronizer(
-            [self.red_sub, self.blue_sub], queue_size=10, slop=0.1)
+        self.ts = message_filters.ApproximateTimeSynchronizer([self.red_sub, self.blue_sub], queue_size=10, slop=0.1)
         self.ts.registerCallback(self.control_loop_callback)
         
         # Target state [X, Y, Z, Pitch, Yaw]
         self.target_state = np.array([0.0, 0.0, 30.0, 0.0, 0.0])
-        
-        self.get_logger().info('Continuum Controller Node Initialized')
 
     def joint_state_callback(self, msg):
-        """Callback to store the latest joint angles coming from your GUI/system."""
+        # Callback to store the latest joint angles
         if len(msg.data) >= 5:
             self.current_q = np.array(msg.data[:5])
 
