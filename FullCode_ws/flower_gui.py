@@ -4,6 +4,8 @@ import json
 import time
 import threading
 import signal
+import math
+import numpy as np
 
 # Force Python to look inside your workspace's colcon install directory
 workspace_install_path = os.path.expanduser('~/Desktop/llm4mentalhealth/FullCode_ws/install/flower_msgs/lib/python3.10/site-packages')
@@ -14,22 +16,63 @@ import rclpy
 from rclpy.node import Node
 import tkinter as tk
 from tkinter import colorchooser
+
+# Matplotlib integration for Tkinter
+import matplotlib
+matplotlib.use("TkAgg")
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.figure import Figure
+
 from flower_msgs.msg import RobotCommand
+from std_msgs.msg import Float64MultiArray
+from std_msgs.msg import String
 from Demos.BoxBreathing import BoxBreathing
+
+# --- Kinematics Helper Functions (For Visualization Only) ---
+def calc_segment(theta, phi, L, num_points=50):
+    s = np.linspace(0, L, num_points)
+    if theta < 1e-6:
+        return np.zeros_like(s), np.zeros_like(s), s
+    r = L / theta
+    x = r * (1 - np.cos(theta * s / L)) * np.cos(phi)
+    y = r * (1 - np.cos(theta * s / L)) * np.sin(phi)
+    z = r * np.sin(theta * s / L)
+    return x, y, z
+
+def get_rotation_matrix(theta, phi):
+    c_p, s_p = np.cos(phi), np.sin(phi)
+    c_t, s_t = np.cos(theta), np.sin(theta)
+    
+    Rz_phi = np.array([[c_p, -s_p, 0], [s_p, c_p, 0], [0, 0, 1]])
+    Ry_th = np.array([[c_t, 0, s_t], [0, 1, 0], [-s_t, 0, c_t]])
+    Rz_mphi = np.array([[c_p, s_p, 0], [-s_p, c_p, 0], [0, 0, 1]])
+    
+    return Rz_phi @ Ry_th @ Rz_mphi
 
 class FlowerDashboard(Node):
     def __init__(self, root):
         super().__init__('flower_gui_node')
-        self.publisher = self.create_publisher(RobotCommand, '/flower_commands', 10)
+        
+        # ROS 2 Publishers
+        self.manual_publisher = self.create_publisher(RobotCommand, '/manual_commands', 10)
+        self.kinematic_publisher = self.create_publisher(Float64MultiArray, '/kinematic_commands', 10)
+        self.mode_publisher = self.create_publisher(String, '/control_mode', 10)
+        
         self.root = root
-        self.root.title("Flower Control Dashboard")
-        self.root.geometry("750x700") # Slightly wider to comfortably fit the time entries
+        self.root.title("Flower Control Dashboard & Kinematics")
+        self.root.geometry("950x800") 
         
         self.config_file = os.path.expanduser('~/flower_gui_settings.json')
 
+        # --- Robot Parameters (for Drawing) ---
+        self.L1 = 10.0
+        self.L2 = 10.0
+
         # --- Variables ---
+        self.control_mode = tk.StringVar(value="manual")
+        self.control_mode.trace_add('write', self.on_mode_changed)
         self.servo_vars = [tk.DoubleVar(value=0.0) for _ in range(5)]
-        self.servo_time_vars = [tk.StringVar(value="0.0") for _ in range(5)] # String vars prevent crash if box is left temporarily empty
+        self.servo_time_vars = [tk.StringVar(value="0.0") for _ in range(5)] 
         self.led_vars = [tk.IntVar(value=0) for _ in range(5)]
         self.led_hex_vars = [tk.StringVar(value="#000000") for _ in range(5)]
         self.led_color_btns = [] 
@@ -42,126 +85,209 @@ class FlowerDashboard(Node):
         self.n20_pos_var = tk.DoubleVar(value=0.0)
         self.n20_speed_var = tk.IntVar(value=128)
         self.n20_zero_var = tk.BooleanVar(value=False)
+
+        # Kinematic Variables
+        self.th1_var = tk.DoubleVar(value=45.0)  
+        self.ph1_var = tk.DoubleVar(value=30.0)
+        self.th2_var = tk.DoubleVar(value=60.0)
+        self.ph2_var = tk.DoubleVar(value=120.0)
+        self.kin_time_var = tk.StringVar(value="0.5") 
         
-        # --- Flag to control who is publishing ---
         self.routine_running = False
         self.stop_event = threading.Event() 
 
         self.setup_ui()
         self.load_config()
+        self.update_kinematics()
+        
         self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
 
         # Start loops
+        self.on_mode_changed()
         self.root.after(10, self.ros_spin)
         self.root.after(100, self.publish_command) 
         self.root.after(1000, self.auto_save)     
 
     def setup_ui(self):
-        # Servos
-        servo_frame = tk.LabelFrame(self.root, text="Servo Motors (-90 to 90)")
-        servo_frame.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
+        # --- Mode Selector (Top) ---
+        mode_frame = tk.LabelFrame(self.root, text="Publishing Mode Control", font=("TkDefaultFont", 10, "bold"), fg="blue")
+        mode_frame.pack(fill="x", padx=2, pady=2)
+        
+        tk.Radiobutton(mode_frame, text="Publish Servos to /manual_commands", 
+                       variable=self.control_mode, value="manual", font=("TkDefaultFont", 9)).pack(side="left", padx=5, pady=0)
+                       
+        tk.Radiobutton(mode_frame, text="Publish Theta & Phi to /kinematic_commands", 
+                       variable=self.control_mode, value="kinematic", font=("TkDefaultFont", 9)).pack(side="left", padx=5, pady=0)
+
+        # Create Main Layout Frames
+        main_frame = tk.Frame(self.root)
+        main_frame.pack(fill="both", expand=True)
+
+        left_frame = tk.Frame(main_frame)
+        left_frame.pack(side="left", fill="both", expand=True, padx=2, pady=2)
+        
+        right_frame = tk.Frame(main_frame)
+        right_frame.pack(side="right", fill="y", padx=2, pady=2)
+
+        # ================= LEFT FRAME (KINEMATICS) =================
+        kin_frame = tk.LabelFrame(left_frame)
+        kin_frame.pack(fill="both", expand=True)
+
+        self.fig = Figure(figsize=(3, 3), dpi=90)
+        self.fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
+        self.ax = self.fig.add_subplot(111, projection='3d')
+        max_reach = self.L1 + self.L2
+        self.ax.set_xlim([-max_reach, max_reach])
+        self.ax.set_ylim([-max_reach, max_reach])
+        self.ax.set_zlim([0, max_reach])
+        self.ax.set_xlabel('X', labelpad=-10)
+        self.ax.set_ylabel('Y', labelpad=-10)
+        self.ax.set_zlabel('Z', labelpad=-10)
+        self.ax.tick_params(axis='both', which='major', labelsize=7, pad=-5)
+
+        xx, yy = np.meshgrid([-max_reach, max_reach], [-max_reach, max_reach])
+        self.ax.plot_surface(xx, yy, np.zeros_like(xx), alpha=0.1, color='gray')
+
+        self.stage1_line, = self.ax.plot([], [], [], lw=4, color='teal', label='Stage 1')
+        self.stage2_line, = self.ax.plot([], [], [], lw=4, color='darkorange', label='Stage 2')
+        self.tip_marker1, = self.ax.plot([], [], [], 'bo', markersize=4)
+        self.tip_marker2, = self.ax.plot([], [], [], 'ro', markersize=6, label='Final Tip')
+        self.ax.legend(loc='upper left', fontsize=7)
+
+        self.canvas = FigureCanvasTkAgg(self.fig, master=kin_frame)
+        self.canvas.get_tk_widget().pack(fill="both", expand=True, padx=2, pady=2)
+
+        slider_frame = tk.Frame(kin_frame)
+        slider_frame.pack(fill="x", pady=2)
+        
+        tk.Scale(slider_frame, variable=self.th1_var, from_=0, to=180, orient="horizontal", label="Stg 1 Theta", width=10, sliderlength=15, command=self.update_kinematics).grid(row=0, column=0, sticky="ew", padx=2)
+        tk.Scale(slider_frame, variable=self.ph1_var, from_=0, to=360, orient="horizontal", label="Stg 1 Phi", width=10, sliderlength=15, command=self.update_kinematics).grid(row=0, column=1, sticky="ew", padx=2)
+        tk.Scale(slider_frame, variable=self.th2_var, from_=0, to=180, orient="horizontal", label="Stg 2 Theta", width=10, sliderlength=15, command=self.update_kinematics).grid(row=1, column=0, sticky="ew", padx=2)
+        tk.Scale(slider_frame, variable=self.ph2_var, from_=0, to=360, orient="horizontal", label="Stg 2 Phi", width=10, sliderlength=15, command=self.update_kinematics).grid(row=1, column=1, sticky="ew", padx=2)
+        
+        slider_frame.columnconfigure(0, weight=1)
+        slider_frame.columnconfigure(1, weight=1)
+
+        time_frame_kin = tk.Frame(kin_frame)
+        time_frame_kin.pack(pady=2)
+        tk.Label(time_frame_kin, text="Move Time (s):", font=("TkDefaultFont", 9)).pack(side="left")
+        tk.Entry(time_frame_kin, textvariable=self.kin_time_var, width=5).pack(side="left", padx=2)
+
+        # ================= RIGHT FRAME (HARDWARE) =================
+        servo_frame = tk.LabelFrame(right_frame, text="Servos (-90 to 90)", font=("TkDefaultFont", 9))
+        servo_frame.pack(fill="x", padx=2, pady=0)
         for i in range(5):
             row = tk.Frame(servo_frame)
-            row.pack(fill="x", padx=5, pady=2)
+            row.pack(fill="x", padx=2, pady=0)
             
-            # Slider on the left
             tk.Scale(row, variable=self.servo_vars[i], from_=-90.0, to=90.0, 
-                     orient="horizontal", label=f"Servo {i}").pack(side="left", expand=True, fill="x")
+                     orient="horizontal", label=f"S{i}", width=10, sliderlength=15).pack(side="left", expand=True, fill="x")
             
-            # Time entry on the right
             time_frame = tk.Frame(row)
-            time_frame.pack(side="right", padx=(10, 5))
-            tk.Label(time_frame, text="Time (s):").pack(side="left")
-            tk.Entry(time_frame, textvariable=self.servo_time_vars[i], width=6).pack(side="left")
+            time_frame.pack(side="right", padx=(2, 2))
+            tk.Label(time_frame, text="Time:", font=("TkDefaultFont", 8)).pack(side="left")
+            tk.Entry(time_frame, textvariable=self.servo_time_vars[i], width=4).pack(side="left")
 
-        # LEDs
-        led_frame = tk.LabelFrame(self.root, text="LEDs (Brightness & Hex)")
-        led_frame.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
+        led_frame = tk.LabelFrame(right_frame, text="LEDs", font=("TkDefaultFont", 9))
+        led_frame.pack(fill="x", padx=2, pady=0)
         
-        tk.Checkbutton(led_frame, text="Master Brightness Override", variable=self.use_master_led).pack(pady=(5,0))
-        tk.Scale(led_frame, variable=self.master_led_var, from_=0, to=255, 
-                 orient="horizontal", label="Master Brightness").pack(fill="x", padx=5)
+        master_row = tk.Frame(led_frame)
+        master_row.pack(fill="x")
+        tk.Checkbutton(master_row, text="Master Bright", variable=self.use_master_led, font=("TkDefaultFont", 8)).pack(side="left")
+        tk.Scale(master_row, variable=self.master_led_var, from_=0, to=255, orient="horizontal", width=10, sliderlength=15).pack(side="left", expand=True, fill="x", padx=2)
         
         color_override_frame = tk.Frame(led_frame)
-        color_override_frame.pack(fill="x", pady=(0, 10))
-        tk.Checkbutton(color_override_frame, text="Master Colour Override", variable=self.use_master_color).pack(side="left", padx=5)
+        color_override_frame.pack(fill="x")
+        tk.Checkbutton(color_override_frame, text="Master Color", variable=self.use_master_color, font=("TkDefaultFont", 8)).pack(side="left")
         
-        # Master Color Picker Button
-        self.master_color_btn = tk.Button(color_override_frame, width=8, bg="#000000",
+        self.master_color_btn = tk.Button(color_override_frame, width=4, bg="#000000",
                                           command=lambda: self.choose_color(self.master_hex_var, self.master_color_btn))
-        self.master_color_btn.pack(side="right", padx=15)
+        self.master_color_btn.pack(side="right", padx=5)
         
         for i in range(5):
             row = tk.Frame(led_frame)
-            row.pack(fill="x", pady=2)
-            tk.Label(row, text=f"L{i}:").pack(side="left", padx=(5,0))
-            tk.Scale(row, variable=self.led_vars[i], from_=0, to=255, orient="horizontal").pack(side="left", expand=True, fill="x")
+            row.pack(fill="x", pady=0)
+            tk.Label(row, text=f"L{i}:", font=("TkDefaultFont", 8)).pack(side="left")
+            tk.Scale(row, variable=self.led_vars[i], from_=0, to=255, orient="horizontal", width=10, sliderlength=15).pack(side="left", expand=True, fill="x", padx=2)
             
-            # Individual LED Color Picker Buttons
-            btn = tk.Button(row, width=8, bg="#000000",
+            btn = tk.Button(row, width=4, bg="#000000",
                             command=lambda idx=i: self.choose_color(self.led_hex_vars[idx], self.led_color_btns[idx]))
-            btn.pack(side="left", padx=5)
+            btn.pack(side="right", padx=2)
             self.led_color_btns.append(btn)
 
-        # N20 Motor
-        n20_frame = tk.LabelFrame(self.root, text="N20 Motor")
-        n20_frame.grid(row=1, column=0, columnspan=2, padx=10, pady=10, sticky="nsew")
+        n20_frame = tk.LabelFrame(right_frame, text="N20", font=("TkDefaultFont", 9))
+        n20_frame.pack(fill="x", padx=2, pady=2)
         
-        tk.Scale(n20_frame, variable=self.n20_pos_var, from_=0, to=4.5, resolution=0.1, 
-                 orient="horizontal", label="Position").pack(side="left", expand=True, fill="x", padx=15)
+        n20_row = tk.Frame(n20_frame)
+        n20_row.pack(fill="x")
+        tk.Scale(n20_row, variable=self.n20_pos_var, from_=0, to=4.5, resolution=0.1, 
+                 orient="horizontal", label="Pos", width=10, sliderlength=15).pack(side="left", expand=True, fill="x", padx=2)
+        tk.Scale(n20_row, variable=self.n20_speed_var, from_=0, to=255, 
+                 orient="horizontal", label="Spd", font=("TkDefaultFont", 8), width=10, sliderlength=15).pack(side="left", expand=True, fill="x", padx=2)
         
-        tk.Scale(n20_frame, variable=self.n20_speed_var, from_=0, to=255, 
-                 orient="horizontal", label="Speed", font=("TkDefaultFont", 8), length=120).pack(side="right", padx=15)
+        tk.Button(n20_frame, text="Zero", command=lambda: self.n20_zero_var.set(not self.n20_zero_var.get()), height=1, bd=1, relief="sunken").pack(fill="x", padx=2, pady=2)
         
-        tk.Button(n20_frame, text="Zero", command=lambda: self.n20_zero_var.set(not self.n20_zero_var.get()), height=1, bd=1, relief="sunken").pack(fill="x", pady=5)
-        
-        # Routine Button
-        routine_frame = tk.Frame(self.root)
-        routine_frame.grid(row=2, column=0, columnspan=2, pady=15)
+        routine_frame = tk.Frame(right_frame)
+        routine_frame.pack(pady=2)
         
         self.routine_btn = tk.Button(routine_frame, text="Run Box Breathing", 
-                                     command=self.start_routine, fg="grey", font=("TkDefaultFont", 12, "bold"))
+                                     command=self.start_routine, fg="grey", font=("TkDefaultFont", 10, "bold"))
         self.routine_btn.pack()
 
-    # --- Routine Methods ---
+    def on_mode_changed(self, *args):
+        msg = String()
+        msg.data = self.control_mode.get() 
+        self.mode_publisher.publish(msg)
+        self.get_logger().info(f"Published mode change: {msg.data}")
+
+    def update_kinematics(self, *args):
+        th1 = np.radians(self.th1_var.get())
+        ph1 = np.radians(self.ph1_var.get())
+        th2 = np.radians(self.th2_var.get())
+        ph2 = np.radians(self.ph2_var.get())
+        
+        x1, y1, z1 = calc_segment(th1, ph1, self.L1)
+        tip1_pos = np.array([x1[-1], y1[-1], z1[-1]])
+        R1 = get_rotation_matrix(th1, ph1)
+        
+        x2_local, y2_local, z2_local = calc_segment(th2, ph2, self.L2)
+        pts2_local = np.vstack((x2_local, y2_local, z2_local))
+        
+        pts2_global = R1 @ pts2_local + tip1_pos.reshape(3, 1)
+        x2, y2, z2 = pts2_global[0, :], pts2_global[1, :], pts2_global[2, :]
+        
+        self.stage1_line.set_data(x1, y1)
+        self.stage1_line.set_3d_properties(z1)
+        self.tip_marker1.set_data([x1[-1]], [y1[-1]])
+        self.tip_marker1.set_3d_properties([z1[-1]])
+        
+        self.stage2_line.set_data(x2, y2)
+        self.stage2_line.set_3d_properties(z2)
+        self.tip_marker2.set_data([x2[-1]], [y2[-1]])
+        self.tip_marker2.set_3d_properties([z2[-1]])
+        self.canvas.draw_idle()
 
     def start_routine(self):
         if not self.routine_running:
-            # --- START THE ROUTINE ---
             self.routine_running = True
-            self.stop_event.clear()  # Reset the stop signal
-            
-            # Turn button red and change text
+            self.stop_event.clear()
             self.routine_btn.config(text="Stop Routine")
-            
-            # Start in background thread
             threading.Thread(target=self.execute_routine, daemon=True).start()
-            
         else:
-            # --- STOP THE ROUTINE ---
             self.routine_running = False
-            self.stop_event.set()  # Send the stop signal to the routine loop
-            
-            # Turn button back to green
+            self.stop_event.set() 
             self.routine_btn.config(text="Run Box Breathing")
 
     def execute_routine(self):
         try:
-            # Take a snapshot of the exact state right before starting
             initial_state = self.get_current_command()
-            
-            # Pass the snapshot into the routine
-            BoxBreathing(self.publisher, self.stop_event, initial_state)
-
+            BoxBreathing(self.manual_publisher, self.stop_event, initial_state)
         except Exception as e:
             self.get_logger().error(f"Routine crashed: {e}")
-            
         finally:
             if self.routine_running: 
                 self.routine_running = False
                 self.root.after(0, lambda: self.routine_btn.config(text="Run Box Breathing"))
-
-    # -----------------------
 
     def choose_color(self, string_var, button):
         color = colorchooser.askcolor(initialcolor=string_var.get(), title="Select LED Color")
@@ -170,7 +296,6 @@ class FlowerDashboard(Node):
             button.config(bg=color[1]) 
 
     def safe_float(self, val_str):
-        """Safely parses float strings, defaulting to 0.0 if empty/invalid"""
         try:
             return float(val_str)
         except ValueError:
@@ -182,6 +307,7 @@ class FlowerDashboard(Node):
 
     def save_config(self):
         config_data = {
+            "mode": self.control_mode.get(),
             "servos": [v.get() for v in self.servo_vars],
             "servo_times": [self.safe_float(v.get()) for v in self.servo_time_vars],
             "led_brightness": [v.get() for v in self.led_vars],
@@ -212,6 +338,8 @@ class FlowerDashboard(Node):
                 with open(self.config_file, 'r') as f:
                     config_data = json.load(f)
                 
+                self.control_mode.set(config_data.get("mode", "manual"))
+
                 saved_servos = config_data.get("servos", [0.0]*5)
                 for i in range(min(5, len(saved_servos))):
                     self.servo_vars[i].set(saved_servos[i])
@@ -239,30 +367,24 @@ class FlowerDashboard(Node):
                 
                 self.use_master_color.set(config_data.get("use_master_color", False))
                 self.n20_pos_var.set(config_data.get("n20_pos", 0.0))
-                
-                saved_speed = config_data.get("n20_speed", config_data.get("n20_dir", 128))
-                self.n20_speed_var.set(saved_speed)
+                self.n20_speed_var.set(config_data.get("n20_speed", 128))
                 self.n20_zero_var.set(config_data.get("n20_zero", False))
 
             except Exception as e:
-                self.get_logger().error(f"Failed to load config, starting fresh. Error: {e}")
+                self.get_logger().error(f"Failed to load config, starting fresh: {e}")
 
     def on_closing(self):
         self.save_config()
-        self.root.destroy()
+        self.root.quit()
 
     def ros_spin(self):
-        # If ROS 2 has been shut down by the launch file, close the GUI window
         if not rclpy.ok():
-            self.get_logger().info("ROS context dead, closing GUI window...")
             self.root.quit()
             return
-
         rclpy.spin_once(self, timeout_sec=0.01)
         self.root.after(10, self.ros_spin)
 
     def get_current_command(self):
-        """Builds a RobotCommand message using the current GUI slider/button states."""
         msg = RobotCommand()
         msg.servo_angles = [float(v.get()) for v in self.servo_vars]
         msg.servo_time = [self.safe_float(v.get()) for v in self.servo_time_vars]
@@ -294,24 +416,35 @@ class FlowerDashboard(Node):
         return msg
 
     def publish_command(self):
-        # If ROS 2 is dead, stop trying to loop or publish
         if not rclpy.ok():
             return
-
         try:
-            # If the routine is running, skip publishing the GUI values
-            if self.routine_running:
-                return
+            if not self.routine_running:
                 
-            # Use the new helper method
-            msg = self.get_current_command()
-            self.publisher.publish(msg)
-            
+                # Fetch full base command (includes manual servos, LEDs, N20 data, and individual times)
+                cmd_msg = self.get_current_command()
+                
+                # Override the time array if we are in kinematic mode
+                if self.control_mode.get() == "kinematic":
+                    kin_time = self.safe_float(self.kin_time_var.get())
+                    cmd_msg.servo_time = [kin_time] * 5
+                
+                # Unconditionally publish to /manual_commands so the Mux has the latest Time/N20/LED states
+                self.manual_publisher.publish(cmd_msg)
+                
+                # Unconditionally publish kinematics so you can still slide them and test them
+                kin_msg = Float64MultiArray()
+                kin_msg.data = [
+                    float(self.th1_var.get()),
+                    float(self.ph1_var.get()),
+                    float(self.th2_var.get()),
+                    float(self.ph2_var.get())
+                ]
+                self.kinematic_publisher.publish(kin_msg)
+                
         except Exception as e:
             self.get_logger().error(f"Publish crashed: {e}")
-            
         finally:
-            # Only schedule the next tick if ROS 2 is still active
             if rclpy.ok():
                 self.root.after(100, self.publish_command)
 
@@ -320,29 +453,20 @@ def main(args=None):
     root = tk.Tk()
     app = FlowerDashboard(root)
     
-    # Force Tkinter to respect Ctrl+C by capturing the OS signal directly
     def handle_sigint(sig, frame):
-        # 1. Safely close ROS
         if rclpy.ok():
             try:
                 app.destroy_node()
                 rclpy.shutdown()
             except Exception:
                 pass
-        
-        # 2. Obliterate the Tkinter window
         try:
             root.destroy()
         except Exception:
             pass
-            
-        # 3. Kill the python process instantly
         sys.exit(0)
 
-    # Bind the Ctrl+C signal to our custom handler
     signal.signal(signal.SIGINT, handle_sigint)
-    
-    # Start the GUI
     root.mainloop()
 
 if __name__ == '__main__':

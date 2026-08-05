@@ -6,6 +6,7 @@ import os
 def generate_launch_description():
     
     gui_script_path = os.path.expanduser('~/Desktop/llm4mentalhealth/FullCode_ws/flower_gui.py')
+    mux_script_path = os.path.expanduser('~/Desktop/llm4mentalhealth/FullCode_ws/flower_mux.py')
     
     # 1. Build the local CUDA library paths
     home = os.path.expanduser('~')
@@ -52,5 +53,11 @@ def generate_launch_description():
             executable='localization_tracker',
             name='localization_tracker',
             output='screen'
-        )
+        ),
+        Node(
+            executable='python3',
+            arguments=[mux_script_path],
+            name='flower_mux',
+            output='screen'
+        ),
     ])

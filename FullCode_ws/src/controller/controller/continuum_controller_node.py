@@ -13,26 +13,19 @@ class ContinuumController(Node):
     def __init__(self):
         super().__init__('continuum_controller')
         
-        # Latest known joint configurations from GUI
-        # [theta1, phi1, theta2, phi2, tilt]
-        self.current_q = np.zeros(5)
-
-        """
-        NEEDS to be implemented!
-        # 1. Subscribe to joint state topic
-        self.state_sub = self.create_subscription(Float32MultiArray, '/robot/joint_states', self.joint_state_callback, 10)
-        """
+        # Subscribe to kinematic commands [theta1, phi1, theta2, phi2, move_time]
+        self.state_sub = self.create_subscription(Float32MultiArray, '/kinematic_commands', self.joint_state_callback, 10)
         
-        # 2. Create message_filter subscribers for vision tracking
+        #Create message_filter subscribers for vision tracking
         self.red_sub = message_filters.Subscriber(self, PointStamped, '/vision/red_ball')
         self.blue_sub = message_filters.Subscriber(self, PointStamped, '/vision/blue_ball')
 
-        # 3. Synchronize vision inputs (waits up to 0.1s for matching timestamps)
+        # Synchronize vision inputs (waits up to 0.1s for matching timestamps)
         self.ts = message_filters.ApproximateTimeSynchronizer([self.red_sub, self.blue_sub], queue_size=10, slop=0.1)
         self.ts.registerCallback(self.control_loop_callback)
         
-        # Target state [X, Y, Z, Pitch, Yaw]
-        self.target_state = np.array([0.0, 0.0, 30.0, 0.0, 0.0])
+        # Target state [theta1, phi1, theta2, phi2]
+        self.target_state = np.array([0.0, 0.0, 0.0, 0.0])
 
     def joint_state_callback(self, msg):
         # Callback to store the latest joint angles
@@ -40,75 +33,33 @@ class ContinuumController(Node):
             self.current_q = np.array(msg.data[:5])
 
     def control_loop_callback(self, red_msg, blue_msg):
-        # --- STEP A: Process Vision Data ---
+        # Process Vision Data
         P_red = np.array([red_msg.point.x, red_msg.point.y, red_msg.point.z])
         P_blue = np.array([blue_msg.point.x, blue_msg.point.y, blue_msg.point.z])
 
-        # 1. Calculate the midpoint between the red and blue balls
+        # Calculate the midpoint between the red and blue balls
         P_center = (P_red + P_blue) / 2.0
 
-        # 2. Build the forward-pointing unit vector from red to blue
-        vector = P_blue - P_red
-        norm = np.linalg.norm(vector)
-        if norm == 0:
-            return
-        v_hat = vector / norm
-
-        # 3. Shift center point forward to find the actual flower head tip
-        flower_head_pos = P_center + (v_hat * BALL_OFFSET)
-
-        # 4. Extract actual Pitch and Yaw from the unit vector
-        yaw = np.arctan2(v_hat[0], v_hat[2])
-        pitch = np.arctan2(-v_hat[1], np.sqrt(v_hat[0]**2 + v_hat[2]**2))
-
-        actual_state = np.array([flower_head_pos[0], flower_head_pos[1], flower_head_pos[2], pitch, yaw])
-
-        # --- STEP B: Run Forward Kinematics Model ---
-        model_tip_pos, model_orientation = self.run_forward_kinematics(self.current_q)
-
-        # --- STEP C: Error Calculation & Control ---
-        error = self.target_state - actual_state
-        
-        # Placeholder for Jacobian Inverse Control mapping
-        # q_dot = J_inv @ (Kp @ error)
-        # self.publish_motor_commands(q_dot)
 
     def run_forward_kinematics(self, q):
         """Computes the full forward kinematics using your configuration vector q."""
         th1, ph1, th2, ph2, tilt = q
         
-        # 1. Calculate Stage 1 (Global frame)
+        # Calculate Stage 1 (Global frame)
         x1, y1, z1 = self.calc_segment(th1, ph1, L1)
         tip1_pos = np.array([x1[-1], y1[-1], z1[-1]])
         R1 = self.get_rotation_matrix(th1, ph1)
         
-        # 2. Calculate Stage 2 (Local frame of stage 1 tip)
+        # Calculate Stage 2 (Local frame of stage 1 tip)
         x2_local, y2_local, z2_local = self.calc_segment(th2, ph2, L2)
         pts2_local = np.vstack((x2_local, y2_local, z2_local))
         
-        # 3. Transform Stage 2 to Global frame
+        # Transform Stage 2 to Global frame
         pts2_global = R1 @ pts2_local + tip1_pos.reshape(3, 1)
         tip2_pos = np.array([pts2_global[0, -1], pts2_global[1, -1], pts2_global[2, -1]])
         R2 = R1 @ self.get_rotation_matrix(th2, ph2)
+                
         
-        # 4. Account for the 1DOF tilt joint at the top
-        c_t, s_t = np.cos(tilt), np.sin(tilt)
-        R_tilt = np.array([[1, 0, 0], [0, c_t, -s_t], [0, s_t, c_t]])
-        R_final = R2 @ R_tilt
-        
-        # Final tip position including the ball offset
-        # The forward vector in local coordinates is the Z-axis vector [0, 0, 1] transformed
-        local_forward = np.array([0, 0, 1])
-        global_forward = R_final @ local_forward
-        flower_tip = tip2_pos + (global_forward * BALL_OFFSET)
-        
-        # Extract model pitch/yaw from global_forward vector
-        model_yaw = np.arctan2(global_forward[0], global_forward[2])
-        model_pitch = np.arctan2(-global_forward[1], np.sqrt(global_forward[0]**2 + global_forward[2]**2))
-        
-        model_state = np.array([flower_tip[0], flower_tip[1], flower_tip[2], model_pitch, model_yaw])
-        return flower_tip, model_state
-
     def calc_segment(self, theta, phi, L, num_points=50):
         """Calculates the local 3D curve of a segment starting at origin."""
         s = np.linspace(0, L, num_points)
