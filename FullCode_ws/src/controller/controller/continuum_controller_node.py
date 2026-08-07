@@ -6,7 +6,7 @@ import numpy as np
 
 # --- Robot Parameters ---
 # 2-stage continuum robot, antagonistic servo control -> 2 servos per stage (4 driven total).
-NUM_SERVOS = 4
+NUM_SERVOS = 5
 
 # Each stage's pair of servos can only push/pull along a single bending axis, so the
 # (theta, phi) bend command from /kinematic_commands is projected onto that axis with
@@ -31,7 +31,7 @@ class ContinuumController(Node):
 
     def kinematic_command_callback(self, msg):
         # Expects [theta1, phi1, theta2, phi2] in degrees, matching the Flower GUI's publisher.
-        if len(msg.data) < 4:
+        if len(msg.data) < 5:
             self.get_logger().warn(
                 f"Expected 4 values [theta1, phi1, theta2, phi2], got {len(msg.data)}")
             return

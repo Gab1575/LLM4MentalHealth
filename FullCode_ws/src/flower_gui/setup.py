@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'controller'
+package_name = 'flower_gui'
 
 setup(
     name=package_name,
@@ -15,12 +15,12 @@ setup(
     zip_safe=True,
     maintainer='gavin',
     maintainer_email='Gavin.Bayley@queensu.ca',
-    description='TODO: Package description',
+    description='Host-side operator dashboard for the flower robot.',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'continuum_controller_node = controller.continuum_controller_node:main'
+            'flower_gui = flower_gui.flower_gui_node:main'
         ],
     },
 )

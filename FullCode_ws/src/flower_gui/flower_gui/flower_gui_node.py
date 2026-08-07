@@ -7,11 +7,6 @@ import signal
 import math
 import numpy as np
 
-# Force Python to look inside your workspace's colcon install directory
-workspace_install_path = os.path.expanduser('~/Desktop/llm4mentalhealth/FullCode_ws/install/flower_msgs/lib/python3.10/site-packages')
-if workspace_install_path not in sys.path:
-    sys.path.insert(0, workspace_install_path)
-
 import rclpy
 from rclpy.node import Node
 import tkinter as tk
@@ -26,7 +21,7 @@ from matplotlib.figure import Figure
 from flower_msgs.msg import RobotCommand
 from std_msgs.msg import Float64MultiArray
 from std_msgs.msg import String
-from Demos.BoxBreathing import BoxBreathing
+from flower_gui.routines.box_breathing import BoxBreathing
 
 # --- Kinematics Helper Functions (For Visualization Only) ---
 def calc_segment(theta, phi, L, num_points=50):
