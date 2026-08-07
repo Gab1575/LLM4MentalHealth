@@ -7,6 +7,7 @@ def generate_launch_description():
     
     gui_script_path = os.path.expanduser('~/Desktop/llm4mentalhealth/FullCode_ws/flower_gui.py')
     mux_script_path = os.path.expanduser('~/Desktop/llm4mentalhealth/FullCode_ws/flower_mux.py')
+    controller_script_path = os.path.expanduser('~/Desktop/llm4mentalhealth/FullCode_ws/src/controller/controller/continuum_controller_node.py')
     
     # 1. Build the local CUDA library paths
     home = os.path.expanduser('~')
@@ -60,4 +61,10 @@ def generate_launch_description():
             name='flower_mux',
             output='screen'
         ),
+        Node(
+            executable='python3',
+            arguments=[controller_script_path],
+            name='continuum_controller',
+            output='screen'
+        )
     ])

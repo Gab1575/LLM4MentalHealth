@@ -1,86 +1,68 @@
 import rclpy
 from rclpy.node import Node
-from geometry_msgs.msg import PointStamped, Float32MultiArray
-import message_filters
+from std_msgs.msg import Float64MultiArray
+from flower_msgs.msg import RobotCommand
 import numpy as np
 
 # --- Robot Parameters ---
-L1 = 10.0  # Length of Stage 1
-L2 = 10.0  # Length of Stage 2
-BALL_OFFSET = 3.0  # Distance from the end of Stage 2 (or tilt joint) to the center of the ball assembly
+# 2-stage continuum robot, antagonistic servo control -> 2 servos per stage (4 driven total).
+NUM_SERVOS = 4
+
+# Each stage's pair of servos can only push/pull along a single bending axis, so the
+# (theta, phi) bend command from /kinematic_commands is projected onto that axis with
+# cos(phi) before being split into a +/- antagonistic pair.
+SERVO_ANGLE_LIMIT = 90.0   # deg, full physical throw of a servo either side of "straight up"
+THETA_MAX = 180.0          # deg, max bend magnitude sent on /kinematic_commands
+BEND_TO_SERVO_SCALE = SERVO_ANGLE_LIMIT / THETA_MAX  # maps full theta range onto full servo throw
+
 
 class ContinuumController(Node):
     def __init__(self):
         super().__init__('continuum_controller')
-        
-        # Subscribe to kinematic commands [theta1, phi1, theta2, phi2, move_time]
-        self.state_sub = self.create_subscription(Float32MultiArray, '/kinematic_commands', self.joint_state_callback, 10)
-        
-        #Create message_filter subscribers for vision tracking
-        self.red_sub = message_filters.Subscriber(self, PointStamped, '/vision/red_ball')
-        self.blue_sub = message_filters.Subscriber(self, PointStamped, '/vision/blue_ball')
 
-        # Synchronize vision inputs (waits up to 0.1s for matching timestamps)
-        self.ts = message_filters.ApproximateTimeSynchronizer([self.red_sub, self.blue_sub], queue_size=10, slop=0.1)
-        self.ts.registerCallback(self.control_loop_callback)
-        
-        # Target state [theta1, phi1, theta2, phi2]
-        self.target_state = np.array([0.0, 0.0, 0.0, 0.0])
+        # Vision-based (red/blue ball) control is disabled for now - the robot is driven
+        # purely open-loop off of /kinematic_commands.
+        self.kinematic_sub = self.create_subscription(
+            Float64MultiArray, '/kinematic_commands', self.kinematic_command_callback, 10)
 
-    def joint_state_callback(self, msg):
-        # Callback to store the latest joint angles
-        if len(msg.data) >= 5:
-            self.current_q = np.array(msg.data[:5])
+        # Publishes final servo angles for the MUX, which forwards them as /flower_commands
+        # whenever it is in "kinematic" mode.
+        self.command_pub = self.create_publisher(RobotCommand, '/kinematic_calculated_commands', 10)
 
-    def control_loop_callback(self, red_msg, blue_msg):
-        # Process Vision Data
-        P_red = np.array([red_msg.point.x, red_msg.point.y, red_msg.point.z])
-        P_blue = np.array([blue_msg.point.x, blue_msg.point.y, blue_msg.point.z])
+    def kinematic_command_callback(self, msg):
+        # Expects [theta1, phi1, theta2, phi2] in degrees, matching the Flower GUI's publisher.
+        if len(msg.data) < 4:
+            self.get_logger().warn(
+                f"Expected 4 values [theta1, phi1, theta2, phi2], got {len(msg.data)}")
+            return
 
-        # Calculate the midpoint between the red and blue balls
-        P_center = (P_red + P_blue) / 2.0
+        theta1, phi1, theta2, phi2 = msg.data[:4]
+        servo_angles = self.compute_servo_angles(theta1, phi1, theta2, phi2)
+        self.publish_servo_command(servo_angles)
 
+    def compute_servo_angles(self, theta1, phi1, theta2, phi2):
+        # Converts each stage's (theta, phi) bend command into a pair of antagonistic
+        # servo angles: one servo drives positive, the other mirrors it negative, with
+        # 0 deg = straight up / no bend on both.
+        bend1 = np.clip(theta1 * BEND_TO_SERVO_SCALE * np.cos(np.radians(phi1)),
+                         -SERVO_ANGLE_LIMIT, SERVO_ANGLE_LIMIT)
+        bend2 = np.clip(theta2 * BEND_TO_SERVO_SCALE * np.cos(np.radians(phi2)),
+                         -SERVO_ANGLE_LIMIT, SERVO_ANGLE_LIMIT)
 
-    def run_forward_kinematics(self, q):
-        """Computes the full forward kinematics using your configuration vector q."""
-        th1, ph1, th2, ph2, tilt = q
-        
-        # Calculate Stage 1 (Global frame)
-        x1, y1, z1 = self.calc_segment(th1, ph1, L1)
-        tip1_pos = np.array([x1[-1], y1[-1], z1[-1]])
-        R1 = self.get_rotation_matrix(th1, ph1)
-        
-        # Calculate Stage 2 (Local frame of stage 1 tip)
-        x2_local, y2_local, z2_local = self.calc_segment(th2, ph2, L2)
-        pts2_local = np.vstack((x2_local, y2_local, z2_local))
-        
-        # Transform Stage 2 to Global frame
-        pts2_global = R1 @ pts2_local + tip1_pos.reshape(3, 1)
-        tip2_pos = np.array([pts2_global[0, -1], pts2_global[1, -1], pts2_global[2, -1]])
-        R2 = R1 @ self.get_rotation_matrix(th2, ph2)
-                
-        
-    def calc_segment(self, theta, phi, L, num_points=50):
-        """Calculates the local 3D curve of a segment starting at origin."""
-        s = np.linspace(0, L, num_points)
-        if theta < 1e-6:
-            return np.zeros_like(s), np.zeros_like(s), s
-        r = L / theta
-        x = r * (1 - np.cos(theta * s / L)) * np.cos(phi)
-        y = r * (1 - np.cos(theta * s / L)) * np.sin(phi)
-        z = r * np.sin(theta * s / L)
-        return x, y, z    
+        servo_angles = [0.0] * NUM_SERVOS
+        servo_angles[0] = float(bend1)    # Stage 1, servo A
+        servo_angles[1] = float(-bend1)   # Stage 1, servo B (antagonistic)
+        servo_angles[2] = float(bend2)    # Stage 2, servo A
+        servo_angles[3] = float(-bend2)   # Stage 2, servo B (antagonistic)
+        # servo_angles[4] left at 0.0 - unused by this 2-stage robot
 
-    def get_rotation_matrix(self, theta, phi):
-        """Calculates the rotation matrix at the tip of a segment."""
-        c_p, s_p = np.cos(phi), np.sin(phi)
-        c_t, s_t = np.cos(theta), np.sin(theta)
-        
-        Rz_phi = np.array([[c_p, -s_p, 0], [s_p, c_p, 0], [0, 0, 1]])
-        Ry_th = np.array([[c_t, 0, s_t], [0, 1, 0], [-s_t, 0, c_t]])
-        Rz_mphi = np.array([[c_p, s_p, 0], [-s_p, c_p, 0], [0, 0, 1]])
-        
-        return Rz_phi @ Ry_th @ Rz_mphi
+        return servo_angles
+
+    def publish_servo_command(self, servo_angles):
+        msg = RobotCommand()
+        msg.servo_angles = servo_angles
+        self.command_pub.publish(msg)
+
 
 def main(args=None):
     rclpy.init(args=args)
@@ -92,6 +74,7 @@ def main(args=None):
     finally:
         node.destroy_node()
         rclpy.shutdown()
+
 
 if __name__ == '__main__':
     main()
