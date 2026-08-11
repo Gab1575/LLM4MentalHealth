@@ -53,8 +53,9 @@ class LocalizationTrackerNode(Node):
         self.upper_red2 = np.array([7, 255, 255])
 
         # Blue 
-        self.lower_blue = np.array([100, 113, 36])
-        self.upper_blue = np.array([128, 255, 255])
+        self.lower_blue = np.array([96, 152, 23])
+        self.upper_blue = np.array([112, 255, 255])
+
 
         self.timer = self.create_timer(1.0 / 30.0, self.process_frame)
 

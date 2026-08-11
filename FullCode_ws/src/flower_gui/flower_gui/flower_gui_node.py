@@ -22,6 +22,7 @@ from flower_msgs.msg import RobotCommand
 from std_msgs.msg import Float64MultiArray
 from std_msgs.msg import String
 from flower_gui.routines.box_breathing import BoxBreathing
+from flower_gui.routines.resting import Resting
 
 # --- Kinematics Helper Functions (For Visualization Only) ---
 def calc_segment(theta, phi, L, num_points=50):
@@ -89,7 +90,8 @@ class FlowerDashboard(Node):
         self.kin_time_var = tk.StringVar(value="0.5") 
         
         self.routine_running = False
-        self.stop_event = threading.Event() 
+        self.active_routine_btn = None
+        self.stop_event = threading.Event()
 
         self.setup_ui()
         self.load_config()
@@ -225,9 +227,15 @@ class FlowerDashboard(Node):
         routine_frame = tk.Frame(right_frame)
         routine_frame.pack(pady=2)
         
-        self.routine_btn = tk.Button(routine_frame, text="Run Box Breathing", 
-                                     command=self.start_routine, fg="grey", font=("TkDefaultFont", 10, "bold"))
+        self.routine_btn = tk.Button(routine_frame, text="Run Box Breathing",
+                                     command=lambda: self.start_routine(BoxBreathing, "Box Breathing", self.routine_btn),
+                                     fg="grey", font=("TkDefaultFont", 10, "bold"))
         self.routine_btn.pack()
+
+        self.resting_btn = tk.Button(routine_frame, text="Run Resting",
+                                     command=lambda: self.start_routine(Resting, "Resting", self.resting_btn),
+                                     fg="grey", font=("TkDefaultFont", 10, "bold"))
+        self.resting_btn.pack()
 
     def on_mode_changed(self, *args):
         msg = String()
@@ -262,27 +270,29 @@ class FlowerDashboard(Node):
         self.tip_marker2.set_3d_properties([z2[-1]])
         self.canvas.draw_idle()
 
-    def start_routine(self):
+    def start_routine(self, routine_func, label, btn):
         if not self.routine_running:
             self.routine_running = True
+            self.active_routine_btn = btn
             self.stop_event.clear()
-            self.routine_btn.config(text="Stop Routine")
-            threading.Thread(target=self.execute_routine, daemon=True).start()
-        else:
+            btn.config(text="Stop Routine")
+            threading.Thread(target=self.execute_routine, args=(routine_func, label, btn), daemon=True).start()
+        elif btn is self.active_routine_btn:
             self.routine_running = False
-            self.stop_event.set() 
-            self.routine_btn.config(text="Run Box Breathing")
+            self.stop_event.set()
+            btn.config(text=f"Run {label}")
+        # else: a different routine is already running - ignore this button until it stops
 
-    def execute_routine(self):
+    def execute_routine(self, routine_func, label, btn):
         try:
             initial_state = self.get_current_command()
-            BoxBreathing(self.manual_publisher, self.stop_event, initial_state)
+            routine_func(self.manual_publisher, self.stop_event, initial_state)
         except Exception as e:
             self.get_logger().error(f"Routine crashed: {e}")
         finally:
-            if self.routine_running: 
+            if self.routine_running:
                 self.routine_running = False
-                self.root.after(0, lambda: self.routine_btn.config(text="Run Box Breathing"))
+                self.root.after(0, lambda: btn.config(text=f"Run {label}"))
 
     def choose_color(self, string_var, button):
         color = colorchooser.askcolor(initialcolor=string_var.get(), title="Select LED Color")
@@ -313,7 +323,12 @@ class FlowerDashboard(Node):
             "use_master_color": self.use_master_color.get(),
             "n20_pos": self.n20_pos_var.get(),
             "n20_speed": self.n20_speed_var.get(),
-            "n20_zero": self.n20_zero_var.get()
+            "n20_zero": self.n20_zero_var.get(),
+            "th1": self.th1_var.get(),
+            "ph1": self.ph1_var.get(),
+            "th2": self.th2_var.get(),
+            "ph2": self.ph2_var.get(),
+            "kin_time": self.safe_float(self.kin_time_var.get())
         }
         try:
             with open(self.config_file, 'w') as f:
@@ -364,6 +379,12 @@ class FlowerDashboard(Node):
                 self.n20_pos_var.set(config_data.get("n20_pos", 0.0))
                 self.n20_speed_var.set(config_data.get("n20_speed", 128))
                 self.n20_zero_var.set(config_data.get("n20_zero", False))
+
+                self.th1_var.set(config_data.get("th1", self.th1_var.get()))
+                self.ph1_var.set(config_data.get("ph1", self.ph1_var.get()))
+                self.th2_var.set(config_data.get("th2", self.th2_var.get()))
+                self.ph2_var.set(config_data.get("ph2", self.ph2_var.get()))
+                self.kin_time_var.set(str(config_data.get("kin_time", self.safe_float(self.kin_time_var.get()))))
 
             except Exception as e:
                 self.get_logger().error(f"Failed to load config, starting fresh: {e}")

@@ -10,11 +10,11 @@ void servoControlBegin() {
     pwm.setPWMFreq(50);
     pwm.setOscillatorFrequency(27000000);
 
-    servos[0].hardwareIndex = 4;
-    servos[1].hardwareIndex = 5;
-    servos[2].hardwareIndex = 6;
-    servos[3].hardwareIndex = 8;
-    servos[4].hardwareIndex = 9;
+    servos[0].hardwareIndex = 14;
+    servos[1].hardwareIndex = 6;
+    servos[2].hardwareIndex = 4;
+    servos[3].hardwareIndex = 13;
+    servos[4].hardwareIndex = 5;
     
     for (int i = 0; i < 5; i++) {
         servos[i].targetAngle = flowerData.servo_angles[i];
