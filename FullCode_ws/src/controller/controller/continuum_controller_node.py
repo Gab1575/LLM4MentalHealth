@@ -1,3 +1,5 @@
+from turtle import color
+
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float64MultiArray
@@ -30,10 +32,10 @@ class ContinuumController(Node):
     def __init__(self):
         super().__init__('continuum_controller')
 
-        # Vision-based (red/blue ball) control is disabled for now - the robot is driven
-        # purely open-loop off of /kinematic_commands.
-        self.kinematic_sub = self.create_subscription(
-            Float64MultiArray, '/kinematic_commands', self.kinematic_command_callback, 10)
+        self.kinematic_sub = self.create_subscription(Float64MultiArray, '/kinematic_commands', self.kinematic_command_callback, 10)
+
+        self.red_ball_sub = self.create_subscription(Float64MultiArray, '/red_ball_position', self.red_ball_callback, 10)
+        self.blue_ball_sub = self.create_subscription(Float64MultiArray, '/blue_ball_position', self.blue_ball_callback, 10)
 
         # Publishes final servo angles for the MUX, which forwards them as /flower_commands
         # whenever it is in "kinematic" mode.
@@ -87,6 +89,15 @@ class ContinuumController(Node):
         msg.servo_angles = servo_angles
         self.command_pub.publish(msg)
 
+    def red_ball_position_callback(self, msg):
+        self.get_logger().info(f"Received red ball position: {msg.data}")
+        r_x, r_y, r_z = msg.data
+
+    def blue_ball_position_callback(self, msg):
+        self.get_logger().info(f"Received blue ball position: {msg.data}")
+        b_x, b_y, b_z = msg.data
+
+    
 
 def main(args=None):
     rclpy.init(args=args)
