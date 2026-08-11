@@ -12,10 +12,13 @@ KNOWN_DIAMETER = 1.0 # cm dia of balls.
 # --- Tracking smoothing ---
 # Exponential moving average weight applied to each new raw detection (0 = ignore new
 # samples entirely / infinite smoothing, 1 = no smoothing at all, raw passthrough).
-EMA_ALPHA = 0.35
+EMA_ALPHA = 0.5
 # If a color hasn't been seen for longer than this, don't blend the new detection into
 # the old filtered value (which is now stale) - just snap straight to it.
 FILTER_RESET_SEC = 0.5
+# How many of the largest-by-area contours to check for a ball-like shape before
+# giving up. Keeps the fallback search in find_ball() bounded/cheap.
+MAX_CANDIDATES = 6
 
 """
 Running Calibration instructions:
@@ -117,50 +120,78 @@ class LocalizationTrackerNode(Node):
             self.get_logger().warn(f"{len(failures)}/{len(commands)} camera controls failed to apply.")
 
     def find_ball(self, mask, frame, color_name):
-        contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE) 
-        if contours: 
-            c = max(contours, key=cv2.contourArea) 
+        contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        if not contours:
+            return None
+
+        # Don't just grab the single largest-area contour and give up if it fails
+        # the shape checks - a bigger, non-ball blob (glare/reflection off the
+        # robot frame, background clutter) can easily out-area the real ball. Walk
+        # candidates largest-first and take the first one that actually looks like
+        # a ball, so a glare blob sitting in front of the real ball's contour just
+        # gets skipped instead of eclipsing it or reporting "not found".
+        candidates = sorted(contours, key=cv2.contourArea, reverse=True)[:MAX_CANDIDATES]
+
+        for c in candidates:
+            # Circularity has to be judged on the RAW contour, not its convex hull -
+            # convexHull() smooths away exactly the jagged/spiky edges (glare
+            # reflections, splash-shaped noise blobs) that circularity is supposed
+            # to catch, which is why a non-ball blob could still sneak through.
+            raw_area = cv2.contourArea(c)
+            if raw_area <= 40:
+                continue
+
+            raw_perimeter = cv2.arcLength(c, True)
+            if raw_perimeter == 0:
+                continue
+
+            circularity = (4 * np.pi * raw_area) / (raw_perimeter * raw_perimeter)
+            if circularity <= 0.6:
+                continue
+
             hull = cv2.convexHull(c)
-            area = cv2.contourArea(hull)
-            
-            if area > 40: 
-                perimeter = cv2.arcLength(hull, True)
-                if perimeter == 0:
-                    return None
-                
-                circularity = (4 * np.pi * area) / (perimeter * perimeter)
-                
-                if circularity > 0.6:
-                    ((cx_encl, cy_encl), radius) = cv2.minEnclosingCircle(hull)
-                    if radius > 5:
-                        # The enclosing circle's center shifts more than a moments-based
-                        # centroid when the hull edge is ragged (partial occlusion,
-                        # glare, etc.) - use the centroid for position, keep the
-                        # enclosing circle only for the radius (needed for the
-                        # distance/Z estimate below).
-                        moments = cv2.moments(hull)
-                        if moments["m00"] > 0:
-                            x = moments["m10"] / moments["m00"]
-                            y = moments["m01"] / moments["m00"]
-                        else:
-                            x, y = cx_encl, cy_encl
+            hull_area = cv2.contourArea(hull)
+            if hull_area <= 0:
+                continue
 
-                        apparent_width = radius * 2
+            # Solidity: how much of the convex hull the actual contour fills. A ball
+            # is nearly as solid as its own hull; a spiky/branching reflection blob
+            # has a hull much bigger than its true (jagged) area.
+            solidity = raw_area / hull_area
+            if solidity <= 0.85:
+                continue
 
-                        # 3D Math Calculation using Matrix Parameters
-                        focal_length_avg = (self.fx + self.fy) / 2.0
-                        Z = (KNOWN_DIAMETER * focal_length_avg) / apparent_width
+            ((cx_encl, cy_encl), radius) = cv2.minEnclosingCircle(hull)
+            if radius <= 5:
+                continue
 
-                        # Use fx for X calculation and fy for Y calculation for maximum accuracy
-                        X = (x - self.cx) * Z / self.fx
-                        Y = (y - self.cy) * Z / self.fy
+            # The enclosing circle's center shifts more than a moments-based
+            # centroid when the hull edge is ragged (partial occlusion, glare,
+            # etc.) - use the centroid for position, keep the enclosing circle
+            # only for the radius (needed for the distance/Z estimate below).
+            moments = cv2.moments(hull)
+            if moments["m00"] > 0:
+                x = moments["m10"] / moments["m00"]
+                y = moments["m01"] / moments["m00"]
+            else:
+                x, y = cx_encl, cy_encl
 
-                        # Draw tracking graphics
-                        cv2.circle(frame, (int(x), int(y)), int(radius), (0, 255, 0), 2)
+            apparent_width = radius * 2
 
-                        # Return both the real 3D coordinates and the 2D pixel coordinates
-                        return {"X": X, "Y": Y, "Z": Z, "px": int(x), "py": int(y)}
-                        
+            # 3D Math Calculation using Matrix Parameters
+            focal_length_avg = (self.fx + self.fy) / 2.0
+            Z = (KNOWN_DIAMETER * focal_length_avg) / apparent_width
+
+            # Use fx for X calculation and fy for Y calculation for maximum accuracy
+            X = (x - self.cx) * Z / self.fx
+            Y = (y - self.cy) * Z / self.fy
+
+            # Draw tracking graphics
+            cv2.circle(frame, (int(x), int(y)), int(radius), (0, 255, 0), 2)
+
+            # Return both the real 3D coordinates and the 2D pixel coordinates
+            return {"X": X, "Y": Y, "Z": Z, "px": int(x), "py": int(y)}
+
         return None
 
     def process_frame(self): 
