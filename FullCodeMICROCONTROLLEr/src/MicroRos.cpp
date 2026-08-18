@@ -12,7 +12,7 @@ rcl_timer_t timer;
 // Debug globals
 rcl_publisher_t debug_pub;
 std_msgs__msg__String debug_msg; // Added message struct
-char debug_buffer[100]; 
+char debug_buffer[200]; // Sized to fit a full relayed RobotCommand message
 
 Data flowerData; 
 
@@ -47,6 +47,23 @@ void subscription_callback(const void * msgin) {
   }
 
   flowerData.n20_zero = msg->n20_zero;
+
+  // Relay every incoming /flower_commands message back out over flower_debug
+  // so the sender can confirm the ESP32 is receiving the values it expects.
+  // Throttled so a fast-publishing sender (e.g. a GUI slider) doesn't flood the topic.
+  static unsigned long last_relay = 0;
+  if (millis() - last_relay > 300) {
+    last_relay = millis();
+    send_debug(
+      "RX servo=[%.0f,%.0f,%.0f,%.0f,%.0f] time=[%.2f,%.2f,%.2f,%.2f,%.2f] pwm=%d rot=%.2f led=[%06X,%06X,%06X,%06X,%06X] bright=[%d,%d,%d,%d,%d] zero=%d",
+      flowerData.servo_angles[0], flowerData.servo_angles[1], flowerData.servo_angles[2], flowerData.servo_angles[3], flowerData.servo_angles[4],
+      flowerData.servo_time[0], flowerData.servo_time[1], flowerData.servo_time[2], flowerData.servo_time[3], flowerData.servo_time[4],
+      flowerData.n20_pwm, flowerData.n20_target_rotations,
+      (unsigned int)flowerData.led_colours_hex[0], (unsigned int)flowerData.led_colours_hex[1], (unsigned int)flowerData.led_colours_hex[2], (unsigned int)flowerData.led_colours_hex[3], (unsigned int)flowerData.led_colours_hex[4],
+      flowerData.led_colours_brightness[0], flowerData.led_colours_brightness[1], flowerData.led_colours_brightness[2], flowerData.led_colours_brightness[3], flowerData.led_colours_brightness[4],
+      flowerData.n20_zero
+    );
+  }
 }
 
 bool WiFiSetup() {

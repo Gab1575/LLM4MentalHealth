@@ -41,7 +41,7 @@ extern rcl_timer_t timer;
 // Debug globals
 extern rcl_publisher_t debug_pub;
 extern std_msgs__msg__String debug_msg; // Added the message struct
-extern char debug_buffer[100];
+extern char debug_buffer[200]; // Sized to fit a full relayed RobotCommand message
 
 // --- Function Prototypes ---
 void error_loop();

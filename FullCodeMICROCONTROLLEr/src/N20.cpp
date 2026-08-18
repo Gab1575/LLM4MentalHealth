@@ -83,12 +83,6 @@ void n20MotorControl(float targetPosition, int16_t speed) {
     
     float error = targetPosition - currentPosition;
 
-    static unsigned long last_print = 0;
-    if (millis() - last_print > 300) {
-     last_print = millis();
-     send_debug("error value: %f",error);
-    }
-    
     // GRACE AREA CHECK: Use fabs() for absolute float value
     if(fabs(error) <= POSITION_TOLERANCE) {
         n20MotorStop();
@@ -120,13 +114,4 @@ void n20MotorPosition() {
 
     // Update position instantly every time this function is called
     currentPosition = startingPosition + (float)currentTicks / (float)N20_TICKS_PER_REV;
-
-    static unsigned long last_print = 0;
-    if (millis() - last_print > 300) {
-        last_print = millis();
-        
-        send_debug("Pos: %f, Ticks: %ld", currentPosition, currentTicks);
-        Serial.print("encoder ticks ");
-        Serial.println(currentTicks);    
-    }
 }

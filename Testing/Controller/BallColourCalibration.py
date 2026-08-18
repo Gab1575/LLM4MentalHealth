@@ -1,12 +1,14 @@
 import cv2
 import numpy as np
+import subprocess 
 
 def empty_callback(value):
     pass
 
 def main():
     cap = cv2.VideoCapture(0) # Change to your camera index if needed
-    
+    set_camera_hardware_settings()
+
     # Create a control panel window
     cv2.namedWindow("HSV Controls")
     cv2.resizeWindow("HSV Controls", 400, 250)
@@ -83,6 +85,22 @@ def main():
 
     cap.release()
     cv2.destroyAllWindows()
+
+def set_camera_hardware_settings():
+        """Runs terminal commands to lock the camera settings"""
+        try:
+            commands = [
+                #brightness and contrast
+                "v4l2-ctl -d /dev/video0 --set-ctrl=brightness=130",
+                "v4l2-ctl -d /dev/video0 --set-ctrl=contrast=30",
+            ]
+            for cmd in commands:
+                subprocess.run(cmd, shell=True, check=True)
+                
+            print("Successfully locked camera hardware settings.")
+            
+        except subprocess.CalledProcessError as e:
+            print(f"Failed to set some camera controls: {e}")
 
 if __name__ == '__main__':
     main()

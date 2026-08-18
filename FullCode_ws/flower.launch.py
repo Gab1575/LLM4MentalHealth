@@ -4,9 +4,7 @@ from launch.actions import SetEnvironmentVariable
 import os
 
 def generate_launch_description():
-    
-    gui_script_path = os.path.expanduser('~/Desktop/llm4mentalhealth/FullCode_ws/flower_gui.py')
-    
+
     # 1. Build the local CUDA library paths
     home = os.path.expanduser('~')
     ta_dir = f"{home}/.local/lib/python3.10/site-packages/nvidia"
@@ -36,8 +34,8 @@ def generate_launch_description():
             output='screen'
         ),
         Node(
-            executable='python3',
-            arguments=[gui_script_path],
+            package='flower_gui',
+            executable='flower_gui',
             name='flower_gui',
             output='screen'
         ),
@@ -51,6 +49,18 @@ def generate_launch_description():
             package='localization_tracker',
             executable='localization_tracker',
             name='localization_tracker',
+            output='screen'
+        ),
+        Node(
+            package='flower_mux',
+            executable='flower_mux',
+            name='flower_mux',
+            output='screen'
+        ),
+        Node(
+            package='controller',
+            executable='continuum_controller_node',
+            name='continuum_controller',
             output='screen'
         )
     ])

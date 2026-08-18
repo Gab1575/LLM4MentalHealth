@@ -16,26 +16,22 @@ void setup() {
 
   rclc_executor_spin_some(&executor, RCL_MS_TO_NS(10));
   Serial.println("Micro-ROS setup complete");
-  send_debug("Flower Connected to Host");
   delay(1000);
 
   // 2. Initialize LEDs (Starts them completely off)
   petalLightsBegin();
-  send_debug("Lights initilized");
-  delay(250); 
-  
-  // 3. Initialize I2C and PCA9685 for Servos
-  servoControlBegin();
-  send_debug("Servo's initilized");
-  delay(250);
-  
-  // 4. Initialize the N20 Motor (Ensures it is stopped)
-  n20MotorBegin();
-  send_debug("N20 motor initilized");
-  Serial.println("N20 motor initilized");
   delay(250);
 
-  // send_debug("All system setup sucsess");
+  // 3. Initialize I2C and PCA9685 for Servos
+  servoControlBegin();
+  delay(250);
+
+  // 4. Initialize the N20 Motor (Ensures it is stopped)
+  n20MotorBegin();
+  delay(250);
+
+  // Single consolidated confirmation once every subsystem is up, instead of one message per step
+  send_debug("Flower node fully initialized: ROS, lights, servos, N20 motor");
   Serial.println("All system setup sucsess");
 }
 
