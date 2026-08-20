@@ -7,7 +7,11 @@
 
 void setup() {
   Serial.begin(115200);
-  
+
+  // 1. Initialize LEDs first - they double as the connection-status indicator
+  // (spin yellow while joining WiFi, spin green while finding/pinging the ROS host)
+  petalLightsBegin();
+
   // Keep trying to connect until successful before moving on
   while (!MicroRosSetup()) {
     Serial.println("Initial Micro-ROS setup failed, retrying in 2 seconds...");
@@ -16,17 +20,14 @@ void setup() {
 
   rclc_executor_spin_some(&executor, RCL_MS_TO_NS(10));
   Serial.println("Micro-ROS setup complete");
+  petalLightsClear(); // Connected - drop the connection indicator before entering steady state
   delay(1000);
 
-  // 2. Initialize LEDs (Starts them completely off)
-  petalLightsBegin();
-  delay(250);
-
-  // 3. Initialize I2C and PCA9685 for Servos
+  // 2. Initialize I2C and PCA9685 for Servos
   servoControlBegin();
   delay(250);
 
-  // 4. Initialize the N20 Motor (Ensures it is stopped)
+  // 3. Initialize the N20 Motor (Ensures it is stopped)
   n20MotorBegin();
   delay(250);
 
@@ -48,7 +49,11 @@ void loop() {
 
     for (int i = 0; i < 5; i++) {
       petalLightsUpdate(i, flowerData.led_colours_hex[i], flowerData.led_colours_brightness[i]);
-      servoControlSet(i, flowerData.servo_angles[i], flowerData.servo_time[i]); 
+    }
+    // Servo 0 (old neck joint) has been removed; flowerData.servo_angles/servo_time
+    // are now 4-wide and map directly to hardware channels 0-3.
+    for (int i = 0; i < 4; i++) {
+      servoControlSet(i, flowerData.servo_angles[i], flowerData.servo_time[i]);
     }
     petalLightsShow(); 
   }
@@ -75,6 +80,7 @@ void loop() {
         Serial.println("Reconnect failed. Will try again in 2 seconds.");
       } else {
         Serial.println("Reconnected successfully!");
+        petalLightsClear(); // Drop the connection indicator, back to steady state
       }
     }
   }

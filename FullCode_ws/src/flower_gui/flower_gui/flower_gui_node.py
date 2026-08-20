@@ -67,8 +67,8 @@ class FlowerDashboard(Node):
         # --- Variables ---
         self.control_mode = tk.StringVar(value="manual")
         self.control_mode.trace_add('write', self.on_mode_changed)
-        self.servo_vars = [tk.DoubleVar(value=0.0) for _ in range(5)]
-        self.servo_time_vars = [tk.StringVar(value="0.0") for _ in range(5)] 
+        self.servo_vars = [tk.DoubleVar(value=0.0) for _ in range(4)]
+        self.servo_time_vars = [tk.StringVar(value="0.0") for _ in range(4)]
         self.led_vars = [tk.IntVar(value=0) for _ in range(5)]
         self.led_hex_vars = [tk.StringVar(value="#000000") for _ in range(5)]
         self.led_color_btns = [] 
@@ -173,12 +173,12 @@ class FlowerDashboard(Node):
         # ================= RIGHT FRAME (HARDWARE) =================
         servo_frame = tk.LabelFrame(right_frame, text="Servos (-90 to 90)", font=("TkDefaultFont", 9))
         servo_frame.pack(fill="x", padx=2, pady=0)
-        for i in range(5):
+        for i in range(4):
             row = tk.Frame(servo_frame)
             row.pack(fill="x", padx=2, pady=0)
-            
-            tk.Scale(row, variable=self.servo_vars[i], from_=-90.0, to=90.0, 
-                     orient="horizontal", label=f"S{i}", width=10, sliderlength=15).pack(side="left", expand=True, fill="x")
+
+            tk.Scale(row, variable=self.servo_vars[i], from_=-90.0, to=90.0,
+                     orient="horizontal", label=f"S{i + 1}", width=10, sliderlength=15).pack(side="left", expand=True, fill="x")
             
             time_frame = tk.Frame(row)
             time_frame.pack(side="right", padx=(2, 2))
@@ -350,12 +350,12 @@ class FlowerDashboard(Node):
                 
                 self.control_mode.set(config_data.get("mode", "manual"))
 
-                saved_servos = config_data.get("servos", [0.0]*5)
-                for i in range(min(5, len(saved_servos))):
+                saved_servos = config_data.get("servos", [0.0]*4)
+                for i in range(min(4, len(saved_servos))):
                     self.servo_vars[i].set(saved_servos[i])
-                    
-                saved_times = config_data.get("servo_times", [0.0]*5)
-                for i in range(min(5, len(saved_times))):
+
+                saved_times = config_data.get("servo_times", [0.0]*4)
+                for i in range(min(4, len(saved_times))):
                     self.servo_time_vars[i].set(str(saved_times[i]))
                     
                 saved_brightness = config_data.get("led_brightness", [0]*5)
@@ -443,7 +443,7 @@ class FlowerDashboard(Node):
                 # Override the time array if we are in kinematic mode
                 if self.control_mode.get() == "kinematic":
                     kin_time = self.safe_float(self.kin_time_var.get())
-                    cmd_msg.servo_time = [kin_time] * 5
+                    cmd_msg.servo_time = [kin_time] * 4
                 
                 # Unconditionally publish to /manual_commands so the Mux has the latest Time/N20/LED states
                 self.manual_publisher.publish(cmd_msg)

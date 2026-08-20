@@ -14,7 +14,11 @@ rcl_publisher_t debug_pub;
 std_msgs__msg__String debug_msg; // Added message struct
 char debug_buffer[200]; // Sized to fit a full relayed RobotCommand message
 
-Data flowerData; 
+Data flowerData;
+
+// Colours for the LED-petal connection indicator (see WiFiSetup/MicroRosSetup)
+#define CONNECTING_WIFI_COLOUR  0xFFC800 // spins while joining the WiFi network
+#define CONNECTING_AGENT_COLOUR 0x00FF00 // spins once on WiFi, while finding/pinging the ROS agent
 
 // 2. Define the RCCHECK macros
 #define RCCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){error_loop();}}
@@ -33,7 +37,7 @@ flower_msgs__msg__RobotCommand sub_msg;
 void subscription_callback(const void * msgin) {  
   const flower_msgs__msg__RobotCommand * msg = (const flower_msgs__msg__RobotCommand *)msgin;
   
-  for(int i = 0; i < 5; i++) {
+  for(int i = 0; i < 4; i++) {
     flowerData.servo_angles[i] = msg->servo_angles[i];
     flowerData.servo_time[i] = msg->servo_time[i];
   }
@@ -55,9 +59,9 @@ void subscription_callback(const void * msgin) {
   if (millis() - last_relay > 300) {
     last_relay = millis();
     send_debug(
-      "RX servo=[%.0f,%.0f,%.0f,%.0f,%.0f] time=[%.2f,%.2f,%.2f,%.2f,%.2f] pwm=%d rot=%.2f led=[%06X,%06X,%06X,%06X,%06X] bright=[%d,%d,%d,%d,%d] zero=%d",
-      flowerData.servo_angles[0], flowerData.servo_angles[1], flowerData.servo_angles[2], flowerData.servo_angles[3], flowerData.servo_angles[4],
-      flowerData.servo_time[0], flowerData.servo_time[1], flowerData.servo_time[2], flowerData.servo_time[3], flowerData.servo_time[4],
+      "RX servo=[%.0f,%.0f,%.0f,%.0f] time=[%.2f,%.2f,%.2f,%.2f] pwm=%d rot=%.2f led=[%06X,%06X,%06X,%06X,%06X] bright=[%d,%d,%d,%d,%d] zero=%d",
+      flowerData.servo_angles[0], flowerData.servo_angles[1], flowerData.servo_angles[2], flowerData.servo_angles[3],
+      flowerData.servo_time[0], flowerData.servo_time[1], flowerData.servo_time[2], flowerData.servo_time[3],
       flowerData.n20_pwm, flowerData.n20_target_rotations,
       (unsigned int)flowerData.led_colours_hex[0], (unsigned int)flowerData.led_colours_hex[1], (unsigned int)flowerData.led_colours_hex[2], (unsigned int)flowerData.led_colours_hex[3], (unsigned int)flowerData.led_colours_hex[4],
       flowerData.led_colours_brightness[0], flowerData.led_colours_brightness[1], flowerData.led_colours_brightness[2], flowerData.led_colours_brightness[3], flowerData.led_colours_brightness[4],
@@ -80,12 +84,13 @@ bool WiFiSetup() {
   
   int wifi_retries = 0;
   while (WiFi.status() != WL_CONNECTED && wifi_retries < 20) { // 10-second timeout
+    petalLightsConnectionSpin(CONNECTING_WIFI_COLOUR);
     delay(500);
     Serial.print(".");
     wifi_retries++;
   }
   Serial.println();
-  
+
   // 1B. If Network 1 fails, switch EVERYTHING to Network 2
   if (WiFi.status() != WL_CONNECTED) {
     Serial.println("WiFi 1 failed. Trying WiFi 2...");
@@ -100,7 +105,8 @@ bool WiFiSetup() {
     WiFi.begin(WIFI_SSID_2, WIFI_PASS_2);
     
     wifi_retries = 0;
-    while (WiFi.status() != WL_CONNECTED && wifi_retries < 20) { 
+    while (WiFi.status() != WL_CONNECTED && wifi_retries < 20) {
+      petalLightsConnectionSpin(CONNECTING_WIFI_COLOUR);
       delay(500);
       Serial.print(".");
       wifi_retries++;
@@ -132,7 +138,8 @@ bool WiFiSetup() {
   Serial.print(active_agent);
   Serial.print(")...");
 
-  while (agent_ip.toString() == "0.0.0.0" && mdns_retries < 10) { 
+  while (agent_ip.toString() == "0.0.0.0" && mdns_retries < 10) {
+    petalLightsConnectionSpin(CONNECTING_AGENT_COLOUR);
     agent_ip = MDNS.queryHost(active_agent);
     if (agent_ip.toString() == "0.0.0.0") {
       delay(1000);
@@ -141,7 +148,7 @@ bool WiFiSetup() {
     }
   }
   Serial.println();
-  
+
   if (agent_ip.toString() == "0.0.0.0") {
     Serial.println("Failed to resolve Agent IP.");
     return false;
@@ -149,9 +156,27 @@ bool WiFiSetup() {
 
   Serial.print("Resolved agent to IP: ");
   Serial.println(agent_ip);
-  
+
   // 4. Set the transport
   set_microros_wifi_transports(active_ssid, active_pass, agent_ip, AGENT_PORT);
+
+  // 5. Wait for the ROS agent to actually be reachable over that transport before
+  // handing off to the rclc entity setup, so the green "waiting for host" spin
+  // covers the whole wait, not just the mDNS lookup.
+  Serial.print("Pinging Agent...");
+  int agent_ping_retries = 0;
+  while (rmw_uros_ping_agent(200, 1) != RMW_RET_OK && agent_ping_retries < 25) { // ~5-second timeout
+    petalLightsConnectionSpin(CONNECTING_AGENT_COLOUR);
+    Serial.print(".");
+    agent_ping_retries++;
+  }
+  Serial.println();
+
+  if (agent_ping_retries >= 25) {
+    Serial.println("Agent did not respond to ping.");
+    return false;
+  }
+
   return true;
 }
 

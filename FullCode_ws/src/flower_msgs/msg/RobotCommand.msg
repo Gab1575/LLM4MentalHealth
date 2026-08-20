@@ -1,5 +1,5 @@
-float32[5] servo_angles
-float32[5] servo_time
+float32[4] servo_angles
+float32[4] servo_time
 int16 n20_pwm
 float32 n20_target_rotations
 bool n20_zero

@@ -2,7 +2,7 @@
 #include "MicroRos.h"
 
 Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
-ServoState servos[5];
+ServoState servos[4]; // Servo 0 (old neck joint) has been removed; only 4 servos remain
 
 void servoControlBegin() {
     Wire.begin(SDA_PIN, SCL_PIN);
@@ -10,13 +10,12 @@ void servoControlBegin() {
     pwm.setPWMFreq(50);
     pwm.setOscillatorFrequency(27000000);
 
-    servos[0].hardwareIndex = 14;
-    servos[1].hardwareIndex = 6;
-    servos[2].hardwareIndex = 4;
-    servos[3].hardwareIndex = 13;
-    servos[4].hardwareIndex = 5;
-    
-    for (int i = 0; i < 5; i++) {
+    servos[0].hardwareIndex = 0;
+    servos[1].hardwareIndex = 1;
+    servos[2].hardwareIndex = 2;
+    servos[3].hardwareIndex = 3;
+
+    for (int i = 0; i < 4; i++) {
         servos[i].targetAngle = flowerData.servo_angles[i];
         servos[i].startPulse = map(flowerData.servo_angles[i], -90.0, 90.0, SERVOMIN, SERVOMAX);
         servos[i].targetPulse = servos[i].startPulse;
@@ -26,7 +25,7 @@ void servoControlBegin() {
 }
 
 void servoControlSet(int servoIndex, float target_angle, float delta_T_seconds) {
-    if (servoIndex < 0 || servoIndex > 4) return;
+    if (servoIndex < 0 || servoIndex > 3) return;
 
     // 1. Ignore redundant commands from the 30ms main loop
     if (abs(servos[servoIndex].targetAngle - target_angle) < 0.1 && 
@@ -51,7 +50,7 @@ void servoControlSet(int servoIndex, float target_angle, float delta_T_seconds) 
 void servoControlUpdate() {
     unsigned long currentMillis = millis();
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 4; i++) {
         if (!servos[i].isMoving) continue;
 
         unsigned long elapsed = currentMillis - servos[i].startTime;

@@ -9,6 +9,7 @@
 #include <stdarg.h> // Added for variadic debug arguments
 
 #include "MicroRosWifiCredentials.h" // Wifi credentials held in gitignore file
+#include "petal_lights.h" // LED petals double as a connection-status indicator while connecting
 #include <rcl/rcl.h>
 #include <rcl/error_handling.h>
 #include <rclc/rclc.h>
@@ -17,8 +18,8 @@
 #include <std_msgs/msg/string.h>
 
 struct Data {
-  float servo_angles[5];
-  float servo_time[5];
+  float servo_angles[4];
+  float servo_time[4];
   int16_t n20_pwm;
   float n20_target_rotations;
   uint32_t led_colours_hex[5];

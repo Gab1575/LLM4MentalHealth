@@ -97,7 +97,7 @@ class LocalizationTrackerNode(Node):
             # White balance: disable auto, pin to a fixed color temperature
             "v4l2-ctl -d /dev/video0 --set-ctrl=white_balance_temperature_auto=0",
             "v4l2-ctl -d /dev/video0 --set-ctrl=white_balance_temperature=4600",
-            # Exposure: disable auto (1 = manual on most UVC webcams), pin absolute value
+            # Exposure: disable auto, pin absolute value
             "v4l2-ctl -d /dev/video0 --set-ctrl=exposure_auto=1",
             "v4l2-ctl -d /dev/video0 --set-ctrl=exposure_absolute=250",
         ]

@@ -28,3 +28,29 @@ void petalLightsClear() {
   memset(leds, 0, sizeof(leds));
   FastLED.show();
 }
+
+void petalLightsConnectionSpin(uint32_t hexColor, unsigned long stepDelayMs) {
+  static uint8_t spinPos = 0;
+  static unsigned long lastStep = 0;
+
+  unsigned long now = millis();
+  if (now - lastStep < stepDelayMs) return; // throttle: callers can invoke this freely
+  lastStep = now;
+
+  CRGB color = hexColor;
+  CRGB trail = color;
+  trail.nscale8_video(60); // dim trailing petal so the spin direction is visible
+
+  for (int i = 0; i < NUM_LEDS; i++) {
+    if (i == spinPos) {
+      leds[i] = color;
+    } else if (i == (spinPos + NUM_LEDS - 1) % NUM_LEDS) {
+      leds[i] = trail;
+    } else {
+      leds[i] = CRGB::Black;
+    }
+  }
+  FastLED.show();
+
+  spinPos = (spinPos + 1) % NUM_LEDS;
+}

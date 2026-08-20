@@ -21,7 +21,7 @@ def Resting(publisher, stop_event, initial_state):
     routine_msg.n20_pwm = 0
     routine_msg.n20_target_rotations = initial_state.n20_target_rotations
     routine_msg.led_colours_hex = [0xFFFFFF] * 5
-    routine_msg.servo_time[4] = 10
+    routine_msg.servo_time[3] = 10
 
     start_time = time.monotonic()
     while not stop_event.is_set():
@@ -31,9 +31,9 @@ def Resting(publisher, stop_event, initial_state):
         brightness = int(60 + 55 * (1 + math.sin(elapsed * (2 * math.pi / 6.0))))
         routine_msg.led_colours_brightness = [brightness] * 5
 
-        # S4 flips between 50 and -50 every 10 seconds
+        # S4 flips between 20 and -20 every 10 seconds
         position = int(elapsed // 10) % 2
-        routine_msg.servo_angles[4] = 70 if position == 0 else -70
+        routine_msg.servo_angles[3] = 20 if position == 0 else -20
 
         publisher.publish(routine_msg)
 

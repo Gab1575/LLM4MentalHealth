@@ -1,15 +1,14 @@
-from turtle import color
-
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float64MultiArray
+from geometry_msgs.msg import PointStamped
 from flower_msgs.msg import RobotCommand
 import numpy as np
 
 # --- Robot Parameters ---
-# 2-stage continuum robot, antagonistic servo control -> 2 servos per stage (4 driven total). BUT must be set to 5
-# to account for the neck joint (not controlled VIA conroller)
-NUM_SERVOS = 5
+# 2-stage continuum robot, antagonistic servo control -> 2 servos per stage (4 driven total).
+# Servo 0 (neck joint) has been removed; only S1-S4 exist, now at indices 0-3.
+NUM_SERVOS = 4
 
 # Each servo is wired antagonistically on its OWN tendon pair (rotating + pulls one
 # tendon while releasing the other, - does the reverse), so it alone drives a full
@@ -34,12 +33,24 @@ class ContinuumController(Node):
 
         self.kinematic_sub = self.create_subscription(Float64MultiArray, '/kinematic_commands', self.kinematic_command_callback, 10)
 
-        self.red_ball_sub = self.create_subscription(Float64MultiArray, '/red_ball_position', self.red_ball_callback, 10)
-        self.blue_ball_sub = self.create_subscription(Float64MultiArray, '/blue_ball_position', self.blue_ball_callback, 10)
+        self.red_ball_sub = self.create_subscription(PointStamped, '/vision/red_ball', self.red_ball_callback, 10)
+        self.blue_ball_sub = self.create_subscription(PointStamped, '/vision/blue_ball', self.blue_ball_callback, 10)
 
         # Publishes final servo angles for the MUX, which forwards them as /flower_commands
         # whenever it is in "kinematic" mode.
         self.command_pub = self.create_publisher(RobotCommand, '/kinematic_calculated_commands', 10)
+
+        # Latest position received from each ball's callback (None until first seen).
+        # check_ball_movement() needs both at once, but red/blue arrive on independent
+        # callbacks, so each one is cached here and re-checked on every new message.
+        self.latest_red = None
+        self.latest_blue = None
+
+        # check_ball_movement() state: last-sampled |position| for each ball and when
+        # that sample was taken, used to detect movement between samples.
+        self.last_red_abs = 0.0
+        self.last_blue_abs = 0.0
+        self.last_check_time = 0.0
 
     def kinematic_command_callback(self, msg):
         # Expects [theta1, phi1, theta2, phi2] in degrees, matching the Flower GUI's publisher.
@@ -73,10 +84,10 @@ class ContinuumController(Node):
                             -SERVO_ANGLE_LIMIT, SERVO_ANGLE_LIMIT)
 
         servo_angles = [0.0] * NUM_SERVOS
-        servo_angles[1] = float(bend1_xz)  # S1 - lower stage, XZ plane
-        servo_angles[2] = float(bend2_xz)  # S2 - upper stage, XZ plane
-        servo_angles[3] = float(bend2_yz)  # S3 - upper stage, YZ plane
-        servo_angles[4] = float(bend1_yz)  # S4 - lower stage, YZ plane
+        servo_angles[0] = float(bend1_xz)  # S1 - lower stage, XZ plane
+        servo_angles[1] = float(bend2_xz)  # S2 - upper stage, XZ plane
+        servo_angles[2] = float(bend2_yz)  # S3 - upper stage, YZ plane
+        servo_angles[3] = float(bend1_yz)  # S4 - lower stage, YZ plane
 
         # cos()/sin() of exact multiples of 90 deg aren't exactly 0.0 in floating point
         # (e.g. ~1e-15 instead), which is meaningless at servo resolution - round it away.
@@ -89,15 +100,40 @@ class ContinuumController(Node):
         msg.servo_angles = servo_angles
         self.command_pub.publish(msg)
 
-    def red_ball_position_callback(self, msg):
-        self.get_logger().info(f"Received red ball position: {msg.data}")
-        r_x, r_y, r_z = msg.data
+    def red_ball_callback(self, msg):
+        self.latest_red = (msg.point.x, msg.point.y, msg.point.z)
+        self.check_ball_movement()
 
-    def blue_ball_position_callback(self, msg):
-        self.get_logger().info(f"Received blue ball position: {msg.data}")
-        b_x, b_y, b_z = msg.data
+    def blue_ball_callback(self, msg):
+        self.latest_blue = (msg.point.x, msg.point.y, msg.point.z)
+        self.check_ball_movement()
 
-    
+    def check_ball_movement(self):
+        # Red and blue arrive on independent callbacks, so wait until both have
+        # reported at least once before trying to check anything.
+        if self.latest_red is None or self.latest_blue is None:
+            return
+
+        r_x, r_y, r_z = self.latest_red
+        b_x, b_y, b_z = self.latest_blue
+
+        # Checks the balls for movement by calculating the absolute position
+        red_abs = np.sqrt(r_x**2 + r_y**2 + r_z**2)
+        blue_abs = np.sqrt(b_x**2 + b_y**2 + b_z**2)
+
+        current_time = self.get_clock().now().nanoseconds / 1e9  # Convert to seconds
+
+        # Compares the current abs position to a previous position from time (t-1) to determine if the balls are moving
+        if current_time - self.last_check_time >= 0.2:  # Check per period
+            if abs(red_abs - self.last_red_abs) > 0.3 or abs(blue_abs - self.last_blue_abs) > 0.3:
+                self.get_logger().info("Balls are moving.")
+            else:
+                self.get_logger().info("Balls are stationary.")
+
+            # Update last positions and time
+            self.last_red_abs = red_abs
+            self.last_blue_abs = blue_abs
+            self.last_check_time = current_time
 
 def main(args=None):
     rclpy.init(args=args)

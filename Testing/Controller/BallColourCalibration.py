@@ -88,19 +88,35 @@ def main():
 
 def set_camera_hardware_settings():
         """Runs terminal commands to lock the camera settings"""
-        try:
-            commands = [
-                #brightness and contrast
-                "v4l2-ctl -d /dev/video0 --set-ctrl=brightness=130",
-                "v4l2-ctl -d /dev/video0 --set-ctrl=contrast=30",
-            ]
-            for cmd in commands:
+        # Note: control names come from `v4l2-ctl -d /dev/video0 --list-ctrls-menus`.
+        # This webcam ("USB 2.0 PC Cam") uses white_balance_automatic / auto_exposure /
+        # exposure_time_absolute rather than the *_auto / exposure_absolute names some
+        # other UVC drivers expose. Auto controls must be disabled BEFORE the manual
+        # value is set, otherwise the manual control is "inactive" and v4l2-ctl reports
+        # a (misleading) Permission denied.
+        commands = [
+            # Brightness and contrast
+            "v4l2-ctl -d /dev/video0 --set-ctrl=brightness=230",
+            "v4l2-ctl -d /dev/video0 --set-ctrl=contrast=40",
+            # White balance: disable auto, then pin to a fixed color temperature
+            "v4l2-ctl -d /dev/video0 --set-ctrl=white_balance_automatic=0",
+            "v4l2-ctl -d /dev/video0 --set-ctrl=white_balance_temperature=5600",
+            # This camera's exposure_time_absolute range is 625-5000 (min=625), so
+            # values below that get silently clamped up to 625 by the driver.
+            "v4l2-ctl -d /dev/video0 --set-ctrl=auto_exposure=1",
+            "v4l2-ctl -d /dev/video0 --set-ctrl=exposure_time_absolute=5000",
+        ]
+
+        all_ok = True
+        for cmd in commands:
+            try:
                 subprocess.run(cmd, shell=True, check=True)
-                
+            except subprocess.CalledProcessError as e:
+                all_ok = False
+                print(f"Failed to set camera control ({cmd}): {e}")
+
+        if all_ok:
             print("Successfully locked camera hardware settings.")
-            
-        except subprocess.CalledProcessError as e:
-            print(f"Failed to set some camera controls: {e}")
 
 if __name__ == '__main__':
     main()
