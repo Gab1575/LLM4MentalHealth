@@ -1,15 +1,28 @@
+"""resting.py - Calm idle routine.
+
+A calm idle state: petals stay put at whatever position they were in when the
+routine started, N20 stays off, and the LEDs sit on a slow, gentle brightness
+pulse (soft white) instead of a scripted breathing pattern.
+
+Runs on the GUI's routine worker thread (see flower_gui_node.execute_routine)
+and publishes directly to /manual_commands until stop_event is set.
+"""
+
 from flower_msgs.msg import RobotCommand
 import time
 import math
 
-"""
-Resting Routine
-    A calm idle state: petals stay put at whatever position they were in when the
-    routine started, N20 stays off, and the LEDs sit on a slow, gentle brightness
-    pulse (soft white) instead of a scripted breathing pattern.
-"""
-
 def Resting(publisher, stop_event, initial_state):
+    """Runs the resting idle state in a loop until stop_event is set.
+
+    Args:
+        publisher: ROS 2 publisher for RobotCommand, e.g. /manual_commands.
+        stop_event: threading.Event; setting it ends the routine and restores
+            initial_state.
+        initial_state: RobotCommand snapshot of the GUI's state when the
+            routine was started; servo_angles and n20_target_rotations are
+            held fixed at these values for the whole routine.
+    """
     print("Starting resting routine...")
 
     # Create ONE message object to use for the entire routine

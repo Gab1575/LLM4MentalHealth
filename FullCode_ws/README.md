@@ -149,8 +149,8 @@ flower_mux
 ### `/manual_commands` (RobotCommand)
 - Published by `flower_gui` continuously.
 - Contains the full manual output state from the GUI, including:
-  - `servo_angles[5]`
-  - `servo_time[5]`
+  - `servo_angles[4]`
+  - `servo_time[4]`
   - `n20_pwm`
   - `n20_target_rotations`
   - `n20_zero`
@@ -165,7 +165,7 @@ flower_mux
 
 ### `/kinematic_calculated_commands` (RobotCommand)
 - Published by `continuum_controller_node`.
-- Carries the final per-servo angles (`servo_angles[5]`, only indices 0-3 driven) after converting each stage's `(theta, phi)` into an antagonistic servo pair.
+- Carries the final per-servo angles (`servo_angles[4]`, all four indices driven) after converting each stage's `(theta, phi)` into an antagonistic servo pair.
 - Consumed by `flower_mux`, which merges it with the GUI's cached LED/N20/time state when in kinematic mode.
 
 ### `/control_mode` (String)

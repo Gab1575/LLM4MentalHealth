@@ -1,3 +1,6 @@
+// N20.h - Declarations for the N20 geared motor / quadrature encoder
+// position-control subsystem (see N20.cpp).
+
 #ifndef N20_H
 #define N20_H
 
@@ -29,13 +32,13 @@ extern volatile long n20EncoderTicks;
 extern float n20VelocityRadS;
 
 // --- Function Prototypes ---
-void n20MotorBegin();
-void n20MotorSetSpeed(int speed);
-void n20MotorSetDirection(int direction);
-void n20MotorControl(float target_position, int16_t speed);
-void n20MotorStop();
+void n20MotorBegin();                                          // Configures pins/ISR and anchors the position reference
+void n20MotorSetSpeed(int speed);                               // Sets PWM drive speed (0-255)
+void n20MotorSetDirection(int direction);                       // Sets H-bridge direction (forward/backward/stop)
+void n20MotorControl(float target_position, int16_t speed);     // Bang-bang position control toward target_position
+void n20MotorStop();                                            // Stops the motor (direction + speed to zero)
 
 // Encoder Function
-void n20MotorPosition(); 
+void n20MotorPosition(); // Recomputes currentPosition from encoder ticks
 
 #endif // N20_H

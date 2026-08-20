@@ -1,3 +1,12 @@
+"""continuum_controller_node.py - Kinematic solver for the continuum stem.
+
+Subscribes to /kinematic_commands ([theta1, phi1, theta2, phi2], degrees) and
+converts each stage's bend into its two servos' angles, publishing the result
+to /kinematic_calculated_commands for flower_mux to pick up in kinematic
+mode. Also watches the (currently unused downstream) red/blue ball vision
+topics and logs whether they appear to be moving, as a diagnostic.
+"""
+
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float64MultiArray

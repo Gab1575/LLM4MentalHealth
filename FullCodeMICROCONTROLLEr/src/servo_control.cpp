@@ -1,9 +1,17 @@
+// servo_control.cpp - Drives the four PCA9685 servos that bend the continuum
+// stem. Each servoControlSet() call kicks off a smoothed (S-curve eased)
+// move from wherever the servo currently is to a new target angle over a
+// commanded duration; servoControlUpdate() advances those moves every loop.
+
 #include "servo_control.h"
 #include "MicroRos.h"
 
 Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 ServoState servos[4]; // Servo 0 (old neck joint) has been removed; only 4 servos remain
 
+// Initializes I2C and the PCA9685, then snaps all 4 servos straight to
+// flowerData's current target angle (no easing) so they start at a known
+// position instead of wherever the driver defaults to.
 void servoControlBegin() {
     Wire.begin(SDA_PIN, SCL_PIN);
     pwm.begin();
@@ -24,6 +32,10 @@ void servoControlBegin() {
     }
 }
 
+// Starts a new eased move for one servo toward target_angle, to complete in
+// delta_T_seconds. A no-op if the command is effectively unchanged from the
+// servo's current target, since this is called every 30ms main-loop tick
+// with the latest command state whether or not anything actually changed.
 void servoControlSet(int servoIndex, float target_angle, float delta_T_seconds) {
     if (servoIndex < 0 || servoIndex > 3) return;
 
@@ -47,6 +59,10 @@ void servoControlSet(int servoIndex, float target_angle, float delta_T_seconds) 
     servos[servoIndex].isMoving = true;
 }
 
+// Advances every servo currently mid-move by one tick: computes how far
+// through its S-curve it should be given elapsed time, writes the
+// interpolated pulse to the PCA9685, and marks the move finished once the
+// commanded duration has elapsed. Intended to be called every loop().
 void servoControlUpdate() {
     unsigned long currentMillis = millis();
 

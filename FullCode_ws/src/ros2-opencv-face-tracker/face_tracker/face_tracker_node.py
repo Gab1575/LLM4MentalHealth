@@ -1,3 +1,13 @@
+"""face_tracker_node.py - Publishes face pan/tilt error angles for a second,
+independent perception channel (separate from the ball localization tracker).
+
+Reads a dedicated USB camera, runs RetinaFace detection each frame, picks the
+largest (closest) detected face, and publishes its nose landmark's angular
+offset from the frame center to /face_tracking_angles as a geometry_msgs/Point
+(x = pan, y = tilt, degrees). Not currently consumed by any other node - see
+the FullCode_ws README - but available as an attention/steering signal.
+"""
+
 import rclpy
 from rclpy.node import Node
 import cv2
@@ -10,33 +20,38 @@ from geometry_msgs.msg import Point
 class DirectFaceTracker(Node):
     def __init__(self):
         super().__init__('direct_face_tracker')
-        
+
         # 2. Create the Publisher
         # Topic name is 'face_tracking_angles', queue size is 10
         self.angle_pub = self.create_publisher(Point, 'face_tracking_angles', 10)
-        
+
         self.cap = cv2.VideoCapture(2)
-        
+
         self.cam_width = 640
         self.cam_height = 480
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, self.cam_width)
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, self.cam_height)
-        
+
+        # Frame center, used as the pan/tilt zero point
         self.cx = self.cam_width / 2.0
         self.cy = self.cam_height / 2.0
-        
-        self.fx = 554.0 
+
+        # Approximate focal length (pixels) for this camera; used to convert a
+        # pixel offset from center into an angular error via atan(offset/f).
+        self.fx = 554.0
         self.fy = 554.0
-        
+
         self.timer = self.create_timer(1.0 / 30.0, self.track_face)
-        
+
         self.get_logger().info('Tracker active! Publishing to /face_tracking_angles...')
 
     def track_face(self):
+        """Per-frame callback: detects faces, tracks the largest (closest)
+        one, publishes its pan/tilt angle, and shows a debug preview window."""
         ret, frame = self.cap.read()
         if not ret:
             return
-            
+
         faces = RetinaFace.detect_faces(frame)
 
         if isinstance(faces, dict):
@@ -94,9 +109,11 @@ class DirectFaceTracker(Node):
         cv2.waitKey(1) 
 
 def main(args=None):
+    """Entry point: initializes ROS 2, spins the tracker node, and releases
+    the camera cleanly on shutdown or Ctrl+C."""
     rclpy.init(args=args)
     tracker = DirectFaceTracker()
-    
+
     try:
         rclpy.spin(tracker)
     except KeyboardInterrupt:

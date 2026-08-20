@@ -1,3 +1,11 @@
+// main.cpp - Firmware entry point for the ESP32 flower controller.
+//
+// Owns the top-level startup sequence and the main control loop: brings up
+// micro-ROS/WiFi, the LEDs, servos, and N20 motor once, then on every loop
+// iteration applies the latest command state (flowerData, updated by
+// MicroRos.cpp's subscription callback) to the physical hardware and
+// watches the ROS agent connection so it can reconnect if it drops.
+
 #include <Arduino.h>
 #include "petal_lights.h"
 #include "servo_control.h"

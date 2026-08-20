@@ -1,3 +1,13 @@
+"""flower_mux_node.py - Mode-aware command multiplexer.
+
+Merges the GUI's manual command stream and the kinematic controller's
+calculated servo angles into a single authoritative /flower_commands stream,
+based on the operator-selected /control_mode. In kinematic mode the merged
+message still carries the GUI's cached servo_time/N20/LED state, so switching
+modes never drops those fields even though only the angles come from the
+kinematic solver.
+"""
+
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String

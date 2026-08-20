@@ -1,8 +1,16 @@
+// petal_lights.cpp - Drives the 5 WS2812B petal LEDs via FastLED. Frames are
+// built into the `leds` buffer in memory (petalLightsUpdate) and only pushed
+// to the hardware once the buffer is fully updated (petalLightsShow), so a
+// full frame update is atomic from the LEDs' point of view. Also doubles as
+// the connection-status indicator during WiFi/agent setup
+// (petalLightsConnectionSpin).
+
 #include "petal_lights.h"
 #include <Arduino.h>
 
 CRGB leds[NUM_LEDS];
 
+// Registers the LED strip with FastLED and clears it so the petals start off.
 void petalLightsBegin() {
   FastLED.addLeds<WS2812B, dataPin, GRB>(leds, NUM_LEDS);
   petalLightsClear(); // Ensure they start off
@@ -24,6 +32,8 @@ void petalLightsShow() {
     FastLED.show();
 }
 
+// Turns every petal LED off immediately (bypasses the buffer-then-show
+// pattern above since there's nothing to preserve).
 void petalLightsClear() {
   memset(leds, 0, sizeof(leds));
   FastLED.show();

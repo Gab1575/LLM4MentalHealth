@@ -1,19 +1,32 @@
-from flower_msgs.msg import RobotCommand
-import time
+"""box_breathing.py - Guided "box breathing" routine.
 
-"""
-Breathing Routine: Box Breathing
-    -> 4 Seconds Exhale 
-        Flower petals opening and LED in blue brightness decreasing 
+    -> 4 Seconds Exhale
+        Flower petals opening and LED in blue brightness decreasing
     -> 4 Seconds Hold (Empty)
         Flower petals stay open and LED's fill up around the petals one by one in red
     -> 4 Seconds Inhale
         Flower petals closing and LED in red brightness increasing red
     -> 4 Seconds Hold (Full)
         Flower petals stay closed and LED's fill up around the petals one by one in blue
+
+Runs on the GUI's routine worker thread (see flower_gui_node.execute_routine)
+and publishes directly to /manual_commands until stop_event is set.
 """
 
+from flower_msgs.msg import RobotCommand
+import time
+
 def BoxBreathing(publisher, stop_event, initial_state):
+    """Runs the box-breathing cycle in a loop until stop_event is set.
+
+    Args:
+        publisher: ROS 2 publisher for RobotCommand, e.g. /manual_commands.
+        stop_event: threading.Event; setting it ends the routine after the
+            current sub-step and restores initial_state.
+        initial_state: RobotCommand snapshot of the GUI's state when the
+            routine was started; servo_angles is used as the base pose and
+            is republished once the routine stops.
+    """
     print("Starting routine loop...")
 
     # Create ONE message object to use for the entire routine

@@ -1,3 +1,14 @@
+"""localization_tracker_node.py - Camera-based 3D localization of the red and
+blue target balls used for continuum-stem geometry sensing.
+
+Captures from a calibrated USB camera, segments red/blue by HSV color,
+shape-filters contours to reject glare/noise blobs, converts each ball's
+apparent size to a 3D position via the camera's intrinsic matrix, and
+publishes smoothed (EMA-filtered) positions to /vision/red_ball and
+/vision/blue_ball. Not currently consumed by any other node - see the
+FullCode_ws README - but reserved for future vision-based closed-loop control.
+"""
+
 import rclpy
 from rclpy.node import Node
 import cv2

@@ -1,3 +1,7 @@
+// MicroRos.cpp - Embedded ROS bridge: WiFi/agent connection, micro-ROS entity
+// setup and teardown, the /flower_commands subscription callback that feeds
+// flowerData, and the /flower_debug publish helper used throughout the firmware.
+
 #include "MicroRos.h"
 
 // --- Instantiate the global micro-ROS objects ---
@@ -34,7 +38,10 @@ void error_loop(){
 flower_msgs__msg__RobotCommand sub_msg;
 
 // --- Callback for the subscriber ---
-void subscription_callback(const void * msgin) {  
+// Fires on every /flower_commands message; copies the incoming RobotCommand
+// into flowerData (read by main.cpp's loop) and periodically echoes it back
+// out over /flower_debug so the sender can confirm what the ESP32 received.
+void subscription_callback(const void * msgin) {
   const flower_msgs__msg__RobotCommand * msg = (const flower_msgs__msg__RobotCommand *)msgin;
   
   for(int i = 0; i < 4; i++) {
@@ -70,6 +77,10 @@ void subscription_callback(const void * msgin) {
   }
 }
 
+// Connects to whichever of the two configured WiFi networks is reachable,
+// resolves that network's matching micro-ROS agent host via mDNS, and pings
+// the agent before returning - so a successful return means the transport
+// is actually usable, not just that WiFi came up.
 bool WiFiSetup() {
   Serial.println("--- Checking WiFi & mDNS ---");
   
@@ -181,6 +192,9 @@ bool WiFiSetup() {
 }
 
 
+// Brings up every micro-ROS entity: node, /flower_commands subscription,
+// /flower_debug publisher, and the single-subscription executor. Returns
+// false on the first failed step so the caller (main.cpp) can retry.
 bool MicroRosSetup() {
   // If WiFi or mDNS fails, abort setup
   if (!WiFiSetup()) {
@@ -249,6 +263,8 @@ void send_debug(const char *format, ...) {
     RCSOFTCHECK(rcl_publish(&debug_pub, &debug_msg, NULL));
 }
 
+// Tears down every entity created in MicroRosSetup(), in reverse order, so a
+// reconnect attempt starts from a clean slate instead of leaking handles.
 void MicroRosDestroy() {
   // Tell the agent we are destroying the session (timeout 0 ensures it doesn't block)
   rmw_context_t * rmw_context = rcl_context_get_rmw_context(&support.context);

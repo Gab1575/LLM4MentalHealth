@@ -121,23 +121,17 @@ This module is the critical link between the host system and the physical hardwa
 
 ### src/servo_control.cpp
 
-This file manages the stems motion.
+This file manages the stem's tendon-driven bend, via the four servos that remain
+after the neck joint (the former servo 0) was removed from the design.
 
 Key responsibilities:
 
 - initialize the PCA9685 servo driver over I2C,
-- reset the servo state,
-- move servos by a relative delta,
-- set servos to an absolute target position,
-- optionally sweep a servo across positions.
+- track each servo's current/target pulse and move it smoothly (S-curve eased) toward
+  the target over a commanded time window,
+- expose absolute angle targets (-90 to 90 degrees) to the rest of the firmware.
 
-Servo numbers are not paired with matching slots on servo driver so they are remapped:
-
-- petal 0 -> channel 7
-- petal 1 -> channel 8
-- petal 2 -> channel 9
-- petal 3 -> channel 10
-- petal 4 -> channel 11
+Servos 0-3 map directly to PCA9685 channels 0-3 (`ServoState.hardwareIndex`).
 
 ### src/petal_lights.cpp
 

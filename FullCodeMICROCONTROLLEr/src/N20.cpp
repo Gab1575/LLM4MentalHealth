@@ -1,5 +1,12 @@
+// N20.cpp - Drives the N20 geared motor and its quadrature encoder feedback
+// loop. Position is tracked in rotations relative to a floating "starting
+// position" (n20MotorBegin), which can be re-anchored at runtime by toggling
+// flowerData.n20_zero (see n20MotorControl). The control loop itself is a
+// simple bang-bang: full commanded speed toward the target until within
+// POSITION_TOLERANCE, then stop.
+
 #include "N20.h"
-#include <math.h> 
+#include <math.h>
 #include "MicroRos.h"
 
 // Initialize tracking variables
@@ -24,6 +31,9 @@ void IRAM_ATTR n20EncoderISR() {
     }
 }
 
+// Configures motor/encoder pins, attaches the encoder ISR, stops the motor,
+// and anchors the position reference to the currently-commanded target so
+// the motor doesn't lurch on first control-loop tick.
 void n20MotorBegin() {
     pinMode(N20_PWM_PIN, OUTPUT);
     pinMode(N20_IN1_PIN, OUTPUT);
@@ -42,11 +52,15 @@ void n20MotorBegin() {
 }
 
 
+// Sets PWM drive speed (clamped to the valid range) on the motor driver's
+// speed pin. Direction is controlled separately via n20MotorSetDirection().
 void n20MotorSetSpeed(int speed) {
     speed = constrain(speed, N20_MIN_SPEED, N20_MAX_SPEED);
     analogWrite(N20_PWM_PIN, speed);
 }
 
+// Sets the H-bridge direction pins to drive the motor forward, backward, or
+// stop (coast).
 void n20MotorSetDirection(int direction) {
     switch(direction) {
         case N20_FORWARD:
@@ -67,9 +81,14 @@ void n20MotorSetDirection(int direction) {
     }
 }
 
+// Bang-bang position control: drives the motor at `speed` toward
+// targetPosition until within POSITION_TOLERANCE, then stops. Also handles
+// re-zeroing: if flowerData.n20_zero has flipped since the last call, resets
+// the encoder tick count and re-anchors the position reference so the motor
+// treats its current physical position as the new "zero".
 void n20MotorControl(float targetPosition, int16_t speed) {
     // Calculate how far away we are from the target
-    
+
     if(flowerData.n20_zero != currentZeroState) {
         // If the zero state has changed, reset the encoder ticks and update the starting position
         noInterrupts();
@@ -101,11 +120,15 @@ void n20MotorControl(float targetPosition, int16_t speed) {
     }
 }
 
+// Convenience wrapper: sets direction to stop and speed to zero together.
 void n20MotorStop() {
     n20MotorSetDirection(N20_STOP);
     n20MotorSetSpeed(N20_MIN_SPEED);
 }
 
+// Recomputes currentPosition (rotations) from the encoder tick count. Must
+// be called every loop iteration before n20MotorControl() so the control
+// loop sees an up-to-date position.
 void n20MotorPosition() {
     // Read the volatile variable safely by temporarily disabling interrupts
     noInterrupts();
