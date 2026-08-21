@@ -1,12 +1,9 @@
-"""face_tracker_node.py - Publishes face pan/tilt error angles for a second,
-independent perception channel (separate from the ball localization tracker).
+"""face_tracker_node.py - Publishes face pan/tilt angles
 
 Reads a dedicated USB camera, runs RetinaFace detection each frame, picks the
 largest (closest) detected face, and publishes its nose landmark's angular
 offset from the frame center to /face_tracking_angles as a geometry_msgs/Point
-(x = pan, y = tilt, degrees). Not currently consumed by any other node - see
-the FullCode_ws README - but available as an attention/steering signal.
-"""
+(x = pan, y = tilt, degrees). """
 
 import rclpy
 from rclpy.node import Node

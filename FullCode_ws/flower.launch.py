@@ -1,4 +1,4 @@
-"""flower.launch.py - Host-side launch description for the flower robot.
+"""flower.launch.py
 
 Brings up the full host stack in one command: the micro-ROS agent (hardware
 bridge), Foxglove bridge (debugging/visualization), the operator GUI, the two

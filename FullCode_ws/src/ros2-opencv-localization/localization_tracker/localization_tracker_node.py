@@ -5,8 +5,7 @@ Captures from a calibrated USB camera, segments red/blue by HSV color,
 shape-filters contours to reject glare/noise blobs, converts each ball's
 apparent size to a 3D position via the camera's intrinsic matrix, and
 publishes smoothed (EMA-filtered) positions to /vision/red_ball and
-/vision/blue_ball. Not currently consumed by any other node - see the
-FullCode_ws README - but reserved for future vision-based closed-loop control.
+/vision/blue_ball.
 """
 
 import rclpy
@@ -92,15 +91,7 @@ class LocalizationTrackerNode(Node):
         self.timer = self.create_timer(1.0 / 30.0, self.process_frame)
 
     def set_camera_hardware_settings(self):
-        """Runs terminal commands to lock the camera settings.
-
-        Locking brightness/contrast alone still leaves auto-exposure and
-        auto-white-balance free to drift, which shifts hue values frame to frame -
-        the blue HSV band is narrow enough that this alone can make the mask
-        fragment or blink out. Lock those too. Exposure/white-balance values are
-        starting points - use `v4l2-ctl -d /dev/video0 --list-ctrls` to check the
-        valid ranges for your camera and tune to your lighting.
-        """
+        """Runs terminal commands to lock the camera settings."""
         commands = [
             # Brightness and contrast
             "v4l2-ctl -d /dev/video0 --set-ctrl=brightness=130",
@@ -113,9 +104,6 @@ class LocalizationTrackerNode(Node):
             "v4l2-ctl -d /dev/video0 --set-ctrl=exposure_absolute=250",
         ]
 
-        # Run each control independently - one unsupported control (common with
-        # white balance/exposure on some webcams) shouldn't stop the rest from
-        # being applied.
         failures = []
         for cmd in commands:
             try:
@@ -135,19 +123,12 @@ class LocalizationTrackerNode(Node):
         if not contours:
             return None
 
-        # Don't just grab the single largest-area contour and give up if it fails
-        # the shape checks - a bigger, non-ball blob (glare/reflection off the
-        # robot frame, background clutter) can easily out-area the real ball. Walk
-        # candidates largest-first and take the first one that actually looks like
-        # a ball, so a glare blob sitting in front of the real ball's contour just
-        # gets skipped instead of eclipsing it or reporting "not found".
+        # Check from largest contour down to the MAX_CANDIDATES-th largest, and return the first one that passes all shape tests.
         candidates = sorted(contours, key=cv2.contourArea, reverse=True)[:MAX_CANDIDATES]
 
         for c in candidates:
             # Circularity has to be judged on the RAW contour, not its convex hull -
-            # convexHull() smooths away exactly the jagged/spiky edges (glare
-            # reflections, splash-shaped noise blobs) that circularity is supposed
-            # to catch, which is why a non-ball blob could still sneak through.
+            # convexHull() smooths away exactly the jagged/spiky edges that circularity is supposed to catch
             raw_area = cv2.contourArea(c)
             if raw_area <= 40:
                 continue
@@ -176,10 +157,7 @@ class LocalizationTrackerNode(Node):
             if radius <= 5:
                 continue
 
-            # The enclosing circle's center shifts more than a moments-based
-            # centroid when the hull edge is ragged (partial occlusion, glare,
-            # etc.) - use the centroid for position, keep the enclosing circle
-            # only for the radius (needed for the distance/Z estimate below).
+
             moments = cv2.moments(hull)
             if moments["m00"] > 0:
                 x = moments["m10"] / moments["m00"]
@@ -225,9 +203,7 @@ class LocalizationTrackerNode(Node):
         # Blue mask
         mask_blue = cv2.inRange(hsv, self.lower_blue, self.upper_blue)
 
-        # Open (erode then dilate) both masks to strip speckle noise before contour
-        # detection, so a stray noise blob can't outcompete the real ball for
-        # "largest contour".
+        # Open both masks to strip speckle noise before contour detection
         mask_red = cv2.morphologyEx(mask_red, cv2.MORPH_OPEN, self.morph_kernel)
         mask_blue = cv2.morphologyEx(mask_blue, cv2.MORPH_OPEN, self.morph_kernel)
 
@@ -235,7 +211,7 @@ class LocalizationTrackerNode(Node):
         red_data = self.find_ball(mask_red, frame, "Red")
         blue_data = self.find_ball(mask_blue, frame, "Blue")
 
-        # Throttled so a prolonged dropout doesn't spam the log at 30 msgs/sec.
+        # Throttled
         if not red_data:
             self.get_logger().warn("Red ball not found", throttle_duration_sec=2.0)
         if not blue_data:
@@ -245,8 +221,7 @@ class LocalizationTrackerNode(Node):
         if red_data and blue_data:
             cv2.line(frame, (red_data["px"], red_data["py"]), (blue_data["px"], blue_data["py"]), (255, 0, 0), 2)
 
-        # Smooth (EMA) then publish only if found. Skip publishing if lost so the
-        # robot doesn't jerk.
+        # Smooth (EMA) then publish only if found. Skip publishing if lost so the robot doesn't jerk.
         if red_data:
             X, Y, Z = self.smooth("Red", red_data["X"], red_data["Y"], red_data["Z"])
             self.publish_point(self.red_pub, 'camera_link', X, Y, Z)
@@ -263,12 +238,9 @@ class LocalizationTrackerNode(Node):
     def smooth(self, color_name, X, Y, Z):
         """Exponential moving average over a color's published position.
 
-        Blends each new raw detection with the previous filtered value instead of
-        publishing raw per-frame noise directly. If the color hasn't been seen
-        recently (occlusion/dropout), the filter is reset to the new sample instead
-        of blending across the gap, so reacquisition doesn't drag the old, stale
-        position along with it.
-        """
+        Blends each new raw detection with the previous filtered value. If the color hasn't been seen
+        recently the filter is reset to the new sample, so reacquisition doesn't drag the old, stale
+        position along with it."""
         now = time.monotonic()
         last_seen = self.last_seen[color_name]
         prev = self.filtered[color_name]

@@ -1,9 +1,7 @@
 # RobotCommand.msg - The full command state for the flower robot.
 #
-# Published (in some combination) by flower_gui, continuum_controller_node,
-# and flower_mux; the merged /flower_commands stream is what the embedded
-# firmware (FullCodeMICROCONTROLLEr) actually subscribes to. See the
-# FullCode_ws README for how each field is populated per topic.
+# Published by flower_gui, continuum_controller_node, and flower_mux; the merged /flower_commands stream is what the embedded
+# firmware (FullCodeMICROCONTROLLEr) subscribes to.
 
 float32[4] servo_angles           # Target angle per servo, degrees (-90 to 90)
 float32[4] servo_time             # Commanded move duration per servo, seconds

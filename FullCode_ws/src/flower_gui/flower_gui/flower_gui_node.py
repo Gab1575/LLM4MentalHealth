@@ -1,15 +1,15 @@
-"""flower_gui_node.py - Tkinter-based operator dashboard for the flower robot.
+"""flower_gui_node.py - Tkinter-based GUI.
 
 Runs as a ROS 2 node (flower_gui_node) alongside a Tkinter main loop. Lets an
 operator either drive the four stem servos and LEDs directly ("manual" mode)
 or set a two-stage bend target via theta/phi sliders ("kinematic" mode, with
 a live 3D preview of the resulting stem shape). Publishes:
 
-- /manual_commands       (RobotCommand)         - full manual/base command state
+- /manual_commands       (RobotCommand)         - full manual/base command state alonside LED and N20 settings
 - /kinematic_commands    (Float64MultiArray)     - [theta1, phi1, theta2, phi2], degrees
 - /control_mode          (String)                - "manual" or "kinematic"
 
-GUI state is persisted to ~/flower_gui_settings.json so the dashboard reopens
+GUI state is saved to ~/flower_gui_settings.json so the dashboard reopens
 with its last configuration.
 """
 
@@ -38,23 +38,14 @@ from std_msgs.msg import Float64MultiArray
 from std_msgs.msg import String
 from flower_gui.routines.box_breathing import BoxBreathing
 from flower_gui.routines.resting import Resting
+from flower_gui.routines.api import API
 
-# --- Kinematics Helper Functions (For Visualization Only) ---
+# --- Kinematics Helper Functions ---
 # These mirror the constant-curvature bend math used by the continuum
-# controller node, but purely to draw a live preview in the GUI - they have
-# no effect on what gets published.
+# controller node, but purely to draw a live preview in the GUI
 
 def calc_segment(theta, phi, L, num_points=50):
     """Samples a constant-curvature arc of length L bending by theta toward phi.
-
-    Args:
-        theta: Bend magnitude, radians (0 = straight).
-        phi: Bend-plane direction, radians.
-        L: Segment (stage) length.
-        num_points: Number of points to sample along the arc.
-
-    Returns:
-        (x, y, z) arrays of point coordinates along the arc, base at the origin.
     """
     s = np.linspace(0, L, num_points)
     if theta < 1e-6:
@@ -70,8 +61,7 @@ def get_rotation_matrix(theta, phi):
     """Builds the rotation matrix mapping a second stage's local frame into
     the first stage's tip frame, given the first stage's (theta, phi) bend.
 
-    Used to chain stage 2's arc (from calc_segment) onto stage 1's tip so the
-    3D preview shows the whole stem, not just stage 1 bending in isolation.
+    Used to chain stage 2's arc (from calc_segment) onto stage 1's tip.
     """
     c_p, s_p = np.cos(phi), np.sin(phi)
     c_t, s_t = np.cos(theta), np.sin(theta)
@@ -85,7 +75,7 @@ def get_rotation_matrix(theta, phi):
 class FlowerDashboard(Node):
     """The operator dashboard: a Tkinter window driven by a ROS 2 node.
 
-    Owns all GUI widgets/state and three independent polling loops scheduled
+    GUI widgets/state and three independent polling loops scheduled
     via Tkinter's `after()`: ros_spin() to process ROS callbacks,
     publish_command() to publish the current command state at 10 Hz, and
     auto_save() to persist settings once a second.
@@ -270,7 +260,7 @@ class FlowerDashboard(Node):
         tk.Scale(n20_row, variable=self.n20_speed_var, from_=0, to=255, 
                  orient="horizontal", label="Spd", font=("TkDefaultFont", 8), width=10, sliderlength=15).pack(side="left", expand=True, fill="x", padx=2)
         
-        tk.Button(n20_frame, text="Zero", command=lambda: self.n20_zero_var.set(not self.n20_zero_var.get()), height=1, bd=1, relief="sunken").pack(fill="x", padx=2, pady=2)
+        tk.Button(n20_frame, text="Zero", command=self.toggle_n20_zero, height=1, bd=1, relief="sunken").pack(fill="x", padx=2, pady=2)
         
         routine_frame = tk.Frame(right_frame)
         routine_frame.pack(pady=2)
@@ -285,6 +275,16 @@ class FlowerDashboard(Node):
                                      fg="grey", font=("TkDefaultFont", 10, "bold"))
         self.resting_btn.pack()
 
+        self.api_btn = tk.Button(routine_frame, text="Run API",
+                                 command=lambda: self.start_routine(API, "API", self.api_btn),
+                                 fg="grey", font=("TkDefaultFont", 10, "bold"))
+        self.api_btn.pack()
+
+    def toggle_n20_zero(self):
+        """Toggles the N20 zero flag when the Zero button is pressed."""
+        self.n20_zero_var.set(not self.n20_zero_var.get())
+        self.get_logger().info(f"N20 zeroed")
+
     def on_mode_changed(self, *args):
         """Publishes the current control_mode ("manual"/"kinematic") to
         /control_mode. Bound as a trace on self.control_mode, so this fires
@@ -295,10 +295,8 @@ class FlowerDashboard(Node):
         self.get_logger().info(f"Published mode change: {msg.data}")
 
     def update_kinematics(self, *args):
-        """Redraws the 3D stem preview from the current theta/phi sliders.
+        """Redraws the 3D stem preview from the current theta/phi sliders."""
 
-        Bound as the Scale widgets' command callback, so this runs on every
-        slider drag. Purely visual - does not publish anything."""
         th1 = np.radians(self.th1_var.get())
         ph1 = np.radians(self.ph1_var.get())
         th2 = np.radians(self.th2_var.get())
@@ -330,9 +328,7 @@ class FlowerDashboard(Node):
 
         A routine runs on its own daemon thread so it can publish on a tight
         timer without blocking the Tkinter main loop. Pressing the active
-        routine's button again requests a stop via stop_event; pressing a
-        different routine's button while one is running is ignored until the
-        active one stops."""
+        routine's button again requests a stop via stop_event"""
         if not self.routine_running:
             self.routine_running = True
             self.active_routine_btn = btn
@@ -352,7 +348,7 @@ class FlowerDashboard(Node):
         the button label back on the Tkinter thread via root.after()."""
         try:
             initial_state = self.get_current_command()
-            routine_func(self.manual_publisher, self.stop_event, initial_state)
+            routine_func(self.manual_publisher, self.stop_event, initial_state, self.get_logger())
         except Exception as e:
             self.get_logger().error(f"Routine crashed: {e}")
         finally:
@@ -410,8 +406,7 @@ class FlowerDashboard(Node):
 
     def validate_hex(self, hex_val):
         """Normalizes a loaded LED color value, falling back to black (off)
-        for anything that isn't a well-formed "#RRGGBB" string - guards
-        against a hand-edited or corrupted settings file."""
+        for anything that isn't a well-formed "#RRGGBB" string"""
         if not isinstance(hex_val, str): return "#000000"
         if not hex_val.startswith('#'): hex_val = f"#{hex_val}"
         if len(hex_val) != 7: return "#000000"
@@ -419,8 +414,7 @@ class FlowerDashboard(Node):
 
     def load_config(self):
         """Restores GUI state from self.config_file if it exists, falling
-        back to each widget's built-in default for any field that's missing
-        (e.g. after adding a new setting) or if loading fails entirely."""
+        back to each widget's built-in default for any field that's missing"""
         if os.path.exists(self.config_file):
             try:
                 with open(self.config_file, 'r') as f:
@@ -468,17 +462,13 @@ class FlowerDashboard(Node):
                 self.get_logger().error(f"Failed to load config, starting fresh: {e}")
 
     def on_closing(self):
-        """Window-close handler: saves settings one last time before quitting
-        the Tkinter main loop."""
+        """Window-close handler: saves settings one last time before quitting he Tkinter main loop."""
         self.save_config()
         self.root.quit()
 
     def ros_spin(self):
-        """Processes any pending ROS 2 callbacks and reschedules itself.
+        """Processes any pending ROS 2 callbacks"""
 
-        Runs as a Tkinter `after()` loop (rather than rclpy.spin()) so ROS
-        and the GUI event loop share the same thread without blocking each
-        other. Stops rescheduling once rclpy has been shut down."""
         if not rclpy.ok():
             self.root.quit()
             return
@@ -487,8 +477,7 @@ class FlowerDashboard(Node):
 
     def get_current_command(self):
         """Builds a RobotCommand from the current widget state: servo angles/
-        times, N20 target/speed/zero, and LED colors/brightness (honoring the
-        master color/brightness override checkboxes if enabled)."""
+        times, N20 target/speed/zero, and LED colors/brightness"""
         msg = RobotCommand()
         msg.servo_angles = [float(v.get()) for v in self.servo_vars]
         msg.servo_time = [self.safe_float(v.get()) for v in self.servo_time_vars]
@@ -520,13 +509,7 @@ class FlowerDashboard(Node):
         return msg
 
     def publish_command(self):
-        """Publishes the current command state at ~10 Hz and reschedules itself.
-
-        Skipped while a routine is running, since the routine thread is
-        already publishing its own scripted sequence directly. Always
-        publishes to both /manual_commands and /kinematic_commands
-        regardless of the active mode, so flower_mux has a fresh cache of
-        both and switching modes on the mux side is instant."""
+        """Publishes the current command state at ~10 Hz"""
         if not rclpy.ok():
             return
         try:
@@ -561,7 +544,7 @@ class FlowerDashboard(Node):
 
 def main(args=None):
     """Entry point: initializes ROS 2 and Tkinter, then runs the GUI main
-    loop. Installs a SIGINT handler so Ctrl+C cleanly tears down the ROS node
+    loop. SIGINT handler so Ctrl+C cleanly tears down the ROS node
     and the Tkinter window instead of leaving either dangling."""
     rclpy.init(args=args)
     root = tk.Tk()

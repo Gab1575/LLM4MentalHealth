@@ -8,26 +8,15 @@
         Flower petals closing and LED in red brightness increasing red
     -> 4 Seconds Hold (Full)
         Flower petals stay closed and LED's fill up around the petals one by one in blue
-
-Runs on the GUI's routine worker thread (see flower_gui_node.execute_routine)
-and publishes directly to /manual_commands until stop_event is set.
 """
 
 from flower_msgs.msg import RobotCommand
 import time
 
-def BoxBreathing(publisher, stop_event, initial_state):
-    """Runs the box-breathing cycle in a loop until stop_event is set.
+def BoxBreathing(publisher, stop_event, initial_state, logger):
+    #Runs the box-breathing cycle in a loop until stop_event is set.
 
-    Args:
-        publisher: ROS 2 publisher for RobotCommand, e.g. /manual_commands.
-        stop_event: threading.Event; setting it ends the routine after the
-            current sub-step and restores initial_state.
-        initial_state: RobotCommand snapshot of the GUI's state when the
-            routine was started; servo_angles is used as the base pose and
-            is republished once the routine stops.
-    """
-    print("Starting routine loop...")
+    logger.info("Starting routine loop...")
 
     # Create ONE message object to use for the entire routine
     routine_msg = RobotCommand()
@@ -48,7 +37,7 @@ def BoxBreathing(publisher, stop_event, initial_state):
         # ==========================================
         # STEP 1: EXHALE (4s Fade Down Blue + Open Petals)
         # ==========================================
-        print("Exhaling...")
+        logger.info("Exhaling...")
         brightness = 255.0
         routine_msg.led_colours_brightness = [int(brightness)] * 5
         routine_msg.n20_target_rotations = 0.0
@@ -59,8 +48,6 @@ def BoxBreathing(publisher, stop_event, initial_state):
         start_time = time.monotonic() 
         while time.monotonic() - start_time < 4.0:
             routine_msg.led_colours_brightness = [int(max(0, brightness))] * 5
-            routine_msg.servo_angles[3] += 0.6
-            routine_msg.servo_angles[0] += 0.25
             publisher.publish(routine_msg)
             brightness -= (6.375/2) # Decreases over ~80 iterations (4s at 0.05s timeout)
 
@@ -80,7 +67,7 @@ def BoxBreathing(publisher, stop_event, initial_state):
         # ==========================================
         # STEP 2: HOLD (Empty) (4s Fill up sequentially in Red)
         # ==========================================
-        print("Holding (Empty)...")
+        logger.info("Holding (Empty)...")
         routine_msg.n20_pwm = 0
         routine_msg.led_colours_hex = [0x000000] * 5
         publisher.publish(routine_msg)
@@ -119,7 +106,7 @@ def BoxBreathing(publisher, stop_event, initial_state):
         # ==========================================
         # STEP 3: INHALE (4s Fade Up Red + Close Petals)
         # ==========================================
-        print("Inhaling...")
+        logger.info("Inhaling...")
         brightness = 0.0 
         routine_msg.led_colours_brightness = [int(brightness)] * 5
         routine_msg.n20_pwm = 185
@@ -130,8 +117,6 @@ def BoxBreathing(publisher, stop_event, initial_state):
         start_time = time.monotonic() 
         while time.monotonic() - start_time < 4.0:
             routine_msg.led_colours_brightness = [int(max(0, brightness))] * 5
-            routine_msg.servo_angles[3] -= 0.6
-            routine_msg.servo_angles[0] -= 0.25
 
             publisher.publish(routine_msg)
             brightness += (6.375/2) # Decreases over ~80 iterations (4s at 0.05s timeout)
@@ -151,7 +136,7 @@ def BoxBreathing(publisher, stop_event, initial_state):
         # ==========================================
         # STEP 4: HOLD (Full) (4s Fill up sequentially in Blue)
         # ==========================================
-        print("Holding (Full)...")
+        logger.info("Holding (Full)...")
         routine_msg.n20_pwm = 0 
         routine_msg.led_colours_hex = [0x000000] * 5 # Switch to blue
         publisher.publish(routine_msg)
@@ -189,5 +174,5 @@ def BoxBreathing(publisher, stop_event, initial_state):
         if stop_event.is_set(): break
 
     # --- STOPPED STATE (RESTORE) ---
-    print("Routine stopped. Restoring original GUI state...")
+    logger.info("Routine stopped. Restoring original GUI state...")
     publisher.publish(initial_state)

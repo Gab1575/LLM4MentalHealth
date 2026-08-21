@@ -3,8 +3,17 @@
 Subscribes to /kinematic_commands ([theta1, phi1, theta2, phi2], degrees) and
 converts each stage's bend into its two servos' angles, publishing the result
 to /kinematic_calculated_commands for flower_mux to pick up in kinematic
-mode. Also watches the (currently unused downstream) red/blue ball vision
-topics and logs whether they appear to be moving, as a diagnostic.
+mode
+
+Also watches the (currently unused) red/blue ball vision
+topics and logs whether they appear to be moving.
+
+EXPANSION THOUGHTS:
+-> If a purley forward kinematic controller is not sufficient, the ball tracking could either be used to 
+    a) (easy) just check for movement, and when the backbond starts moving, then start changing the forward kinematic controller.
+    b) (hard) use localization and EKF to estimate the position of the end effector, and then use that to do inverse kinematics to get the desired theta/phi values for the forward kinematic controller.
+
+
 """
 
 import rclpy
@@ -16,13 +25,9 @@ import numpy as np
 
 # --- Robot Parameters ---
 # 2-stage continuum robot, antagonistic servo control -> 2 servos per stage (4 driven total).
-# Servo 0 (neck joint) has been removed; only S1-S4 exist, now at indices 0-3.
 NUM_SERVOS = 4
 
-# Each servo is wired antagonistically on its OWN tendon pair (rotating + pulls one
-# tendon while releasing the other, - does the reverse), so it alone drives a full
-# signed bend along a single plane through the stage - it is not mirrored by its
-# stage-mate. Each stage's two servos cover two orthogonal bending planes: S1 (lower)
+#Each stage's servos cover two orthogonal bending planes: S1 (lower)
 # and S2 (upper) act in the XZ plane, S4 (lower) and S3 (upper) act in the YZ plane.
 # The (theta, phi) bend command is therefore resolved into XZ/YZ components with
 # cos(phi)/sin(phi) rather than split into a +/- antagonistic pair.
@@ -45,13 +50,11 @@ class ContinuumController(Node):
         self.red_ball_sub = self.create_subscription(PointStamped, '/vision/red_ball', self.red_ball_callback, 10)
         self.blue_ball_sub = self.create_subscription(PointStamped, '/vision/blue_ball', self.blue_ball_callback, 10)
 
-        # Publishes final servo angles for the MUX, which forwards them as /flower_commands
-        # whenever it is in "kinematic" mode.
+        # Publishes final servo angles
         self.command_pub = self.create_publisher(RobotCommand, '/kinematic_calculated_commands', 10)
 
-        # Latest position received from each ball's callback (None until first seen).
-        # check_ball_movement() needs both at once, but red/blue arrive on independent
-        # callbacks, so each one is cached here and re-checked on every new message.
+        # Latest position received from each ball's callback, check_ball_movement() needs both at once, but red/blue arrive on independent callbacks,
+        # so each one is cached here and re-checked on every new message.
         self.latest_red = None
         self.latest_blue = None
 
@@ -74,9 +77,7 @@ class ContinuumController(Node):
 
     def compute_servo_angles(self, theta1, phi1, theta2, phi2):
         # Resolves each stage's (theta, phi) bend command into its two orthogonal
-        # servo-plane components (XZ / YZ). Each servo is independently antagonistic
-        # via its own tendon pair, so it directly takes the signed component for its
-        # plane - no mirroring against the other servo on the stage.
+        # servo-plane components (XZ / YZ). 
         #
         # Stage 2 (upper) is mounted UPPER_STAGE_OFFSET_DEG rotated relative to stage 1
         # (lower)'s bending planes, so that offset is removed from phi2 first.
@@ -98,8 +99,6 @@ class ContinuumController(Node):
         servo_angles[2] = float(bend2_yz)  # S3 - upper stage, YZ plane
         servo_angles[3] = float(bend1_yz)  # S4 - lower stage, YZ plane
 
-        # cos()/sin() of exact multiples of 90 deg aren't exactly 0.0 in floating point
-        # (e.g. ~1e-15 instead), which is meaningless at servo resolution - round it away.
         servo_angles = [round(a, 6) for a in servo_angles]
 
         return servo_angles
