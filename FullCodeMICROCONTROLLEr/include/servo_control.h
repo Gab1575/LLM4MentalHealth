@@ -30,7 +30,7 @@ struct ServoState {
     int hardwareIndex;         // PCA9685 channel this servo is wired to
 };
 
-void servoControlBegin();                                              // Initializes I2C/PCA9685 and centers all servos
+void servoControlBegin();                                              // Initializes I2C/PCA9685; does not move servos, leaves them where they are
 void servoControlSet(int servoIndex, float target_angle, float delta_T); // Starts a new eased move toward target_angle
 void servoControlUpdate();                                              // Advances any in-progress moves; call every loop
 

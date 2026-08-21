@@ -58,8 +58,7 @@ void loop() {
     for (int i = 0; i < 5; i++) {
       petalLightsUpdate(i, flowerData.led_colours_hex[i], flowerData.led_colours_brightness[i]);
     }
-    // Servo 0 (old neck joint) has been removed; flowerData.servo_angles/servo_time
-    // are now 4-wide and map directly to hardware channels 0-3.
+    // flowerData.servo_angles/servo_time map directlyf to hardware channels 0-3.
     for (int i = 0; i < 4; i++) {
       servoControlSet(i, flowerData.servo_angles[i], flowerData.servo_time[i]);
     }

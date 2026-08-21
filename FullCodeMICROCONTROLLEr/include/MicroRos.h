@@ -12,7 +12,7 @@
 #include <WiFi.h>
 #include <ESPmDNS.h>
 #include <stdio.h>
-#include <stdarg.h> // Added for variadic debug arguments
+#include <stdarg.h> 
 
 #include "MicroRosWifiCredentials.h" // Wifi credentials held in gitignore file
 #include "petal_lights.h" // LED petals double as a connection-status indicator while connecting
@@ -30,7 +30,7 @@ struct Data {
   float servo_angles[4];          // Target angle per servo, degrees (-90 to 90)
   float servo_time[4];            // Commanded move duration per servo, seconds
   int16_t n20_pwm;                // N20 motor drive speed, 0-255
-  float n20_target_rotations;     // N20 target position, rotations
+  float n20_target_rotations;     // N20 target position, rotations 0-4.5
   uint32_t led_colours_hex[5];    // Per-petal LED color, 0xRRGGBB
   int16_t led_colours_brightness[5]; // Per-petal LED brightness, 0-255
   bool n20_zero;                  // Toggling this re-zeroes the N20 position reference

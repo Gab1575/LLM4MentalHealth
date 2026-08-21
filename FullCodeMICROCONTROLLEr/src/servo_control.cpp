@@ -1,17 +1,16 @@
-// servo_control.cpp - Drives the four PCA9685 servos that bend the continuum
-// stem. Each servoControlSet() call kicks off a smoothed (S-curve eased)
-// move from wherever the servo currently is to a new target angle over a
-// commanded duration; servoControlUpdate() advances those moves every loop.
+// servo_control.cpp - Drives the four servos that bend the continuum
+// stem. 
 
 #include "servo_control.h"
 #include "MicroRos.h"
 
 Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
-ServoState servos[4]; // Servo 0 (old neck joint) has been removed; only 4 servos remain
+ServoState servos[4]; 
 
-// Initializes I2C and the PCA9685, then snaps all 4 servos straight to
-// flowerData's current target angle (no easing) so they start at a known
-// position instead of wherever the driver defaults to.
+// How long the intial move to current target angle takes (milliseconds)
+#define INIT_EASE_MS 4000.0
+
+// Initializes I2C and the PCA9685.
 void servoControlBegin() {
     Wire.begin(SDA_PIN, SCL_PIN);
     pwm.begin();
@@ -23,38 +22,40 @@ void servoControlBegin() {
     servos[2].hardwareIndex = 2;
     servos[3].hardwareIndex = 3;
 
+    unsigned long startTime = millis();
+
     for (int i = 0; i < 4; i++) {
         servos[i].targetAngle = flowerData.servo_angles[i];
-        servos[i].startPulse = map(flowerData.servo_angles[i], -90.0, 90.0, SERVOMIN, SERVOMAX);
-        servos[i].targetPulse = servos[i].startPulse;
-        servos[i].currentPulse = servos[i].startPulse; // Initialize current location
-        pwm.setPWM(servos[i].hardwareIndex, 0, (uint16_t)servos[i].targetPulse);
+        servos[i].targetPulse = map(flowerData.servo_angles[i], -90.0, 90.0, SERVOMIN, SERVOMAX);
+        servos[i].currentPulse = servos[i].targetPulse; 
+        servos[i].startPulse = servos[i].currentPulse;
+        servos[i].delta_T_ms = INIT_EASE_MS;
+        servos[i].startTime = startTime;
+        servos[i].isMoving = false; // Stay put until a real command arrives
     }
 }
 
-// Starts a new eased move for one servo toward target_angle, to complete in
-// delta_T_seconds. A no-op if the command is effectively unchanged from the
-// servo's current target, since this is called every 30ms main-loop tick
-// with the latest command state whether or not anything actually changed.
+// Starts a new move for one servo toward target_angle, to complete in
+// delta_T_seconds.
 void servoControlSet(int servoIndex, float target_angle, float delta_T_seconds) {
     if (servoIndex < 0 || servoIndex > 3) return;
 
-    // 1. Ignore redundant commands from the 30ms main loop
-    if (abs(servos[servoIndex].targetAngle - target_angle) < 0.1 && 
+    // Ignore redundant commands from the 30ms main loop
+    if (abs(servos[servoIndex].targetAngle - target_angle) < 0.1 &&
         abs((servos[servoIndex].delta_T_ms / 1000.0) - delta_T_seconds) < 0.05) {
-        return; 
+        return;
     }
 
     float target_pulse = SERVOMIN + ((target_angle - (-90.0)) / (90.0 - (-90.0))) * (SERVOMAX - SERVOMIN);
     target_pulse = constrain(target_pulse, SERVOMIN, SERVOMAX);
-    
-    // 2. Start from EXACTLY where the servo physically is right now
-    servos[servoIndex].startPulse = servos[servoIndex].currentPulse; 
+
+    // Start from where the servo physically is right now
+    servos[servoIndex].startPulse = servos[servoIndex].currentPulse;
     servos[servoIndex].targetPulse = target_pulse;
     servos[servoIndex].targetAngle = target_angle;
-    
-    // 3. Convert GUI seconds into Milliseconds!
-    servos[servoIndex].delta_T_ms = delta_T_seconds * 1000.0; 
+
+    // Convert GUI seconds into Milliseconds
+    servos[servoIndex].delta_T_ms = delta_T_seconds * 1000.0;
     servos[servoIndex].startTime = millis();
     servos[servoIndex].isMoving = true;
 }

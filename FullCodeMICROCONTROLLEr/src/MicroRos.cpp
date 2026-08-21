@@ -38,9 +38,6 @@ void error_loop(){
 flower_msgs__msg__RobotCommand sub_msg;
 
 // --- Callback for the subscriber ---
-// Fires on every /flower_commands message; copies the incoming RobotCommand
-// into flowerData (read by main.cpp's loop) and periodically echoes it back
-// out over /flower_debug so the sender can confirm what the ESP32 received.
 void subscription_callback(const void * msgin) {
   const flower_msgs__msg__RobotCommand * msg = (const flower_msgs__msg__RobotCommand *)msgin;
   
@@ -59,9 +56,7 @@ void subscription_callback(const void * msgin) {
 
   flowerData.n20_zero = msg->n20_zero;
 
-  // Relay every incoming /flower_commands message back out over flower_debug
-  // so the sender can confirm the ESP32 is receiving the values it expects.
-  // Throttled so a fast-publishing sender (e.g. a GUI slider) doesn't flood the topic.
+  // Relay every incoming /flower_commands message back out over flower_debug so the sender can confirm the ESP32 is receiving the values it expects.
   static unsigned long last_relay = 0;
   if (millis() - last_relay > 300) {
     last_relay = millis();
@@ -77,10 +72,8 @@ void subscription_callback(const void * msgin) {
   }
 }
 
-// Connects to whichever of the two configured WiFi networks is reachable,
-// resolves that network's matching micro-ROS agent host via mDNS, and pings
-// the agent before returning - so a successful return means the transport
-// is actually usable, not just that WiFi came up.
+// Connects to whichever of the two configured WiFi networks is reachable, resolves that network's matching micro-ROS agent host via mDNS, and pings
+// the agent before returning - so a successful return means the transport is actually usable, not just that WiFi came up.
 bool WiFiSetup() {
   Serial.println("--- Checking WiFi & mDNS ---");
   
@@ -171,9 +164,7 @@ bool WiFiSetup() {
   // 4. Set the transport
   set_microros_wifi_transports(active_ssid, active_pass, agent_ip, AGENT_PORT);
 
-  // 5. Wait for the ROS agent to actually be reachable over that transport before
-  // handing off to the rclc entity setup, so the green "waiting for host" spin
-  // covers the whole wait, not just the mDNS lookup.
+  // 5. Wait for the ROS agent to actually be reachable over that transport before handing off to the rclc entity setup
   Serial.print("Pinging Agent...");
   int agent_ping_retries = 0;
   while (rmw_uros_ping_agent(200, 1) != RMW_RET_OK && agent_ping_retries < 25) { // ~5-second timeout
@@ -192,9 +183,8 @@ bool WiFiSetup() {
 }
 
 
-// Brings up every micro-ROS entity: node, /flower_commands subscription,
-// /flower_debug publisher, and the single-subscription executor. Returns
-// false on the first failed step so the caller (main.cpp) can retry.
+// Brings up every micro-ROS entity: node, /flower_commands subscription, /flower_debug publisher, and the single-subscription executor. 
+//Returns false on the first failed step so the caller (main.cpp) can retry.
 bool MicroRosSetup() {
   // If WiFi or mDNS fails, abort setup
   if (!WiFiSetup()) {
