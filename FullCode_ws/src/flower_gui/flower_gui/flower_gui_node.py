@@ -213,7 +213,7 @@ class FlowerDashboard(Node):
         tk.Entry(time_frame_kin, textvariable=self.kin_time_var, width=5).pack(side="left", padx=2)
 
         # ================= RIGHT FRAME (HARDWARE) =================
-        servo_frame = tk.LabelFrame(right_frame, text="Servos (-90 to 90)", font=("TkDefaultFont", 9))
+        servo_frame = tk.LabelFrame(right_frame, text="Servos (-90 to 90) BE CAREFUL COMMANDING OVER 45 DEGREES", font=("TkDefaultFont", 9))
         servo_frame.pack(fill="x", padx=2, pady=0)
         for i in range(4):
             row = tk.Frame(servo_frame)
@@ -261,7 +261,7 @@ class FlowerDashboard(Node):
             btn.pack(side="right", padx=2)
             self.led_color_btns.append(btn)
 
-        n20_frame = tk.LabelFrame(right_frame, text="N20", font=("TkDefaultFont", 9))
+        n20_frame = tk.LabelFrame(right_frame, text="Petal Control", font=("TkDefaultFont", 9))
         n20_frame.pack(fill="x", padx=2, pady=2)
         
         n20_row = tk.Frame(n20_frame)
@@ -271,7 +271,7 @@ class FlowerDashboard(Node):
         tk.Scale(n20_row, variable=self.n20_speed_var, from_=0, to=255, 
                  orient="horizontal", label="Spd", font=("TkDefaultFont", 8), width=10, sliderlength=15).pack(side="left", expand=True, fill="x", padx=2)
         
-        tk.Button(n20_frame, text="Zero", command=self.toggle_n20_zero, height=1, bd=1, relief="sunken").pack(fill="x", padx=2, pady=2)
+        tk.Button(n20_frame, text="TARE -> Current Pos = Expected Pos", command=self.toggle_n20_zero, height=1, bd=1, relief="sunken").pack(fill="x", padx=2, pady=2)
         
         routine_frame = tk.Frame(right_frame)
         routine_frame.pack(pady=2)
@@ -292,7 +292,7 @@ class FlowerDashboard(Node):
         self.api_btn.pack()
 
     def toggle_n20_zero(self):
-        """Toggles the N20 zero flag when the Zero button is pressed."""
+        """Toggles the N20 zero flag when the Current Pos == Expected Pos button is pressed."""
         self.n20_zero_var.set(not self.n20_zero_var.get())
         self.get_logger().info(f"N20 zeroed")
 
