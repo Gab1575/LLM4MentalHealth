@@ -1,0 +1,1869 @@
+{
+  "folder": "C:\\Users\\23hdh1\\Desktop\\Fusion360Export",
+  "formats": [
+    "f3d",
+    "step",
+    "stl"
+  ],
+  "projects_folders": {
+    "a.YnVzaW5lc3M6cXVlZW5zdTczNSMyMDI2MDUxMzEwOTA2Mzk3ODE": []
+  },
+  "use_active_folder": false,
+  "unhide_all": true,
+  "save_sketches": false,
+  "num_versions": 0,
+  "export_non_design_files": false
+}
+Visiting folder LLM4MentalHealth
+Visiting folder Bases
+Visiting folder BaseV0
+Visiting file BaseAssemblyV0 v17.f3d
+Opening `BaseAssemblyV0` v17
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV0\BaseAssemblyV0_v17.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV0\BaseAssemblyV0_v17.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV0\BaseAssemblyV0_v17.stl
+Closing `BaseAssemblyV0` v17
+Visiting file BaseV0 v17.f3d
+Opening `BaseV0` v17
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV0\BaseV0_v17.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV0\BaseV0_v17.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV0\BaseV0_v17.stl
+Closing `BaseV0` v17
+Visiting file CenterSupportV0 v6.f3d
+Opening `CenterSupportV0` v6
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV0\CenterSupportV0_v6.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV0\CenterSupportV0_v6.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV0\CenterSupportV0_v6.stl
+Closing `CenterSupportV0` v6
+Visiting file CenterSupportV1 v21.f3d
+Opening `CenterSupportV1` v21
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV0\CenterSupportV1_v21.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV0\CenterSupportV1_v21.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV0\CenterSupportV1_v21.stl
+Closing `CenterSupportV1` v21
+Visiting file ServoMotor v1.f3d
+Opening `ServoMotor` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV0\ServoMotor_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV0\ServoMotor_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV0\ServoMotor_v1.stl
+Closing `ServoMotor` v1
+Visiting file ServoMount v1.f3d
+Opening `ServoMount` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV0\ServoMount_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV0\ServoMount_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV0\ServoMount_v1.stl
+Closing `ServoMount` v1
+Visiting file Spool60KGV0 v2.f3d
+Opening `Spool60KGV0` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV0\Spool60KGV0_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV0\Spool60KGV0_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV0\Spool60KGV0_v2.stl
+Closing `Spool60KGV0` v2
+Visiting file SpoolV0 v5.f3d
+Opening `SpoolV0` v5
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV0\SpoolV0_v5.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV0\SpoolV0_v5.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV0\SpoolV0_v5.stl
+Closing `SpoolV0` v5
+Visiting folder BaseV1
+Visiting file Pot v13.f3d
+Opening `Pot` v13
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\Pot_v13.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\Pot_v13.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\Pot_v13.stl
+Closing `Pot` v13
+Visiting file Base v3.f3d
+Opening `Base` v3
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\Base_v3.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\Base_v3.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\Base_v3.stl
+Closing `Base` v3
+Visiting file HighRocker v5.f3d
+Opening `HighRocker` v5
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\HighRocker_v5.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\HighRocker_v5.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\HighRocker_v5.stl
+Closing `HighRocker` v5
+Visiting file DS5160 HV 60KG Digital Servo Motor v1.f3d
+Opening `DS5160 HV 60KG Digital Servo Motor` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\DS5160 HV 60KG Digital Servo Motor_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\DS5160 HV 60KG Digital Servo Motor_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\DS5160 HV 60KG Digital Servo Motor_v1.stl
+Closing `DS5160 HV 60KG Digital Servo Motor` v1
+Visiting file LowRocker v3.f3d
+Opening `LowRocker` v3
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\LowRocker_v3.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\LowRocker_v3.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\LowRocker_v3.stl
+Closing `LowRocker` v3
+Visiting file ServoHolder v10.f3d
+Opening `ServoHolder` v10
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\ServoHolder_v10.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\ServoHolder_v10.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\ServoHolder_v10.stl
+Closing `ServoHolder` v10
+Visiting file ServoAssemblyV2 v4.f3d
+Opening `ServoAssemblyV2` v4
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\ServoAssemblyV2_v4.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\ServoAssemblyV2_v4.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\ServoAssemblyV2_v4.stl
+Closing `ServoAssemblyV2` v4
+Visiting file FullAssembly v1.f3d
+Opening `FullAssembly` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\FullAssembly_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\FullAssembly_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\FullAssembly_v1.stl
+Closing `FullAssembly` v1
+Visiting file Assembly v2.f3d
+Opening `Assembly` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\Assembly_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\Assembly_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV1\Assembly_v2.stl
+Closing `Assembly` v2
+Visiting folder BaseV2
+Visiting file UpperMount v14.f3d
+Opening `UpperMount` v14
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\UpperMount_v14.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\UpperMount_v14.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\UpperMount_v14.stl
+Closing `UpperMount` v14
+Visiting file OuterPot v9.f3d
+Opening `OuterPot` v9
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\OuterPot_v9.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\OuterPot_v9.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\OuterPot_v9.stl
+Closing `OuterPot` v9
+Visiting file Spool v4.f3d
+Opening `Spool` v4
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\Spool_v4.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\Spool_v4.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\Spool_v4.stl
+Closing `Spool` v4
+Visiting file ServoMotor v2.f3d
+Opening `ServoMotor` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\ServoMotor_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\ServoMotor_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\ServoMotor_v2.stl
+Closing `ServoMotor` v2
+Visiting file ServoMount v2.f3d
+Opening `ServoMount` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\ServoMount_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\ServoMount_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\ServoMount_v2.stl
+Closing `ServoMount` v2
+Visiting file ServoAssembly v5.f3d
+Opening `ServoAssembly` v5
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\ServoAssembly_v5.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\ServoAssembly_v5.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\ServoAssembly_v5.stl
+Closing `ServoAssembly` v5
+Visiting file MicroGearmotor v3 v3.f3d
+Opening `MicroGearmotor v3` v3
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\MicroGearmotor v3_v3.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\MicroGearmotor v3_v3.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\MicroGearmotor v3_v3.stl
+Closing `MicroGearmotor v3` v3
+Visiting file Pot v21.f3d
+Opening `Pot` v21
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\Pot_v21.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\Pot_v21.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\Pot_v21.stl
+Closing `Pot` v21
+Visiting file 3mm x 6 threaded insert v1.f3d
+Opening `3mm x 6 threaded insert` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\3mm x 6 threaded insert_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\3mm x 6 threaded insert_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\3mm x 6 threaded insert_v1.stl
+Closing `3mm x 6 threaded insert` v1
+Visiting file FullAssembly v9.f3d
+Opening `FullAssembly` v9
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\FullAssembly_v9.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\FullAssembly_v9.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2\FullAssembly_v9.stl
+Closing `FullAssembly` v9
+Visiting folder BaseV2.1
+Visiting file MicroGearmotor v3 v1.f3d
+Opening `MicroGearmotor v3` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\MicroGearmotor v3_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\MicroGearmotor v3_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\MicroGearmotor v3_v1.stl
+Closing `MicroGearmotor v3` v1
+Visiting file TopPlate v24.f3d
+Opening `TopPlate` v24
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\TopPlate_v24.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\TopPlate_v24.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\TopPlate_v24.stl
+Closing `TopPlate` v24
+Visiting file 3mm x 6 threaded insert v1.f3d
+Opening `3mm x 6 threaded insert` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\3mm x 6 threaded insert_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\3mm x 6 threaded insert_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\3mm x 6 threaded insert_v1.stl
+Closing `3mm x 6 threaded insert` v1
+Visiting file ServoMotor v6.f3d
+Opening `ServoMotor` v6
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\ServoMotor_v6.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\ServoMotor_v6.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\ServoMotor_v6.stl
+Closing `ServoMotor` v6
+Visiting file ServoAssemblyV2.1 v14.f3d
+Opening `ServoAssemblyV2.1` v14
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\ServoAssemblyV2.1_v14.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\ServoAssemblyV2.1_v14.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\ServoAssemblyV2.1_v14.stl
+Closing `ServoAssemblyV2.1` v14
+Visiting file OuterPot v6.f3d
+Opening `OuterPot` v6
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\OuterPot_v6.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\OuterPot_v6.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\OuterPot_v6.stl
+Closing `OuterPot` v6
+Visiting file MountV2.1 v30.f3d
+Opening `MountV2.1` v30
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\MountV2.1_v30.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\MountV2.1_v30.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\MountV2.1_v30.stl
+Closing `MountV2.1` v30
+Visiting file FullAssemblyV2.1 v19.f3d
+Opening `FullAssemblyV2.1` v19
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\FullAssemblyV2.1_v19.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\FullAssemblyV2.1_v19.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\FullAssemblyV2.1_v19.stl
+Closing `FullAssemblyV2.1` v19
+Visiting file ServoMount v4.f3d
+Opening `ServoMount` v4
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\ServoMount_v4.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\ServoMount_v4.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\ServoMount_v4.stl
+Closing `ServoMount` v4
+Visiting folder Spools
+Visiting file SpoolTop v15.f3d
+Opening `SpoolTop` v15
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\Spools\SpoolTop_v15.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\Spools\SpoolTop_v15.step
+Traceback (most recent call last):
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 405, in visit_file
+    counter += export_file(ctx, format, doc)
+               ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 298, in export_file
+    options = em.createSTLExportOptions(design.rootComponent, output_path_s)
+  File "C:\Users/23hdh1/AppData/Local/Autodesk/webdeploy/production/61bf25b220a2d0307c84c301e65a59ac225d9a1e/Api/Python/packages\adsk\fusion.py", line 32959, in createSTLExportOptions
+    return _fusion.ExportManager_createSTLExportOptions(self, *args)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+RuntimeError: 3 : invalid geometry
+
+Closing `SpoolTop` v15
+Visiting file SpoolPin v8.f3d
+Opening `SpoolPin` v8
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\Spools\SpoolPin_v8.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\Spools\SpoolPin_v8.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\Spools\SpoolPin_v8.stl
+Closing `SpoolPin` v8
+Visiting file SpoolBottom v17.f3d
+Opening `SpoolBottom` v17
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\Spools\SpoolBottom_v17.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\Spools\SpoolBottom_v17.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\Spools\SpoolBottom_v17.stl
+Closing `SpoolBottom` v17
+Visiting file SpoolAssemblyRear v11.f3d
+Opening `SpoolAssemblyRear` v11
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\Spools\SpoolAssemblyRear_v11.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\Spools\SpoolAssemblyRear_v11.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\Spools\SpoolAssemblyRear_v11.stl
+Closing `SpoolAssemblyRear` v11
+Visiting file SpoolAssemblyFront v17.f3d
+Opening `SpoolAssemblyFront` v17
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\Spools\SpoolAssemblyFront_v17.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\Spools\SpoolAssemblyFront_v17.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV2.1\Spools\SpoolAssemblyFront_v17.stl
+Closing `SpoolAssemblyFront` v17
+Visiting folder BaseV3
+Visiting file Base v107.f3d
+Opening `Base` v107
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV3\Base_v107.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV3\Base_v107.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV3\Base_v107.stl
+Closing `Base` v107
+Visiting file FullAssembly v26.f3d
+Opening `FullAssembly` v26
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV3\FullAssembly_v26.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV3\FullAssembly_v26.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV3\FullAssembly_v26.stl
+Closing `FullAssembly` v26
+Visiting file MicroGearmotor v3 v1.f3d
+Opening `MicroGearmotor v3` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV3\MicroGearmotor v3_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV3\MicroGearmotor v3_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV3\MicroGearmotor v3_v1.stl
+Closing `MicroGearmotor v3` v1
+Visiting file ServoAssembly v19.f3d
+Opening `ServoAssembly` v19
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV3\ServoAssembly_v19.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV3\ServoAssembly_v19.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV3\ServoAssembly_v19.stl
+Closing `ServoAssembly` v19
+Visiting file ServoMotor v1.f3d
+Opening `ServoMotor` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV3\ServoMotor_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV3\ServoMotor_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV3\ServoMotor_v1.stl
+Closing `ServoMotor` v1
+Visiting file Spool v3.f3d
+Opening `Spool` v3
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV3\Spool_v3.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV3\Spool_v3.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV3\Spool_v3.stl
+Closing `Spool` v3
+Visiting file Step Down Module v2.f3d
+Opening `Step Down Module` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV3\Step Down Module_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV3\Step Down Module_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV3\Step Down Module_v2.stl
+Closing `Step Down Module` v2
+Visiting folder BaseV4
+Visiting file Assembly v131.f3d
+Opening `Assembly` v131
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Assembly_v131.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Assembly_v131.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Assembly_v131.stl
+Closing `Assembly` v131
+Visiting file InnerSupport v5.f3d
+Opening `InnerSupport` v5
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\InnerSupport_v5.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\InnerSupport_v5.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\InnerSupport_v5.stl
+Closing `InnerSupport` v5
+Visiting file Magnet v2.f3d
+Opening `Magnet` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Magnet_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Magnet_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Magnet_v2.stl
+Closing `Magnet` v2
+Visiting file Magnet Holder v5.f3d
+Opening `Magnet Holder` v5
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Magnet Holder_v5.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Magnet Holder_v5.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Magnet Holder_v5.stl
+Closing `Magnet Holder` v5
+Visiting file MagnetStandoff v1.f3d
+Opening `MagnetStandoff` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\MagnetStandoff_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\MagnetStandoff_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\MagnetStandoff_v1.stl
+Closing `MagnetStandoff` v1
+Visiting file MainSlope v32.f3d
+Opening `MainSlope` v32
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\MainSlope_v32.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\MainSlope_v32.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\MainSlope_v32.stl
+Closing `MainSlope` v32
+Visiting file MiddleSupport v33.f3d
+Opening `MiddleSupport` v33
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\MiddleSupport_v33.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\MiddleSupport_v33.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\MiddleSupport_v33.stl
+Closing `MiddleSupport` v33
+Visiting file OuterCaseSupport v3.f3d
+Opening `OuterCaseSupport` v3
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\OuterCaseSupport_v3.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\OuterCaseSupport_v3.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\OuterCaseSupport_v3.stl
+Closing `OuterCaseSupport` v3
+Visiting file PCA9685 v18 v2.f3d
+Opening `PCA9685 v18` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\PCA9685 v18_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\PCA9685 v18_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\PCA9685 v18_v2.stl
+Closing `PCA9685 v18` v2
+Visiting file ServoDriverBracket v12.f3d
+Opening `ServoDriverBracket` v12
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\ServoDriverBracket_v12.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\ServoDriverBracket_v12.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\ServoDriverBracket_v12.stl
+Closing `ServoDriverBracket` v12
+Visiting file ServoRail v52.f3d
+Opening `ServoRail` v52
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\ServoRail_v52.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\ServoRail_v52.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\ServoRail_v52.stl
+Closing `ServoRail` v52
+Visiting file Slopes v4.f3d
+Opening `Slopes` v4
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Slopes_v4.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Slopes_v4.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Slopes_v4.stl
+Closing `Slopes` v4
+Visiting file Standoff 5mm v4.f3d
+Opening `Standoff 5mm` v4
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Standoff 5mm_v4.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Standoff 5mm_v4.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Standoff 5mm_v4.stl
+Closing `Standoff 5mm` v4
+Visiting file Standoff 7mm v2.f3d
+Opening `Standoff 7mm` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Standoff 7mm_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Standoff 7mm_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Standoff 7mm_v2.stl
+Closing `Standoff 7mm` v2
+Visiting file Standoff 15mm v6.f3d
+Opening `Standoff 15mm` v6
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Standoff 15mm_v6.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Standoff 15mm_v6.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Standoff 15mm_v6.stl
+Closing `Standoff 15mm` v6
+Visiting file Untitled v11.f3d
+Opening `Untitled` v11
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Untitled_v11.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Untitled_v11.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Untitled_v11.stl
+Closing `Untitled` v11
+Visiting folder CableRouting
+Visiting file Bearing v1.f3d
+Opening `Bearing` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\CableRouting\Bearing_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\CableRouting\Bearing_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\CableRouting\Bearing_v1.stl
+Closing `Bearing` v1
+Visiting file BearingHolder v32.f3d
+Opening `BearingHolder` v32
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\CableRouting\BearingHolder_v32.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\CableRouting\BearingHolder_v32.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\CableRouting\BearingHolder_v32.stl
+Closing `BearingHolder` v32
+Visiting file BearingSleeve v5.f3d
+Opening `BearingSleeve` v5
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\CableRouting\BearingSleeve_v5.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\CableRouting\BearingSleeve_v5.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\CableRouting\BearingSleeve_v5.stl
+Closing `BearingSleeve` v5
+Visiting file MidBearingAssembly v5.f3d
+Opening `MidBearingAssembly` v5
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\CableRouting\MidBearingAssembly_v5.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\CableRouting\MidBearingAssembly_v5.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\CableRouting\MidBearingAssembly_v5.stl
+Closing `MidBearingAssembly` v5
+Visiting file MidBearingStand v9.f3d
+Opening `MidBearingStand` v9
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\CableRouting\MidBearingStand_v9.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\CableRouting\MidBearingStand_v9.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\CableRouting\MidBearingStand_v9.stl
+Closing `MidBearingStand` v9
+Visiting file RopePulley v15.f3d
+Opening `RopePulley` v15
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\CableRouting\RopePulley_v15.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\CableRouting\RopePulley_v15.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\CableRouting\RopePulley_v15.stl
+Closing `RopePulley` v15
+Visiting folder OuterCases
+Visiting file OuterSheelBase2 v7.f3d
+Opening `OuterSheelBase2` v7
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\OuterCases\OuterSheelBase2_v7.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\OuterCases\OuterSheelBase2_v7.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\OuterCases\OuterSheelBase2_v7.stl
+Closing `OuterSheelBase2` v7
+Visiting file OuterShellBase v22.f3d
+Opening `OuterShellBase` v22
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\OuterCases\OuterShellBase_v22.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\OuterCases\OuterShellBase_v22.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\OuterCases\OuterShellBase_v22.stl
+Closing `OuterShellBase` v22
+Visiting file OuterShellUpper v68.f3d
+Opening `OuterShellUpper` v68
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\OuterCases\OuterShellUpper_v68.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\OuterCases\OuterShellUpper_v68.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\OuterCases\OuterShellUpper_v68.stl
+Closing `OuterShellUpper` v68
+Visiting file OutShellBase2 v3.f3d
+Opening `OutShellBase2` v3
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\OuterCases\OutShellBase2_v3.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\OuterCases\OutShellBase2_v3.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\OuterCases\OutShellBase2_v3.stl
+Closing `OutShellBase2` v3
+Visiting folder Plates
+Visiting file ElectronicsPlate v18.f3d
+Opening `ElectronicsPlate` v18
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Plates\ElectronicsPlate_v18.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Plates\ElectronicsPlate_v18.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Plates\ElectronicsPlate_v18.stl
+Closing `ElectronicsPlate` v18
+Visiting file MidPlate v76.f3d
+Opening `MidPlate` v76
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Plates\MidPlate_v76.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Plates\MidPlate_v76.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Plates\MidPlate_v76.stl
+Closing `MidPlate` v76
+Visiting file TopPlate v60.f3d
+Opening `TopPlate` v60
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Plates\TopPlate_v60.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Plates\TopPlate_v60.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Plates\TopPlate_v60.stl
+Closing `TopPlate` v60
+Visiting file UpperPlate v74.f3d
+Opening `UpperPlate` v74
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Plates\UpperPlate_v74.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Plates\UpperPlate_v74.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Plates\UpperPlate_v74.stl
+Closing `UpperPlate` v74
+Visiting folder PowerBoard
+Visiting file 1000uF 16V electr 10 x16mm  -P.diameter 5mm-Black-White v1.f3d
+Opening `1000uF 16V electr 10 x16mm  -P.diameter 5mm-Black-White` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\PowerBoard\1000uF 16V electr 10 x16mm  -P.diameter 5mm-Black-White_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\PowerBoard\1000uF 16V electr 10 x16mm  -P.diameter 5mm-Black-White_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\PowerBoard\1000uF 16V electr 10 x16mm  -P.diameter 5mm-Black-White_v1.stl
+Closing `1000uF 16V electr 10 x16mm  -P.diameter 5mm-Black-White` v1
+Visiting file ElectronicsAssembly v9.f3d
+Opening `ElectronicsAssembly` v9
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\PowerBoard\ElectronicsAssembly_v9.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\PowerBoard\ElectronicsAssembly_v9.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\PowerBoard\ElectronicsAssembly_v9.stl
+Closing `ElectronicsAssembly` v9
+Visiting file ESP-32_v1 v2.f3d
+Opening `ESP-32_v1` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\PowerBoard\ESP-32_v1_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\PowerBoard\ESP-32_v1_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\PowerBoard\ESP-32_v1_v2.stl
+Closing `ESP-32_v1` v2
+Visiting file Perfboard v11.f3d
+Opening `Perfboard` v11
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\PowerBoard\Perfboard_v11.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\PowerBoard\Perfboard_v11.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\PowerBoard\Perfboard_v11.stl
+Closing `Perfboard` v11
+Visiting folder Servo
+Visiting file Bevel v30.f3d
+Opening `Bevel` v30
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\Bevel_v30.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\Bevel_v30.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\Bevel_v30.stl
+Closing `Bevel` v30
+Visiting file DriverSupport v4.f3d
+Opening `DriverSupport` v4
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\DriverSupport_v4.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\DriverSupport_v4.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\DriverSupport_v4.stl
+Closing `DriverSupport` v4
+Visiting file ServoAssembly v22.f3d
+Opening `ServoAssembly` v22
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\ServoAssembly_v22.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\ServoAssembly_v22.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\ServoAssembly_v22.stl
+Closing `ServoAssembly` v22
+Visiting file ServoHorn v2.f3d
+Opening `ServoHorn` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\ServoHorn_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\ServoHorn_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\ServoHorn_v2.stl
+Closing `ServoHorn` v2
+Visiting file ServoMotor v1.f3d
+Opening `ServoMotor` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\ServoMotor_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\ServoMotor_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\ServoMotor_v1.stl
+Closing `ServoMotor` v1
+Visiting file ServoMount v42.f3d
+Opening `ServoMount` v42
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\ServoMount_v42.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\ServoMount_v42.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\ServoMount_v42.stl
+Closing `ServoMount` v42
+Visiting file ServoMount v37.f3d
+Opening `ServoMount` v37
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\ServoMount_v37.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\ServoMount_v37.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\ServoMount_v37.stl
+Closing `ServoMount` v37
+Visiting file ServoSupport v8.f3d
+Opening `ServoSupport` v8
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\ServoSupport_v8.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\ServoSupport_v8.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\ServoSupport_v8.stl
+Closing `ServoSupport` v8
+Visiting file Spool v5.f3d
+Opening `Spool` v5
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\Spool_v5.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\Spool_v5.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\Spool_v5.stl
+Closing `Spool` v5
+Visiting file SpoolV2 v8.f3d
+Opening `SpoolV2` v8
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\SpoolV2_v8.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\SpoolV2_v8.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV4\Servo\SpoolV2_v8.stl
+Closing `SpoolV2` v8
+Visiting folder BaseV5
+Visiting file BasePlatform v2.f3d
+Opening `BasePlatform` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\BasePlatform_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\BasePlatform_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\BasePlatform_v2.stl
+Closing `BasePlatform` v2
+Visiting file FullAssembly v6.f3d
+Opening `FullAssembly` v6
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\FullAssembly_v6.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\FullAssembly_v6.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\FullAssembly_v6.stl
+Closing `FullAssembly` v6
+Visiting file ServoAssembly v10.f3d
+Opening `ServoAssembly` v10
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\ServoAssembly_v10.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\ServoAssembly_v10.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\ServoAssembly_v10.stl
+Closing `ServoAssembly` v10
+Visiting file ServoSlider v14.f3d
+Opening `ServoSlider` v14
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\ServoSlider_v14.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\ServoSlider_v14.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\ServoSlider_v14.stl
+Closing `ServoSlider` v14
+Visiting file SpoolV2 v1.f3d
+Opening `SpoolV2` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\SpoolV2_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\SpoolV2_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\SpoolV2_v1.stl
+Closing `SpoolV2` v1
+Visiting file UpperMoulding v12.f3d
+Opening `UpperMoulding` v12
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\UpperMoulding_v12.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\UpperMoulding_v12.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\UpperMoulding_v12.stl
+Closing `UpperMoulding` v12
+Visiting folder Electronics
+Visiting file ElectronicsAssembly v1.f3d
+Opening `ElectronicsAssembly` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\Electronics\ElectronicsAssembly_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\Electronics\ElectronicsAssembly_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\Electronics\ElectronicsAssembly_v1.stl
+Closing `ElectronicsAssembly` v1
+Visiting file PCA9685 v1.f3d
+Opening `PCA9685` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\Electronics\PCA9685_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\Electronics\PCA9685_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\Electronics\PCA9685_v1.stl
+Closing `PCA9685` v1
+Visiting file ServoMotor v1.f3d
+Opening `ServoMotor` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\Electronics\ServoMotor_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\Electronics\ServoMotor_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\Electronics\ServoMotor_v1.stl
+Closing `ServoMotor` v1
+Visiting file ServoMotorBrushless v10.f3d
+Opening `ServoMotorBrushless` v10
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\Electronics\ServoMotorBrushless_v10.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\Electronics\ServoMotorBrushless_v10.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\Electronics\ServoMotorBrushless_v10.stl
+Closing `ServoMotorBrushless` v10
+Visiting file Ultra Tiny USB Camera with GC0307 Sensor v1.f3d
+Opening `Ultra Tiny USB Camera with GC0307 Sensor` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\Electronics\Ultra Tiny USB Camera with GC0307 Sensor_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\Electronics\Ultra Tiny USB Camera with GC0307 Sensor_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\Electronics\Ultra Tiny USB Camera with GC0307 Sensor_v1.stl
+Closing `Ultra Tiny USB Camera with GC0307 Sensor` v1
+Visiting folder MiscHardware
+Visiting file 4mmIDx12mm Bushing v1.f3d
+Opening `4mmIDx12mm Bushing` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\MiscHardware\4mmIDx12mm Bushing_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\MiscHardware\4mmIDx12mm Bushing_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\MiscHardware\4mmIDx12mm Bushing_v1.stl
+Closing `4mmIDx12mm Bushing` v1
+Visiting file 4mmx120mm Rod v3.f3d
+Opening `4mmx120mm Rod` v3
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\MiscHardware\4mmx120mm Rod_v3.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\MiscHardware\4mmx120mm Rod_v3.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\MiscHardware\4mmx120mm Rod_v3.stl
+Closing `4mmx120mm Rod` v3
+Visiting file Bearing v1.f3d
+Opening `Bearing` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\MiscHardware\Bearing_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\MiscHardware\Bearing_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\MiscHardware\Bearing_v1.stl
+Closing `Bearing` v1
+Visiting file BearingSleeve v1.f3d
+Opening `BearingSleeve` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\MiscHardware\BearingSleeve_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\MiscHardware\BearingSleeve_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\MiscHardware\BearingSleeve_v1.stl
+Closing `BearingSleeve` v1
+Visiting file Roller v1.f3d
+Opening `Roller` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\MiscHardware\Roller_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\MiscHardware\Roller_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\MiscHardware\Roller_v1.stl
+Closing `Roller` v1
+Visiting file ServoHorn v2.f3d
+Opening `ServoHorn` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\MiscHardware\ServoHorn_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\MiscHardware\ServoHorn_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\MiscHardware\ServoHorn_v2.stl
+Closing `ServoHorn` v2
+Visiting file Spring v9.f3d
+Opening `Spring` v9
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\MiscHardware\Spring_v9.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\MiscHardware\Spring_v9.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\MiscHardware\Spring_v9.stl
+Closing `Spring` v9
+Visiting folder Plates
+Visiting file LowerPlate v12.f3d
+Opening `LowerPlate` v12
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\Plates\LowerPlate_v12.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\Plates\LowerPlate_v12.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\Plates\LowerPlate_v12.stl
+Closing `LowerPlate` v12
+Visiting file MidPlate v4.f3d
+Opening `MidPlate` v4
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\Plates\MidPlate_v4.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\Plates\MidPlate_v4.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV5\Plates\MidPlate_v4.stl
+Closing `MidPlate` v4
+Visiting folder BaseV6
+Visiting file Bearing v6.f3d
+Opening `Bearing` v6
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Bearing_v6.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Bearing_v6.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Bearing_v6.stl
+Closing `Bearing` v6
+Visiting file ElectronicsAssembly v1.f3d
+Opening `ElectronicsAssembly` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\ElectronicsAssembly_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\ElectronicsAssembly_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\ElectronicsAssembly_v1.stl
+Closing `ElectronicsAssembly` v1
+Visiting file FullAssembly v26.f3d
+Opening `FullAssembly` v26
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\FullAssembly_v26.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\FullAssembly_v26.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\FullAssembly_v26.stl
+Closing `FullAssembly` v26
+Visiting file HeatSetInsert-M2.5x2.5 v1.f3d
+Opening `HeatSetInsert-M2.5x2.5` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\HeatSetInsert-M2.5x2.5_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\HeatSetInsert-M2.5x2.5_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\HeatSetInsert-M2.5x2.5_v1.stl
+Closing `HeatSetInsert-M2.5x2.5` v1
+Visiting file HeatSetInsert-M2.5x4 v2.f3d
+Opening `HeatSetInsert-M2.5x4` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\HeatSetInsert-M2.5x4_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\HeatSetInsert-M2.5x4_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\HeatSetInsert-M2.5x4_v2.stl
+Closing `HeatSetInsert-M2.5x4` v2
+Visiting file HeatSetInsert-M2.5x6 v2.f3d
+Opening `HeatSetInsert-M2.5x6` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\HeatSetInsert-M2.5x6_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\HeatSetInsert-M2.5x6_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\HeatSetInsert-M2.5x6_v2.stl
+Closing `HeatSetInsert-M2.5x6` v2
+Visiting file HeatSetInsert-M3x8 v1.f3d
+Opening `HeatSetInsert-M3x8` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\HeatSetInsert-M3x8_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\HeatSetInsert-M3x8_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\HeatSetInsert-M3x8_v1.stl
+Closing `HeatSetInsert-M3x8` v1
+Visiting file PCA9685 v1.f3d
+Opening `PCA9685` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\PCA9685_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\PCA9685_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\PCA9685_v1.stl
+Closing `PCA9685` v1
+Visiting file ServoAcrylicTest v12.f3d
+Opening `ServoAcrylicTest` v12
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\ServoAcrylicTest_v12.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\ServoAcrylicTest_v12.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\ServoAcrylicTest_v12.stl
+Closing `ServoAcrylicTest` v12
+Visiting file ServoHorn v1.f3d
+Opening `ServoHorn` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\ServoHorn_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\ServoHorn_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\ServoHorn_v1.stl
+Closing `ServoHorn` v1
+Visiting file ServoMotor v1.f3d
+Opening `ServoMotor` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\ServoMotor_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\ServoMotor_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\ServoMotor_v1.stl
+Closing `ServoMotor` v1
+Visiting file ServoMotorBrushless v1.f3d
+Opening `ServoMotorBrushless` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\ServoMotorBrushless_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\ServoMotorBrushless_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\ServoMotorBrushless_v1.stl
+Closing `ServoMotorBrushless` v1
+Visiting file ServoSlideAssembly v8.f3d
+Opening `ServoSlideAssembly` v8
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\ServoSlideAssembly_v8.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\ServoSlideAssembly_v8.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\ServoSlideAssembly_v8.stl
+Closing `ServoSlideAssembly` v8
+Visiting file ServoTensioner v2.f3d
+Opening `ServoTensioner` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\ServoTensioner_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\ServoTensioner_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\ServoTensioner_v2.stl
+Closing `ServoTensioner` v2
+Visiting file slide v2.f3d
+Opening `slide` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\slide_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\slide_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\slide_v2.stl
+Closing `slide` v2
+Visiting file SlideSupports v11.f3d
+Opening `SlideSupports` v11
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\SlideSupports_v11.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\SlideSupports_v11.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\SlideSupports_v11.stl
+Closing `SlideSupports` v11
+Visiting file SpoolV2 v1.f3d
+Opening `SpoolV2` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\SpoolV2_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\SpoolV2_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\SpoolV2_v1.stl
+Closing `SpoolV2` v1
+Visiting file Spring-4mmx10 v1.f3d
+Opening `Spring-4mmx10` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Spring-4mmx10_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Spring-4mmx10_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Spring-4mmx10_v1.stl
+Closing `Spring-4mmx10` v1
+Visiting file Ultra Tiny USB Camera with GC0307 Sensor v1.f3d
+Opening `Ultra Tiny USB Camera with GC0307 Sensor` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Ultra Tiny USB Camera with GC0307 Sensor_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Ultra Tiny USB Camera with GC0307 Sensor_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Ultra Tiny USB Camera with GC0307 Sensor_v1.stl
+Closing `Ultra Tiny USB Camera with GC0307 Sensor` v1
+Visiting file Untitled v1.f3d
+Opening `Untitled` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Untitled_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Untitled_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Untitled_v1.stl
+Closing `Untitled` v1
+Visiting folder Plates
+Visiting file BasePlate v7.f3d
+Opening `BasePlate` v7
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BasePlate_v7.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BasePlate_v7.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BasePlate_v7.stl
+Closing `BasePlate` v7
+Visiting file BearingPlate1 v15.f3d
+Opening `BearingPlate1` v15
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BearingPlate1_v15.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BearingPlate1_v15.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BearingPlate1_v15.stl
+Closing `BearingPlate1` v15
+Visiting file BearingPlate2 v17.f3d
+Opening `BearingPlate2` v17
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BearingPlate2_v17.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BearingPlate2_v17.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BearingPlate2_v17.stl
+Closing `BearingPlate2` v17
+Visiting file BearingPlate3 v13.f3d
+Opening `BearingPlate3` v13
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BearingPlate3_v13.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BearingPlate3_v13.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BearingPlate3_v13.stl
+Closing `BearingPlate3` v13
+Visiting file BearingPlate4 v9.f3d
+Opening `BearingPlate4` v9
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BearingPlate4_v9.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BearingPlate4_v9.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BearingPlate4_v9.stl
+Closing `BearingPlate4` v9
+Visiting file BearingPlate5 v10.f3d
+Opening `BearingPlate5` v10
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BearingPlate5_v10.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BearingPlate5_v10.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BearingPlate5_v10.stl
+Closing `BearingPlate5` v10
+Visiting file BearingPlate6 v10.f3d
+Opening `BearingPlate6` v10
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BearingPlate6_v10.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BearingPlate6_v10.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BearingPlate6_v10.stl
+Closing `BearingPlate6` v10
+Visiting file BearingPlate7 v11.f3d
+Opening `BearingPlate7` v11
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BearingPlate7_v11.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BearingPlate7_v11.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BearingPlate7_v11.stl
+Closing `BearingPlate7` v11
+Visiting file BearingPlate8 v12.f3d
+Opening `BearingPlate8` v12
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BearingPlate8_v12.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BearingPlate8_v12.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\BearingPlate8_v12.stl
+Closing `BearingPlate8` v12
+Visiting file MidPlate v8.f3d
+Opening `MidPlate` v8
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\MidPlate_v8.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\MidPlate_v8.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\MidPlate_v8.stl
+Closing `MidPlate` v8
+Visiting file TopPlate v33.f3d
+Opening `TopPlate` v33
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\TopPlate_v33.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\TopPlate_v33.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\TopPlate_v33.stl
+Closing `TopPlate` v33
+Visiting file TopPlatesAssembly v6.f3d
+Opening `TopPlatesAssembly` v6
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\TopPlatesAssembly_v6.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\TopPlatesAssembly_v6.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\TopPlatesAssembly_v6.stl
+Closing `TopPlatesAssembly` v6
+Visiting file TopPlateTest v2.f3d
+Opening `TopPlateTest` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\TopPlateTest_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\TopPlateTest_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV6\Plates\TopPlateTest_v2.stl
+Closing `TopPlateTest` v2
+Visiting folder BaseV7
+Visiting folder 3DPrints
+Visiting file BarrelJackMount v1.f3d
+Opening `BarrelJackMount` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\BarrelJackMount_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\BarrelJackMount_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\BarrelJackMount_v1.stl
+Closing `BarrelJackMount` v1
+Visiting file BearingSleeve v8.f3d
+Opening `BearingSleeve` v8
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\BearingSleeve_v8.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\BearingSleeve_v8.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\BearingSleeve_v8.stl
+Closing `BearingSleeve` v8
+Visiting file CentreSupport v14.f3d
+Opening `CentreSupport` v14
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\CentreSupport_v14.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\CentreSupport_v14.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\CentreSupport_v14.stl
+Closing `CentreSupport` v14
+Visiting file OuterShell v5.f3d
+Opening `OuterShell` v5
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\OuterShell_v5.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\OuterShell_v5.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\OuterShell_v5.stl
+Closing `OuterShell` v5
+Visiting file ServoTensioner v1.f3d
+Opening `ServoTensioner` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\ServoTensioner_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\ServoTensioner_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\ServoTensioner_v1.stl
+Closing `ServoTensioner` v1
+Visiting file SlideSupports v3.f3d
+Opening `SlideSupports` v3
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\SlideSupports_v3.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\SlideSupports_v3.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\SlideSupports_v3.stl
+Closing `SlideSupports` v3
+Visiting file SlideSupportsWire v2.f3d
+Opening `SlideSupportsWire` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\SlideSupportsWire_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\SlideSupportsWire_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\SlideSupportsWire_v2.stl
+Closing `SlideSupportsWire` v2
+Visiting file SmallBearingSleeve v2.f3d
+Opening `SmallBearingSleeve` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\SmallBearingSleeve_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\SmallBearingSleeve_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\SmallBearingSleeve_v2.stl
+Closing `SmallBearingSleeve` v2
+Visiting file SpoolV2 v1.f3d
+Opening `SpoolV2` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\SpoolV2_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\SpoolV2_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\3DPrints\SpoolV2_v1.stl
+Closing `SpoolV2` v1
+Visiting folder Assemblies
+Visiting file Electonrics Assembly v19.f3d
+Opening `Electonrics Assembly` v19
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Assemblies\Electonrics Assembly_v19.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Assemblies\Electonrics Assembly_v19.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Assemblies\Electonrics Assembly_v19.stl
+Closing `Electonrics Assembly` v19
+Visiting file FullAssembly v37.f3d
+Opening `FullAssembly` v37
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Assemblies\FullAssembly_v37.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Assemblies\FullAssembly_v37.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Assemblies\FullAssembly_v37.stl
+Closing `FullAssembly` v37
+Visiting file PlatesAssembly v33.f3d
+Opening `PlatesAssembly` v33
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Assemblies\PlatesAssembly_v33.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Assemblies\PlatesAssembly_v33.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Assemblies\PlatesAssembly_v33.stl
+Closing `PlatesAssembly` v33
+Visiting file Rollers v4.f3d
+Opening `Rollers` v4
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Assemblies\Rollers_v4.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Assemblies\Rollers_v4.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Assemblies\Rollers_v4.stl
+Closing `Rollers` v4
+Visiting file ServoAssembly v4.f3d
+Opening `ServoAssembly` v4
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Assemblies\ServoAssembly_v4.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Assemblies\ServoAssembly_v4.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Assemblies\ServoAssembly_v4.stl
+Closing `ServoAssembly` v4
+Visiting file SlideSupportAssembly v5.f3d
+Opening `SlideSupportAssembly` v5
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Assemblies\SlideSupportAssembly_v5.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Assemblies\SlideSupportAssembly_v5.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Assemblies\SlideSupportAssembly_v5.stl
+Closing `SlideSupportAssembly` v5
+Visiting folder Electronics
+Visiting file ElectronicsAssembly v1.f3d
+Opening `ElectronicsAssembly` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Electronics\ElectronicsAssembly_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Electronics\ElectronicsAssembly_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Electronics\ElectronicsAssembly_v1.stl
+Closing `ElectronicsAssembly` v1
+Visiting file Jack v3.f3d
+Opening `Jack` v3
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Electronics\Jack_v3.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Electronics\Jack_v3.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Electronics\Jack_v3.stl
+Closing `Jack` v3
+Visiting file PCA9685 v2.f3d
+Opening `PCA9685` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Electronics\PCA9685_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Electronics\PCA9685_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Electronics\PCA9685_v2.stl
+Closing `PCA9685` v2
+Visiting file ServoMotor v1.f3d
+Opening `ServoMotor` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Electronics\ServoMotor_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Electronics\ServoMotor_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Electronics\ServoMotor_v1.stl
+Closing `ServoMotor` v1
+Visiting file ServoMotorBrushless v1.f3d
+Opening `ServoMotorBrushless` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Electronics\ServoMotorBrushless_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Electronics\ServoMotorBrushless_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Electronics\ServoMotorBrushless_v1.stl
+Closing `ServoMotorBrushless` v1
+Visiting file Ultra Tiny USB Camera with GC0307 Sensor v1.f3d
+Opening `Ultra Tiny USB Camera with GC0307 Sensor` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Electronics\Ultra Tiny USB Camera with GC0307 Sensor_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Electronics\Ultra Tiny USB Camera with GC0307 Sensor_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\Electronics\Ultra Tiny USB Camera with GC0307 Sensor_v1.stl
+Closing `Ultra Tiny USB Camera with GC0307 Sensor` v1
+Visiting folder LaserCutPieces
+Visiting file BasePlate v8.f3d
+Opening `BasePlate` v8
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\BasePlate_v8.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\BasePlate_v8.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\BasePlate_v8.stl
+Closing `BasePlate` v8
+Visiting file ElectronicsPlate v26.f3d
+Opening `ElectronicsPlate` v26
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\ElectronicsPlate_v26.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\ElectronicsPlate_v26.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\ElectronicsPlate_v26.stl
+Closing `ElectronicsPlate` v26
+Visiting file MidBearingMount-Bottom v21.f3d
+Opening `MidBearingMount-Bottom` v21
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\MidBearingMount-Bottom_v21.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\MidBearingMount-Bottom_v21.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\MidBearingMount-Bottom_v21.stl
+Closing `MidBearingMount-Bottom` v21
+Visiting file MidBearingMount-Mid v21.f3d
+Opening `MidBearingMount-Mid` v21
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\MidBearingMount-Mid_v21.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\MidBearingMount-Mid_v21.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\MidBearingMount-Mid_v21.stl
+Closing `MidBearingMount-Mid` v21
+Visiting file MidPlate v34.f3d
+Opening `MidPlate` v34
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\MidPlate_v34.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\MidPlate_v34.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\MidPlate_v34.stl
+Closing `MidPlate` v34
+Visiting file MidPlateShell v29.f3d
+Opening `MidPlateShell` v29
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\MidPlateShell_v29.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\MidPlateShell_v29.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\MidPlateShell_v29.stl
+Closing `MidPlateShell` v29
+Visiting file MidPlateShellBearing v33.f3d
+Opening `MidPlateShellBearing` v33
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\MidPlateShellBearing_v33.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\MidPlateShellBearing_v33.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\MidPlateShellBearing_v33.stl
+Closing `MidPlateShellBearing` v33
+Visiting file ServoPlate v4.f3d
+Opening `ServoPlate` v4
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\ServoPlate_v4.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\ServoPlate_v4.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\ServoPlate_v4.stl
+Closing `ServoPlate` v4
+Visiting file TopPlate v31.f3d
+Opening `TopPlate` v31
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\TopPlate_v31.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\TopPlate_v31.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\TopPlate_v31.stl
+Closing `TopPlate` v31
+Visiting file Untitled v1.f3d
+Opening `Untitled` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\Untitled_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\LaserCutPieces\Untitled_v1.step
+Traceback (most recent call last):
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 405, in visit_file
+    counter += export_file(ctx, format, doc)
+               ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 298, in export_file
+    options = em.createSTLExportOptions(design.rootComponent, output_path_s)
+  File "C:\Users/23hdh1/AppData/Local/Autodesk/webdeploy/production/61bf25b220a2d0307c84c301e65a59ac225d9a1e/Api/Python/packages\adsk\fusion.py", line 32959, in createSTLExportOptions
+    return _fusion.ExportManager_createSTLExportOptions(self, *args)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+RuntimeError: 3 : invalid geometry
+
+Closing `Untitled` v1
+Visiting folder MiscComponents
+Visiting file 3x8mm Rod v2.f3d
+Opening `3x8mm Rod` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\3x8mm Rod_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\3x8mm Rod_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\3x8mm Rod_v2.stl
+Closing `3x8mm Rod` v2
+Visiting file 3x10mm Rod v2.f3d
+Opening `3x10mm Rod` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\3x10mm Rod_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\3x10mm Rod_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\3x10mm Rod_v2.stl
+Closing `3x10mm Rod` v2
+Visiting file 3x18mm Rod v1.f3d
+Opening `3x18mm Rod` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\3x18mm Rod_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\3x18mm Rod_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\3x18mm Rod_v1.stl
+Closing `3x18mm Rod` v1
+Visiting file Bearing v4.f3d
+Opening `Bearing` v4
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\Bearing_v4.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\Bearing_v4.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\Bearing_v4.stl
+Closing `Bearing` v4
+Visiting file HeatSetInsert-M2.5x2.5 v1.f3d
+Opening `HeatSetInsert-M2.5x2.5` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\HeatSetInsert-M2.5x2.5_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\HeatSetInsert-M2.5x2.5_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\HeatSetInsert-M2.5x2.5_v1.stl
+Closing `HeatSetInsert-M2.5x2.5` v1
+Visiting file HeatSetInsert-M2.5x4 v1.f3d
+Opening `HeatSetInsert-M2.5x4` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\HeatSetInsert-M2.5x4_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\HeatSetInsert-M2.5x4_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\HeatSetInsert-M2.5x4_v1.stl
+Closing `HeatSetInsert-M2.5x4` v1
+Visiting file HeatSetInsert-M2.5x6 v1.f3d
+Opening `HeatSetInsert-M2.5x6` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\HeatSetInsert-M2.5x6_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\HeatSetInsert-M2.5x6_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\HeatSetInsert-M2.5x6_v1.stl
+Closing `HeatSetInsert-M2.5x6` v1
+Visiting file HeatSetInsert-M3x8 v1.f3d
+Opening `HeatSetInsert-M3x8` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\HeatSetInsert-M3x8_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\HeatSetInsert-M3x8_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\HeatSetInsert-M3x8_v1.stl
+Closing `HeatSetInsert-M3x8` v1
+Visiting file ServoHorn v1.f3d
+Opening `ServoHorn` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\ServoHorn_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\ServoHorn_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\ServoHorn_v1.stl
+Closing `ServoHorn` v1
+Visiting file Spring-4mmx10 v1.f3d
+Opening `Spring-4mmx10` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\Spring-4mmx10_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\Spring-4mmx10_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\Spring-4mmx10_v1.stl
+Closing `Spring-4mmx10` v1
+Visiting file Standoff 8mm v3.f3d
+Opening `Standoff 8mm` v3
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\Standoff 8mm_v3.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\Standoff 8mm_v3.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\Standoff 8mm_v3.stl
+Closing `Standoff 8mm` v3
+Visiting file Standoff 20mm v4.f3d
+Opening `Standoff 20mm` v4
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\Standoff 20mm_v4.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\Standoff 20mm_v4.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\BaseV7\MiscComponents\Standoff 20mm_v4.stl
+Closing `Standoff 20mm` v4
+Visiting folder SolidBase
+Visiting file 40KgServoMotor v2.f3d
+Opening `40KgServoMotor` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\SolidBase\40KgServoMotor_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\SolidBase\40KgServoMotor_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\SolidBase\40KgServoMotor_v2.stl
+Closing `40KgServoMotor` v2
+Visiting file Pot v30.f3d
+Opening `Pot` v30
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\SolidBase\Pot_v30.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\SolidBase\Pot_v30.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Bases\SolidBase\Pot_v30.stl
+Closing `Pot` v30
+Visiting folder FlowerHeads
+Visiting folder FlowerHeadV0.1
+Visiting file FlowerPetalV0 v4.f3d
+Opening `FlowerPetalV0` v4
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV0.1\FlowerPetalV0_v4.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV0.1\FlowerPetalV0_v4.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV0.1\FlowerPetalV0_v4.stl
+Closing `FlowerPetalV0` v4
+Visiting file BaseV0 v14.f3d
+Opening `BaseV0` v14
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV0.1\BaseV0_v14.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV0.1\BaseV0_v14.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV0.1\BaseV0_v14.stl
+Closing `BaseV0` v14
+Visiting file FlowerNubV0 v13.f3d
+Opening `FlowerNubV0` v13
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV0.1\FlowerNubV0_v13.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV0.1\FlowerNubV0_v13.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV0.1\FlowerNubV0_v13.stl
+Closing `FlowerNubV0` v13
+Visiting file ConnectingBracketV0 v1.f3d
+Opening `ConnectingBracketV0` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV0.1\ConnectingBracketV0_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV0.1\ConnectingBracketV0_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV0.1\ConnectingBracketV0_v1.stl
+Closing `ConnectingBracketV0` v1
+Visiting file CenterRingV0 v10.f3d
+Opening `CenterRingV0` v10
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV0.1\CenterRingV0_v10.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV0.1\CenterRingV0_v10.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV0.1\CenterRingV0_v10.stl
+Closing `CenterRingV0` v10
+Visiting file FlowerHeadAssemblyV0 v23.f3d
+Opening `FlowerHeadAssemblyV0` v23
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV0.1\FlowerHeadAssemblyV0_v23.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV0.1\FlowerHeadAssemblyV0_v23.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV0.1\FlowerHeadAssemblyV0_v23.stl
+Closing `FlowerHeadAssemblyV0` v23
+Visiting folder FlowerHeadV1
+Visiting file FlowerPetalV1 v15.f3d
+Opening `FlowerPetalV1` v15
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV1\FlowerPetalV1_v15.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV1\FlowerPetalV1_v15.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV1\FlowerPetalV1_v15.stl
+Closing `FlowerPetalV1` v15
+Visiting file ConnectingBracketV1 v16.f3d
+Opening `ConnectingBracketV1` v16
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV1\ConnectingBracketV1_v16.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV1\ConnectingBracketV1_v16.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV1\ConnectingBracketV1_v16.stl
+Closing `ConnectingBracketV1` v16
+Visiting file FlowerNubV1 v12.f3d
+Opening `FlowerNubV1` v12
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV1\FlowerNubV1_v12.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV1\FlowerNubV1_v12.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV1\FlowerNubV1_v12.stl
+Closing `FlowerNubV1` v12
+Visiting file BaseV1 v19.f3d
+Opening `BaseV1` v19
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV1\BaseV1_v19.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV1\BaseV1_v19.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV1\BaseV1_v19.stl
+Closing `BaseV1` v19
+Visiting file CenterRingV1 v14.f3d
+Opening `CenterRingV1` v14
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV1\CenterRingV1_v14.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV1\CenterRingV1_v14.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV1\CenterRingV1_v14.stl
+Closing `CenterRingV1` v14
+Visiting file FlowerHeadAssemblyV1 v33.f3d
+Opening `FlowerHeadAssemblyV1` v33
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV1\FlowerHeadAssemblyV1_v33.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV1\FlowerHeadAssemblyV1_v33.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV1\FlowerHeadAssemblyV1_v33.stl
+Closing `FlowerHeadAssemblyV1` v33
+Visiting folder FlowerHeadV2
+Visiting file MicroGearmotor v2 v4.f3d
+Opening `MicroGearmotor v2` v4
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV2\MicroGearmotor v2_v4.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV2\MicroGearmotor v2_v4.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV2\MicroGearmotor v2_v4.stl
+Closing `MicroGearmotor v2` v4
+Visiting file ConnectingBracketV2 v6.f3d
+Opening `ConnectingBracketV2` v6
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV2\ConnectingBracketV2_v6.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV2\ConnectingBracketV2_v6.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV2\ConnectingBracketV2_v6.stl
+Closing `ConnectingBracketV2` v6
+Visiting file BaseV2 v26.f3d
+Opening `BaseV2` v26
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV2\BaseV2_v26.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV2\BaseV2_v26.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV2\BaseV2_v26.stl
+Closing `BaseV2` v26
+Visiting file FlowerPetalV2 v3.f3d
+Opening `FlowerPetalV2` v3
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV2\FlowerPetalV2_v3.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV2\FlowerPetalV2_v3.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV2\FlowerPetalV2_v3.stl
+Closing `FlowerPetalV2` v3
+Visiting file CenterRingV2 v39.f3d
+Opening `CenterRingV2` v39
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV2\CenterRingV2_v39.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV2\CenterRingV2_v39.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV2\CenterRingV2_v39.stl
+Closing `CenterRingV2` v39
+Visiting file FlowerAssemblyV2 v32.f3d
+Opening `FlowerAssemblyV2` v32
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV2\FlowerAssemblyV2_v32.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV2\FlowerAssemblyV2_v32.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV2\FlowerAssemblyV2_v32.stl
+Closing `FlowerAssemblyV2` v32
+Visiting folder FlowerHeadV3.2
+Visiting file BaseV3 v13.f3d
+Opening `BaseV3` v13
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.2\BaseV3_v13.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.2\BaseV3_v13.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.2\BaseV3_v13.stl
+Closing `BaseV3` v13
+Visiting file CenterRingV3 v20.f3d
+Opening `CenterRingV3` v20
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.2\CenterRingV3_v20.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.2\CenterRingV3_v20.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.2\CenterRingV3_v20.stl
+Closing `CenterRingV3` v20
+Visiting file ConnectingBracketV3 v7.f3d
+Opening `ConnectingBracketV3` v7
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.2\ConnectingBracketV3_v7.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.2\ConnectingBracketV3_v7.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.2\ConnectingBracketV3_v7.stl
+Closing `ConnectingBracketV3` v7
+Visiting file FlowerHeadAssemblyV3 v14.f3d
+Opening `FlowerHeadAssemblyV3` v14
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.2\FlowerHeadAssemblyV3_v14.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.2\FlowerHeadAssemblyV3_v14.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.2\FlowerHeadAssemblyV3_v14.stl
+Closing `FlowerHeadAssemblyV3` v14
+Visiting file FlowerPetal-A v4.f3d
+Opening `FlowerPetal-A` v4
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.2\FlowerPetal-A_v4.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.2\FlowerPetal-A_v4.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.2\FlowerPetal-A_v4.stl
+Closing `FlowerPetal-A` v4
+Visiting file FlowerPetalV3 v1.f3d
+Opening `FlowerPetalV3` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.2\FlowerPetalV3_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.2\FlowerPetalV3_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.2\FlowerPetalV3_v1.stl
+Closing `FlowerPetalV3` v1
+Visiting file MicroGearmotor v3 v11.f3d
+Opening `MicroGearmotor v3` v11
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.2\MicroGearmotor v3_v11.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.2\MicroGearmotor v3_v11.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.2\MicroGearmotor v3_v11.stl
+Closing `MicroGearmotor v3` v11
+Visiting file Threaded Rod v6.f3d
+Opening `Threaded Rod` v6
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.2\Threaded Rod_v6.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.2\Threaded Rod_v6.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.2\Threaded Rod_v6.stl
+Closing `Threaded Rod` v6
+Visiting folder FlowerHeadV3.3
+Visiting file 3x50mm rod v2.f3d
+Opening `3x50mm rod` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\3x50mm rod_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\3x50mm rod_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\3x50mm rod_v2.stl
+Closing `3x50mm rod` v2
+Visiting file 4x30mm rod v1.f3d
+Opening `4x30mm rod` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\4x30mm rod_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\4x30mm rod_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\4x30mm rod_v1.stl
+Closing `4x30mm rod` v1
+Visiting file Assembly v15.f3d
+Opening `Assembly` v15
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\Assembly_v15.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\Assembly_v15.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\Assembly_v15.stl
+Closing `Assembly` v15
+Visiting file BaseV3 v25.f3d
+Opening `BaseV3` v25
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\BaseV3_v25.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\BaseV3_v25.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\BaseV3_v25.stl
+Closing `BaseV3` v25
+Visiting file BlueBall v2.f3d
+Opening `BlueBall` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\BlueBall_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\BlueBall_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\BlueBall_v2.stl
+Closing `BlueBall` v2
+Visiting file CenterRingV3 v26.f3d
+Opening `CenterRingV3` v26
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\CenterRingV3_v26.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\CenterRingV3_v26.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\CenterRingV3_v26.stl
+Closing `CenterRingV3` v26
+Visiting file ConnectingBracketV3 v2.f3d
+Opening `ConnectingBracketV3` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\ConnectingBracketV3_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\ConnectingBracketV3_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\ConnectingBracketV3_v2.stl
+Closing `ConnectingBracketV3` v2
+Visiting file FlowerPetal v8.f3d
+Opening `FlowerPetal` v8
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\FlowerPetal_v8.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\FlowerPetal_v8.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\FlowerPetal_v8.stl
+Closing `FlowerPetal` v8
+Visiting file M6x6 heat set v2.f3d
+Opening `M6x6 heat set` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\M6x6 heat set_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\M6x6 heat set_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\M6x6 heat set_v2.stl
+Closing `M6x6 heat set` v2
+Visiting file MicroGearmotor v3 v4.f3d
+Opening `MicroGearmotor v3` v4
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\MicroGearmotor v3_v4.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\MicroGearmotor v3_v4.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\MicroGearmotor v3_v4.stl
+Closing `MicroGearmotor v3` v4
+Visiting file RedBall v1.f3d
+Opening `RedBall` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\RedBall_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\RedBall_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\RedBall_v1.stl
+Closing `RedBall` v1
+Visiting file Sleeve v2.f3d
+Opening `Sleeve` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\Sleeve_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\Sleeve_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\Sleeve_v2.stl
+Closing `Sleeve` v2
+Visiting file Steel v1.f3d
+Opening `Steel` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\Steel_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\Steel_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\Steel_v1.stl
+Closing `Steel` v1
+Visiting file Threaded Rod v5.f3d
+Opening `Threaded Rod` v5
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\Threaded Rod_v5.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\Threaded Rod_v5.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.3\Threaded Rod_v5.stl
+Closing `Threaded Rod` v5
+Visiting folder FlowerHeadV3.4
+Visiting file Assembly v8.f3d
+Opening `Assembly` v8
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\Assembly_v8.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\Assembly_v8.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\Assembly_v8.stl
+Closing `Assembly` v8
+Visiting file BaseV3 v2.f3d
+Opening `BaseV3` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\BaseV3_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\BaseV3_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\BaseV3_v2.stl
+Closing `BaseV3` v2
+Visiting file CenterRingV3 v5.f3d
+Opening `CenterRingV3` v5
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\CenterRingV3_v5.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\CenterRingV3_v5.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\CenterRingV3_v5.stl
+Closing `CenterRingV3` v5
+Visiting file ConnectingBracketV3 v4.f3d
+Opening `ConnectingBracketV3` v4
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\ConnectingBracketV3_v4.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\ConnectingBracketV3_v4.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\ConnectingBracketV3_v4.stl
+Closing `ConnectingBracketV3` v4
+Visiting file FlowerBulb v10.f3d
+Opening `FlowerBulb` v10
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\FlowerBulb_v10.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\FlowerBulb_v10.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\FlowerBulb_v10.stl
+Closing `FlowerBulb` v10
+Visiting file MotorMount v1.f3d
+Opening `MotorMount` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\MotorMount_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\MotorMount_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\MotorMount_v1.stl
+Closing `MotorMount` v1
+Visiting file MotorMount v4.f3d
+Opening `MotorMount` v4
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\MotorMount_v4.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\MotorMount_v4.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\MotorMount_v4.stl
+Closing `MotorMount` v4
+Visiting file N20 Right Angle Gear Motor 42to1 v2.f3d
+Opening `N20 Right Angle Gear Motor 42to1` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\N20 Right Angle Gear Motor 42to1_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\N20 Right Angle Gear Motor 42to1_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\N20 Right Angle Gear Motor 42to1_v2.stl
+Closing `N20 Right Angle Gear Motor 42to1` v2
+Visiting file Threaded Rod v4.f3d
+Opening `Threaded Rod` v4
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\Threaded Rod_v4.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\Threaded Rod_v4.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FlowerHeads\FlowerHeadV3.4\Threaded Rod_v4.stl
+Closing `Threaded Rod` v4
+Visiting folder FullAssemblys
+Visiting file AssemblyForFull v2.f3d
+Opening `AssemblyForFull` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FullAssemblys\AssemblyForFull_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FullAssemblys\AssemblyForFull_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FullAssemblys\AssemblyForFull_v2.stl
+Closing `AssemblyForFull` v2
+Visiting file CompleteAssemblyV2 v1.f3d
+Opening `CompleteAssemblyV2` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FullAssemblys\CompleteAssemblyV2_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FullAssemblys\CompleteAssemblyV2_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FullAssemblys\CompleteAssemblyV2_v1.stl
+Closing `CompleteAssemblyV2` v1
+Visiting file Flower v12.f3d
+Opening `Flower` v12
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FullAssemblys\Flower_v12.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FullAssemblys\Flower_v12.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FullAssemblys\Flower_v12.stl
+Closing `Flower` v12
+Visiting file FlowerV2 v2.f3d
+Opening `FlowerV2` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FullAssemblys\FlowerV2_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FullAssemblys\FlowerV2_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FullAssemblys\FlowerV2_v2.stl
+Closing `FlowerV2` v2
+Visiting file FullBuild v4.f3d
+Opening `FullBuild` v4
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FullAssemblys\FullBuild_v4.f3d
+Traceback (most recent call last):
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 405, in visit_file
+    counter += export_file(ctx, format, doc)
+               ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 316, in export_file
+    doc.unhide_all()
+    ~~~~~~~~~~~~~~^^
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 133, in unhide_all
+    unhide_all_in_document(self._document)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 178, in unhide_all_in_document
+    unhide_all_in_component(design_from_document(document).rootComponent)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 193, in unhide_all_in_component
+    unhide_all_in_component(occurrence.component)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 193, in unhide_all_in_component
+    unhide_all_in_component(occurrence.component)
+                            ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users/23hdh1/AppData/Local/Autodesk/webdeploy/production/61bf25b220a2d0307c84c301e65a59ac225d9a1e/Api/Python/packages\adsk\fusion.py", line 50192, in _get_component
+    return _fusion.Occurrence__get_component(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+RuntimeError: 2 : InternalValidationError : comp
+
+Traceback (most recent call last):
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 405, in visit_file
+    counter += export_file(ctx, format, doc)
+               ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 316, in export_file
+    doc.unhide_all()
+    ~~~~~~~~~~~~~~^^
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 133, in unhide_all
+    unhide_all_in_document(self._document)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 178, in unhide_all_in_document
+    unhide_all_in_component(design_from_document(document).rootComponent)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 193, in unhide_all_in_component
+    unhide_all_in_component(occurrence.component)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 193, in unhide_all_in_component
+    unhide_all_in_component(occurrence.component)
+                            ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users/23hdh1/AppData/Local/Autodesk/webdeploy/production/61bf25b220a2d0307c84c301e65a59ac225d9a1e/Api/Python/packages\adsk\fusion.py", line 50192, in _get_component
+    return _fusion.Occurrence__get_component(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+RuntimeError: 2 : InternalValidationError : comp
+
+Closing `FullBuild` v4
+Visiting file FullBuild2 v1.f3d
+Opening `FullBuild2` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FullAssemblys\FullBuild2_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FullAssemblys\FullBuild2_v1.step
+Traceback (most recent call last):
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 405, in visit_file
+    counter += export_file(ctx, format, doc)
+               ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 298, in export_file
+    options = em.createSTLExportOptions(design.rootComponent, output_path_s)
+  File "C:\Users/23hdh1/AppData/Local/Autodesk/webdeploy/production/61bf25b220a2d0307c84c301e65a59ac225d9a1e/Api/Python/packages\adsk\fusion.py", line 32959, in createSTLExportOptions
+    return _fusion.ExportManager_createSTLExportOptions(self, *args)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+RuntimeError: 3 : invalid geometry
+
+Closing `FullBuild2` v1
+Visiting file FullBuild2 (Assembly) v2.f3d
+Opening `FullBuild2 (Assembly)` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FullAssemblys\FullBuild2 (Assembly)_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FullAssemblys\FullBuild2 (Assembly)_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FullAssemblys\FullBuild2 (Assembly)_v2.stl
+Closing `FullBuild2 (Assembly)` v2
+Visiting file Render1.png v1.art
+Skipping non-design file Render1.png with extension art
+Visiting file StaticPotAssembly v8.f3d
+Opening `StaticPotAssembly` v8
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\FullAssemblys\StaticPotAssembly_v8.f3d
+Traceback (most recent call last):
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 405, in visit_file
+    counter += export_file(ctx, format, doc)
+               ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 316, in export_file
+    doc.unhide_all()
+    ~~~~~~~~~~~~~~^^
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 133, in unhide_all
+    unhide_all_in_document(self._document)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 178, in unhide_all_in_document
+    unhide_all_in_component(design_from_document(document).rootComponent)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 193, in unhide_all_in_component
+    unhide_all_in_component(occurrence.component)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 193, in unhide_all_in_component
+    unhide_all_in_component(occurrence.component)
+                            ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users/23hdh1/AppData/Local/Autodesk/webdeploy/production/61bf25b220a2d0307c84c301e65a59ac225d9a1e/Api/Python/packages\adsk\fusion.py", line 50192, in _get_component
+    return _fusion.Occurrence__get_component(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+RuntimeError: 2 : InternalValidationError : comp
+
+Traceback (most recent call last):
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 405, in visit_file
+    counter += export_file(ctx, format, doc)
+               ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 316, in export_file
+    doc.unhide_all()
+    ~~~~~~~~~~~~~~^^
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 133, in unhide_all
+    unhide_all_in_document(self._document)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 178, in unhide_all_in_document
+    unhide_all_in_component(design_from_document(document).rootComponent)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 193, in unhide_all_in_component
+    unhide_all_in_component(occurrence.component)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 193, in unhide_all_in_component
+    unhide_all_in_component(occurrence.component)
+                            ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users/23hdh1/AppData/Local/Autodesk/webdeploy/production/61bf25b220a2d0307c84c301e65a59ac225d9a1e/Api/Python/packages\adsk\fusion.py", line 50192, in _get_component
+    return _fusion.Occurrence__get_component(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+RuntimeError: 2 : InternalValidationError : comp
+
+Closing `StaticPotAssembly` v8
+Visiting folder Stems
+Visiting folder ContinuumStemV1
+Visiting file BackBoneV1 v5.f3d
+Opening `BackBoneV1` v5
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV1\BackBoneV1_v5.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV1\BackBoneV1_v5.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV1\BackBoneV1_v5.stl
+Closing `BackBoneV1` v5
+Visiting file LowerVertibraeV1 v3.f3d
+Opening `LowerVertibraeV1` v3
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV1\LowerVertibraeV1_v3.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV1\LowerVertibraeV1_v3.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV1\LowerVertibraeV1_v3.stl
+Closing `LowerVertibraeV1` v3
+Visiting file StemAssemblyV1 v14.f3d
+Opening `StemAssemblyV1` v14
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV1\StemAssemblyV1_v14.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV1\StemAssemblyV1_v14.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV1\StemAssemblyV1_v14.stl
+Closing `StemAssemblyV1` v14
+Visiting file Top Connector v10.f3d
+Opening `Top Connector` v10
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV1\Top Connector_v10.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV1\Top Connector_v10.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV1\Top Connector_v10.stl
+Closing `Top Connector` v10
+Visiting file UpperVertibraeV1 v11.f3d
+Opening `UpperVertibraeV1` v11
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV1\UpperVertibraeV1_v11.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV1\UpperVertibraeV1_v11.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV1\UpperVertibraeV1_v11.stl
+Closing `UpperVertibraeV1` v11
+Visiting folder ContinuumStemV2
+Visiting file Frame v1.f3d
+Opening `Frame` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV2\Frame_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV2\Frame_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV2\Frame_v1.stl
+Closing `Frame` v1
+Visiting file SteelBrakeCableContinuumSection v3.f3d
+Opening `SteelBrakeCableContinuumSection` v3
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV2\SteelBrakeCableContinuumSection_v3.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV2\SteelBrakeCableContinuumSection_v3.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV2\SteelBrakeCableContinuumSection_v3.stl
+Closing `SteelBrakeCableContinuumSection` v3
+Visiting file RubberBrakeCableContinuumSection v18.f3d
+Opening `RubberBrakeCableContinuumSection` v18
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV2\RubberBrakeCableContinuumSection_v18.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV2\RubberBrakeCableContinuumSection_v18.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV2\RubberBrakeCableContinuumSection_v18.stl
+Closing `RubberBrakeCableContinuumSection` v18
+Visiting folder ContinuumStemV3
+Visiting file BallandSocketTop v7.f3d
+Opening `BallandSocketTop` v7
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV3\BallandSocketTop_v7.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV3\BallandSocketTop_v7.step
+Traceback (most recent call last):
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 405, in visit_file
+    counter += export_file(ctx, format, doc)
+               ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:/Users/23hdh1/Downloads/Fusion360Exporter-main/Exporter/Exporter.py", line 298, in export_file
+    options = em.createSTLExportOptions(design.rootComponent, output_path_s)
+  File "C:\Users/23hdh1/AppData/Local/Autodesk/webdeploy/production/61bf25b220a2d0307c84c301e65a59ac225d9a1e/Api/Python/packages\adsk\fusion.py", line 32959, in createSTLExportOptions
+    return _fusion.ExportManager_createSTLExportOptions(self, *args)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+RuntimeError: 3 : invalid geometry
+
+Closing `BallandSocketTop` v7
+Visiting file Ball and Socket v5.f3d
+Opening `Ball and Socket` v5
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV3\Ball and Socket_v5.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV3\Ball and Socket_v5.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV3\Ball and Socket_v5.stl
+Closing `Ball and Socket` v5
+Visiting file BallAndSocketContinuumAssembly v7.f3d
+Opening `BallAndSocketContinuumAssembly` v7
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV3\BallAndSocketContinuumAssembly_v7.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV3\BallAndSocketContinuumAssembly_v7.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV3\BallAndSocketContinuumAssembly_v7.stl
+Closing `BallAndSocketContinuumAssembly` v7
+Visiting file Standoff v10.f3d
+Opening `Standoff` v10
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV3\Standoff_v10.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV3\Standoff_v10.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV3\Standoff_v10.stl
+Closing `Standoff` v10
+Visiting file BallandSocketMidpoint v5.f3d
+Opening `BallandSocketMidpoint` v5
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV3\BallandSocketMidpoint_v5.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV3\BallandSocketMidpoint_v5.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV3\BallandSocketMidpoint_v5.stl
+Closing `BallandSocketMidpoint` v5
+Visiting folder ContinuumStemV4
+Visiting file Assembly v6.f3d
+Opening `Assembly` v6
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\Assembly_v6.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\Assembly_v6.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\Assembly_v6.stl
+Closing `Assembly` v6
+Visiting file Ball and Socket v12.f3d
+Opening `Ball and Socket` v12
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\Ball and Socket_v12.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\Ball and Socket_v12.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\Ball and Socket_v12.stl
+Closing `Ball and Socket` v12
+Visiting file Ball and Socket - 4mm v2.f3d
+Opening `Ball and Socket - 4mm` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\Ball and Socket - 4mm_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\Ball and Socket - 4mm_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\Ball and Socket - 4mm_v2.stl
+Closing `Ball and Socket - 4mm` v2
+Visiting file Ball and Socket - 5mm v2.f3d
+Opening `Ball and Socket - 5mm` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\Ball and Socket - 5mm_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\Ball and Socket - 5mm_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\Ball and Socket - 5mm_v2.stl
+Closing `Ball and Socket - 5mm` v2
+Visiting file Ball and Socket - 6mm v3.f3d
+Opening `Ball and Socket - 6mm` v3
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\Ball and Socket - 6mm_v3.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\Ball and Socket - 6mm_v3.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\Ball and Socket - 6mm_v3.stl
+Closing `Ball and Socket - 6mm` v3
+Visiting file Ball and Socket - 7mm v2.f3d
+Opening `Ball and Socket - 7mm` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\Ball and Socket - 7mm_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\Ball and Socket - 7mm_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\Ball and Socket - 7mm_v2.stl
+Closing `Ball and Socket - 7mm` v2
+Visiting file Ball and Socket - 8mm v2.f3d
+Opening `Ball and Socket - 8mm` v2
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\Ball and Socket - 8mm_v2.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\Ball and Socket - 8mm_v2.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\Ball and Socket - 8mm_v2.stl
+Closing `Ball and Socket - 8mm` v2
+Visiting file Ball and Socket Top v34.f3d
+Opening `Ball and Socket Top` v34
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\Ball and Socket Top_v34.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\Ball and Socket Top_v34.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\Ball and Socket Top_v34.stl
+Closing `Ball and Socket Top` v34
+Visiting file TopAssembly v10.f3d
+Opening `TopAssembly` v10
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\TopAssembly_v10.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\TopAssembly_v10.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Stems\ContinuumStemV4\TopAssembly_v10.stl
+Closing `TopAssembly` v10
+Visiting folder Tolerence Tests
+Visiting file expoxy sticks v4.f3d
+Opening `expoxy sticks` v4
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\expoxy sticks_v4.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\expoxy sticks_v4.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\expoxy sticks_v4.stl
+Closing `expoxy sticks` v4
+Visiting file Pole3mm v1.f3d
+Opening `Pole3mm` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\Pole3mm_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\Pole3mm_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\Pole3mm_v1.stl
+Closing `Pole3mm` v1
+Visiting file HoleDiaTest1.75mm v3.f3d
+Opening `HoleDiaTest1.75mm` v3
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\HoleDiaTest1.75mm_v3.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\HoleDiaTest1.75mm_v3.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\HoleDiaTest1.75mm_v3.stl
+Closing `HoleDiaTest1.75mm` v3
+Visiting file HoleDiaTest3mm v1.f3d
+Opening `HoleDiaTest3mm` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\HoleDiaTest3mm_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\HoleDiaTest3mm_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\HoleDiaTest3mm_v1.stl
+Closing `HoleDiaTest3mm` v1
+Visiting file Nut10mm v3.f3d
+Opening `Nut10mm` v3
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\Nut10mm_v3.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\Nut10mm_v3.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\Nut10mm_v3.stl
+Closing `Nut10mm` v3
+Visiting file HoleDiaTest3.3mm v7.f3d
+Opening `HoleDiaTest3.3mm` v7
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\HoleDiaTest3.3mm_v7.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\HoleDiaTest3.3mm_v7.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\HoleDiaTest3.3mm_v7.stl
+Closing `HoleDiaTest3.3mm` v7
+Visiting file ScrewShaft10mm v4.f3d
+Opening `ScrewShaft10mm` v4
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\ScrewShaft10mm_v4.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\ScrewShaft10mm_v4.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\ScrewShaft10mm_v4.stl
+Closing `ScrewShaft10mm` v4
+Visiting file ClipTestRod3mm v1.f3d
+Opening `ClipTestRod3mm` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\ClipTestRod3mm_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\ClipTestRod3mm_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\ClipTestRod3mm_v1.stl
+Closing `ClipTestRod3mm` v1
+Visiting file ClipTestClip3mm v6.f3d
+Opening `ClipTestClip3mm` v6
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\ClipTestClip3mm_v6.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\ClipTestClip3mm_v6.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\ClipTestClip3mm_v6.stl
+Closing `ClipTestClip3mm` v6
+Visiting file DrillBitGuide v1.f3d
+Opening `DrillBitGuide` v1
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\DrillBitGuide_v1.f3d
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\DrillBitGuide_v1.step
+Saved C:\Users\23hdh1\Desktop\Fusion360Export\LLM4MentalHealth\Tolerence Tests\DrillBitGuide_v1.stl
+Closing `DrillBitGuide` v1
+Saved 829 files
+Skipped 1 files
+Encountered 8 errors
+Log file is at C:\Users\23hdh1\Desktop\Fusion360Export\2026_08_21_09_11.txt
