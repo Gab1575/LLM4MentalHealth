@@ -72,6 +72,10 @@ def get_rotation_matrix(theta, phi):
 
     return Rz_phi @ Ry_th @ Rz_mphi
 
+# Beyond this magnitude (either direction) a servo angle is flagged as the
+# "danger zone" on the range guide painted under each servo slider.
+SERVO_SAFE_LIMIT_DEG = 50.0
+
 class FlowerDashboard(Node):
     """The operator dashboard: a Tkinter window driven by a ROS 2 node.
 
@@ -215,9 +219,16 @@ class FlowerDashboard(Node):
             row = tk.Frame(servo_frame)
             row.pack(fill="x", padx=2, pady=0)
 
-            tk.Scale(row, variable=self.servo_vars[i], from_=-90.0, to=90.0,
-                     orient="horizontal", label=f"S{i + 1}", width=10, sliderlength=15).pack(side="left", expand=True, fill="x")
-            
+            # Slider and its safe/danger range guide are stacked vertically in
+            # their own column, so the guide sits flush beneath the slider it
+            # belongs to; the time entry stays to the right of both.
+            slider_col = tk.Frame(row)
+            slider_col.pack(side="left", expand=True, fill="x")
+
+            tk.Scale(slider_col, variable=self.servo_vars[i], from_=-90.0, to=90.0,
+                     orient="horizontal", label=f"S{i + 1}", width=10, sliderlength=15).pack(fill="x")
+            self.add_servo_range_guide(slider_col)
+
             time_frame = tk.Frame(row)
             time_frame.pack(side="right", padx=(2, 2))
             tk.Label(time_frame, text="Time:", font=("TkDefaultFont", 8)).pack(side="left")
@@ -284,6 +295,31 @@ class FlowerDashboard(Node):
         """Toggles the N20 zero flag when the Zero button is pressed."""
         self.n20_zero_var.set(not self.n20_zero_var.get())
         self.get_logger().info(f"N20 zeroed")
+
+    def add_servo_range_guide(self, parent, servo_min=-90.0, servo_max=90.0, safe_limit=SERVO_SAFE_LIMIT_DEG):
+        """Paints a thin canvas strip beneath a servo slider: green over the
+        safe zone (|angle| <= safe_limit), red over the danger zone beyond
+        it. A plain tk.Scale can't colour parts of its own trough, so this
+        draws a small custom Canvas instead and keeps it redrawn to match
+        the slider's width as the window is resized."""
+        guide = tk.Canvas(parent, height=6, highlightthickness=0, bd=0)
+        guide.pack(fill="x", padx=2)
+
+        def redraw(event=None):
+            width = guide.winfo_width()
+            if width <= 1:
+                return  # Not laid out yet - nothing to draw
+            guide.delete("all")
+            span = servo_max - servo_min
+            x_at = lambda angle: (angle - servo_min) / span * width
+
+            # Danger zone first, full width, then the safe zone painted on
+            # top over its slice of it.
+            guide.create_rectangle(0, 0, width, 6, fill="#c0392b", outline="")
+            guide.create_rectangle(x_at(-safe_limit), 0, x_at(safe_limit), 6, fill="#2e8b57", outline="")
+
+        guide.bind("<Configure>", redraw)
+        return guide
 
     def on_mode_changed(self, *args):
         """Publishes the current control_mode ("manual"/"kinematic") to
