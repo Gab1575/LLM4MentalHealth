@@ -10,6 +10,7 @@ Designed for 3 mm acrylic sheet.
 
 - **Red** strokes -> engrave
 - **Black** strokes -> cut
+- **Blue** strokes -> deep engrave 
 
 ## Files
 
